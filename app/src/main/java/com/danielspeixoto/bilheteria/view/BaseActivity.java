@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
         startActivity(intent);
     }
 
-    protected boolean checkTextNotNull(EditText editText) {
-        return !editText.getText().toString().equals("");
+    protected boolean checkTextEmpty(EditText editText) {
+        return editText.getText().toString().equals(EMPTY_STRING);
     }
 }

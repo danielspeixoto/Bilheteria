@@ -1,4 +1,4 @@
-package com.danielspeixoto.bilheteria.model;
+package com.danielspeixoto.bilheteria.model.pojo;
 
 import lombok.Data;
 
