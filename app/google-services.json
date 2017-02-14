@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "664781337790",
+    "firebase_url": "https://bilheteria-d9aa5.firebaseio.com",
+    "project_id": "bilheteria-d9aa5",
+    "storage_bucket": "bilheteria-d9aa5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664781337790:android:6ea8dfd89accbb80",
+        "android_client_info": {
+          "package_name": "com.danielspeixoto.bilheteria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664781337790-4ap0gshtdvdo5a2akdraal531usp40uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3K1APQ9_fJsNjryW2NOviPDz57D_zbtI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

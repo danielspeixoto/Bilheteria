@@ -1,7 +1,9 @@
-package com.danielspeixoto.bilheteria;
+package com.danielspeixoto.bilheteria.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.danielspeixoto.bilheteria.R;
 
 public class MainActivity extends AppCompatActivity {
 
