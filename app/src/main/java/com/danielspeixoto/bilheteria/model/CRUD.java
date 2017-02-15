@@ -10,10 +10,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CRUD implements DatabaseContract {
 
-    protected static DatabaseReference mDatabase;
+    protected static DatabaseReference mDatabase, tempDatabase;
 
     static {
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public static void updateDatabase() {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(Connection.getCurrentUser().getAdm());
     }
 
 }

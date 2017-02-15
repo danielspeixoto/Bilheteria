@@ -3,12 +3,13 @@
     package="com.danielspeixoto.bilheteria">
 
     <application
+        android:name=".helper.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,13 +17,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.SignUpActivity"
+            android:name=".view.activity.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".view.MainActivity"
+            android:parentActivityName=".view.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.bilheteria.view.MainActivity" />
+                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.activity.ItemsActivity"
+            android:label="@string/title_activity_items"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".view.activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity" />
         </activity>
     </application>
 

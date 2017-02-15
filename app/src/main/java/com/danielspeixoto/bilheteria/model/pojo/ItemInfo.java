@@ -16,4 +16,9 @@ public class ItemInfo {
         this.name = name;
         this.price = price;
     }
+
+    public ItemInfo(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
 }

@@ -11,6 +11,14 @@ public class User {
     int level;
     private String name, email, password, adm;
 
+    public User() {
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User(String name, String email, String password, String adm, int level) {
         this.name = name;
         this.email = email;

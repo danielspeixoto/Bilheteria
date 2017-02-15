@@ -8,17 +8,9 @@ import java.util.ArrayList;
  */
 
 public class Ticket {
-    String uid, identification, observations;
+    String uid, identification, observations, seller;
     Timestamp timestamp;
     ArrayList<Item> items;
     ArrayList<Payment> payments;
 
-    public Ticket(String uid, String identification, String observations, Timestamp timestamp, ArrayList<Item> items, ArrayList<Payment> payments) {
-        this.uid = uid;
-        this.identification = identification;
-        this.observations = observations;
-        this.timestamp = timestamp;
-        this.items = items;
-        this.payments = payments;
-    }
 }

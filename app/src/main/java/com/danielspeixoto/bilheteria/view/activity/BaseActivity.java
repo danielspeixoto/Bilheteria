@@ -1,4 +1,4 @@
-package com.danielspeixoto.bilheteria.view;
+package com.danielspeixoto.bilheteria.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

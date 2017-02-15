@@ -1,4 +1,4 @@
-package com.danielspeixoto.bilheteria.view;
+package com.danielspeixoto.bilheteria.view.activity;
 
 import android.os.Bundle;
 import android.widget.EditText;
@@ -8,16 +8,21 @@ import com.danielspeixoto.bilheteria.model.pojo.User;
 import com.danielspeixoto.bilheteria.module.SignUp;
 import com.danielspeixoto.bilheteria.presenter.SignUpPresenter;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SignUpActivity extends BaseActivity implements SignUp.View {
 
+    @BindView(R.id.nameEdit)
     EditText nameEdit;
+    @BindView(R.id.emailEdit)
     EditText emailEdit;
+    @BindView(R.id.passEdit)
     EditText passEdit;
+    @BindView(R.id.confirmPassEdit)
     EditText confirmPassEdit;
     private SignUp.Presenter mPresenter;
-    private User user;
+    private User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
