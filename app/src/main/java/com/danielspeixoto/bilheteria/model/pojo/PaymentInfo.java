@@ -8,5 +8,13 @@ import lombok.Data;
 
 @Data
 public class PaymentInfo {
-    String uid, name;
+
+    protected String uid, name;
+
+    public PaymentInfo(String name) {
+        this.name = name;
+    }
+
+    public PaymentInfo() {
+    }
 }

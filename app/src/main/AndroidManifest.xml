@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.danielspeixoto.bilheteria">
+          package="com.danielspeixoto.bilheteria">
 
     <application
         android:name=".helper.App"
@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -23,12 +23,12 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity" />
+                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity"/>
         </activity>
         <activity
             android:name=".view.activity.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".view.activity.ItemsActivity"
             android:label="@string/title_activity_items"
@@ -36,7 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity" />
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
         </activity>
         <activity
             android:name=".view.activity.LoginActivity"
@@ -45,7 +45,25 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity" />
+                android:value="com.danielspeixoto.bilheteria.view.activity.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".view.activity.PaymentsActivity"
+            android:label="@string/title_activity_payments"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
+        </activity>
+        <activity
+            android:name=".view.activity.TicketDataActivity"
+            android:label="@string/title_activity_ticket_data"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
         </activity>
     </application>
 

@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
 import com.danielspeixoto.bilheteria.view.activity.ItemsActivity;
+import com.danielspeixoto.bilheteria.view.activity.PaymentsActivity;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.BaseRecyclerAdapter;
 
 import butterknife.BindView;
@@ -20,6 +21,7 @@ import lombok.Setter;
 public class DrawerHolder extends com.danielspeixoto.bilheteria.view.recycler.holder.BaseHolder {
 
     public static final int MANAGE_ITEMS = 2;
+    public static final int MANAGE_PAYMENTS = 4;
     private final BaseActivity mActivity;
     @Setter
     protected int index;
@@ -38,6 +40,8 @@ public class DrawerHolder extends com.danielspeixoto.bilheteria.view.recycler.ho
             case MANAGE_ITEMS:
                 mActivity.goToActivity(ItemsActivity.class);
                 break;
+            case MANAGE_PAYMENTS:
+                mActivity.goToActivity(PaymentsActivity.class);
         }
     }
 

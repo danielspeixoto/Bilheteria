@@ -1,26 +1,26 @@
 package com.danielspeixoto.bilheteria.presenter;
 
-import com.danielspeixoto.bilheteria.model.CRUDItems;
-import com.danielspeixoto.bilheteria.model.pojo.ItemInfo;
+import com.danielspeixoto.bilheteria.model.CRUDPayments;
+import com.danielspeixoto.bilheteria.model.pojo.PaymentInfo;
 import com.danielspeixoto.bilheteria.module.Source;
 
 import rx.Subscriber;
 
 /**
- * Created by danielspeixoto on 2/15/17.
+ * Created by danielspeixoto on 2/16/17.
  */
 
-public class AllItemsPresenter implements Source.Presenter {
+public class AllPaymentsPresenter implements Source.Presenter {
 
-    private Source.View<ItemInfo> mView;
+    private Source.View<PaymentInfo> mView;
 
-    public AllItemsPresenter(Source.View<ItemInfo> view) {
+    public AllPaymentsPresenter(Source.View<PaymentInfo> view) {
         mView = view;
     }
 
     @Override
     public void getItems() {
-        CRUDItems.getAll().subscribe(new Subscriber<ItemInfo>() {
+        CRUDPayments.getAll().subscribe(new Subscriber<PaymentInfo>() {
             @Override
             public void onCompleted() {
 
@@ -32,7 +32,7 @@ public class AllItemsPresenter implements Source.Presenter {
             }
 
             @Override
-            public void onNext(ItemInfo paymentInfo) {
+            public void onNext(PaymentInfo paymentInfo) {
                 mView.addItem(paymentInfo);
             }
         });

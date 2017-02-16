@@ -12,6 +12,7 @@ import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.DrawerRecyclerAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity {
 
@@ -28,6 +29,11 @@ public class HomeActivity extends BaseActivity {
         drawer.setLayoutManager(new LinearLayoutManager(this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);
         drawerLayout.addDrawerListener(drawerToggle);
+    }
+
+    @OnClick(R.id.fab)
+    public void createTicket() {
+        goToActivity(TicketDataActivity.class);
     }
 
     @Override

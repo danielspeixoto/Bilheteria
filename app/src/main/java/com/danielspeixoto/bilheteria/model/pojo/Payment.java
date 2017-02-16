@@ -8,6 +8,10 @@ import lombok.Data;
 
 @Data
 public class Payment extends PaymentInfo {
-    String observations;
-    float amount;
+    private String observations;
+    private float amount;
+
+    public Payment(String name) {
+        super(name);
+    }
 }

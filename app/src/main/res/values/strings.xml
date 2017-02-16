@@ -6,4 +6,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="error_occurred">An error occurred</string>
     <string name="loading">Loading...</string>
+    <string name="title_activity_payments">Payments Manager</string>
+    <string name="title_activity_ticket_data">TicketDataActivity</string>
 </resources>

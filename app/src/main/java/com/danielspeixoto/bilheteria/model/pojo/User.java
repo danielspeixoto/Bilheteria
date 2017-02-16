@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class User {
-    int level;
+    private int level;
     private String name, email, password, adm;
 
     public User() {

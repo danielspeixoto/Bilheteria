@@ -11,6 +11,9 @@ public class ItemInfo {
     protected String uid, name;
     protected float price;
 
+    public ItemInfo() {
+    }
+
     public ItemInfo(String uid, String name, float price) {
         this.uid = uid;
         this.name = name;

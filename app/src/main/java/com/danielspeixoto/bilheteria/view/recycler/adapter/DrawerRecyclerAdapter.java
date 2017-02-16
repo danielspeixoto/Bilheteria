@@ -24,7 +24,8 @@ public class DrawerRecyclerAdapter extends BaseRecyclerAdapter<String> {
         addItem("History");
         addItem("Balance");
         addItem("Manage Items");
-        addItem("Manage users");
+        addItem("Manage Users");
+        addItem("Manage Payment");
         addItem("About");
     }
 

@@ -11,10 +11,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Connection.isLogged(() -> {
+        if (Connection.isLogged()) {
             goToActivity(HomeActivity.class);
             finish();
-        });
+        }
         super.onCreate(savedInstanceState, R.layout.activity_main);
     }
 

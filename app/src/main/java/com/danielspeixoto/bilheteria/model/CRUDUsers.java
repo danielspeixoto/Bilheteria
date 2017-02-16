@@ -20,7 +20,7 @@ public class CRUDUsers extends CRUD {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(email) &&
-                        dataSnapshot.child(email).child("password").getValue().equals(password)) {
+                        dataSnapshot.child(email).child(PASSWORD).getValue().equals(password)) {
                     User user = dataSnapshot.child(email).getValue(User.class);
                     subscriber.onSuccess(user);
                     Connection.logIn(user);
@@ -43,7 +43,7 @@ public class CRUDUsers extends CRUD {
                 String email = user.getEmail();
                 // Verifica se ja existe algum usuario com este email
                 if (!snapshot.hasChild(email)) {
-                    user.setLevel(ADM);
+                    user.setLevel(ADMIN);
                     user.setAdm(email);
                     mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
                     singleSubscriber.onSuccess(user);
