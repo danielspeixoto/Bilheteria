@@ -53,7 +53,7 @@ public class CRUDUsers extends CRUD {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                singleSubscriber.onError(new Throwable("An error occurred"));
+                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
             }
         }));
     }

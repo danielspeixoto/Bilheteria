@@ -7,14 +7,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.danielspeixoto.bilheteria.R;
-import com.danielspeixoto.bilheteria.helper.FloatCallback;
+import com.danielspeixoto.bilheteria.model.pojo.Ticket;
+import com.danielspeixoto.bilheteria.module.InsertTicket;
+import com.danielspeixoto.bilheteria.module.onItemChanged;
 import com.danielspeixoto.bilheteria.presenter.AllItemsPresenter;
-import com.danielspeixoto.bilheteria.view.recycler.adapter.ItemsBuyRecyclerAdapter;
-import com.danielspeixoto.bilheteria.view.recycler.adapter.PaymentsRecyclerAdapter;
+import com.danielspeixoto.bilheteria.presenter.AllPaymentsPresenter;
+import com.danielspeixoto.bilheteria.presenter.InsertTicketPresenter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.OffersBuyAdapter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.PaymentsBuyAdapter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.SourceAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class TicketDataActivity extends BaseActivity {
+public class TicketDataActivity extends BaseActivity implements InsertTicket.View, onItemChanged<Float> {
 
     @BindView(R.id.idEdit)
     EditText idEdit;
@@ -27,21 +33,55 @@ public class TicketDataActivity extends BaseActivity {
     @BindView(R.id.paymentsList)
     RecyclerView paymentsList;
 
-    private ItemsBuyRecyclerAdapter mItemsAdapter = new ItemsBuyRecyclerAdapter(this, new FloatCallback() {
-        @Override
-        public void run(float value) {
-            priceText.setText("$" + (Float.valueOf(priceText.getText().toString().substring(1)) + value));
-        }
-    });
-    private PaymentsRecyclerAdapter mPaymentsAdapter = new PaymentsRecyclerAdapter(this);
+    private InsertTicket.Presenter mPresenter;
+    private Ticket ticket = new Ticket();
+
+    private OffersBuyAdapter mOffersAdapter = new OffersBuyAdapter(this, this);
+    private PaymentsBuyAdapter mPaymentsAdapter = new PaymentsBuyAdapter(this, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
-        mItemsAdapter.setPresenter(new AllItemsPresenter(mItemsAdapter));
+        mOffersAdapter.setPresenter(new AllItemsPresenter(mOffersAdapter));
         itemsList.setLayoutManager(new LinearLayoutManager(this));
-        itemsList.setAdapter(mItemsAdapter);
+        itemsList.setNestedScrollingEnabled(false);
+        itemsList.setAdapter(mOffersAdapter);
+        mPaymentsAdapter.setPresenter(new AllPaymentsPresenter(mPaymentsAdapter));
         paymentsList.setLayoutManager(new LinearLayoutManager(this));
+        paymentsList.setNestedScrollingEnabled(false);
+        paymentsList.setAdapter(mPaymentsAdapter);
+        mPresenter = new InsertTicketPresenter(this);
     }
 
+    @OnClick(R.id.saveButton)
+    public void save() {
+        if (!getText(priceText).equals("$0.0")) {
+            showMessage("Payment is not completed");
+        } else {
+            ticket.setIdentification(getText(idEdit));
+            ticket.setObservations(getText(observationsEdit));
+            ticket.setOffers(mOffersAdapter.getNotZero());
+            ticket.setPayments(mPaymentsAdapter.getNotZero());
+            mPresenter.insert(ticket);
+        }
+    }
+
+    @Override
+    public void clear() {
+        clear(idEdit);
+        clear(observationsEdit);
+        clear(mOffersAdapter);
+        clear(mPaymentsAdapter);
+        priceText.setText("$0.0");
+    }
+
+    public void clear(SourceAdapter adapter) {
+        adapter.reset();
+    }
+
+    @Override
+    public void onItemChanged(Float valueChanged) {
+        priceText.setText("$" + (Float.valueOf(priceText.getText().toString().substring(1)) + valueChanged));
+
+    }
 }

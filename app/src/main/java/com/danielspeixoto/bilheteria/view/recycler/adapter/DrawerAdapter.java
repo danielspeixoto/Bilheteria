@@ -1,20 +1,20 @@
 package com.danielspeixoto.bilheteria.view.recycler.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
+import com.danielspeixoto.bilheteria.view.recycler.holder.BaseHolder;
 import com.danielspeixoto.bilheteria.view.recycler.holder.DrawerHolder;
 
 /**
  * Created by danielspeixoto on 05/12/16.
  */
 
-public class DrawerRecyclerAdapter extends BaseRecyclerAdapter<String> {
+public class DrawerAdapter extends BaseAdapter<String, BaseHolder<DrawerAdapter, String>> {
 
-    public DrawerRecyclerAdapter(BaseActivity activity) {
+    public DrawerAdapter(BaseActivity activity) {
         super(activity);
         getItems();
     }
@@ -30,7 +30,7 @@ public class DrawerRecyclerAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(BaseHolder holder, int position) {
         String item = data.get(position);
         DrawerHolder itemHolder = (DrawerHolder) holder;
         itemHolder.setIndex(position);
@@ -38,7 +38,7 @@ public class DrawerRecyclerAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new DrawerHolder(
                 LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.adapter_drawer_item, parent, false),

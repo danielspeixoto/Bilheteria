@@ -2,7 +2,8 @@ package com.danielspeixoto.bilheteria.model;
 
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.helper.App;
-import com.danielspeixoto.bilheteria.model.pojo.ItemInfo;
+import com.danielspeixoto.bilheteria.helper.Time;
+import com.danielspeixoto.bilheteria.model.pojo.Ticket;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -10,23 +11,23 @@ import com.google.firebase.database.DatabaseError;
 import rx.Observable;
 
 /**
- * Created by danielspeixoto on 2/14/17.
+ * Created by danielspeixoto on 2/18/17.
  */
 
-public class CRUDItems extends CRUD {
+public class CRUDTickets extends CRUD {
 
-    public static void insertItem(ItemInfo item) {
-        tempDatabase = mDatabase.child(ItemInfo.class.getSimpleName());
-        item.setUid(tempDatabase.push().getKey());
-        tempDatabase.child(item.getUid()).setValue(item);
+    public static void insertTicket(Ticket ticket) {
+        tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getToday()));
+        ticket.setUid(tempDatabase.push().getKey());
+        tempDatabase.child(ticket.getUid()).setValue(ticket);
     }
 
-    public static Observable<ItemInfo> getAll() {
-        tempDatabase = mDatabase.child(ItemInfo.class.getSimpleName());
+    public static Observable<Ticket> getAll() {
+        tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                subscriber.onNext(dataSnapshot.getValue(ItemInfo.class));
+                subscriber.onNext(dataSnapshot.getValue(Ticket.class));
             }
 
             @Override

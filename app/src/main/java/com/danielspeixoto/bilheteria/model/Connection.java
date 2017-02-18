@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import lombok.Getter;
 import rx.Single;
+import rx.SingleSubscriber;
 
 import static com.danielspeixoto.bilheteria.model.CRUD.mDatabase;
 
@@ -48,7 +49,7 @@ public class Connection implements DatabaseContract {
             SharedPreferences preferences = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
             if (preferences.contains(EMAIL)) {
                 currentUser = new User(preferences.getString(NAME, ""), preferences.getString(EMAIL, ""), preferences.getString(PASSWORD, ""), preferences.getString(ADM, ""), preferences.getInt(LEVEL, 0));
-                updateUser();
+                //updateUser();
                 CRUD.updateDatabase();
             }
         }
@@ -62,25 +63,31 @@ public class Connection implements DatabaseContract {
         App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit().clear().apply();
     }
 
-    private static void updateUser() {
-        mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
+    private static Single<User> updateUser() {
+        return Single.create(new Single.OnSubscribe<User>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String email = currentUser.getEmail();
-                if (dataSnapshot.hasChild(email) &&
-                        dataSnapshot.child(email).child(PASSWORD).getValue().equals(currentUser.getPassword())) {
-                    User user = dataSnapshot.child(email).getValue(User.class);
-                    Connection.logIn(user);
-                } else {
-                    logOff();
-                    App.showMessage("Your email or password has been changed");
-                }
-            }
+            public void call(SingleSubscriber<? super User> singleSubscriber) {
+                mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String email = currentUser.getEmail();
+                        if (dataSnapshot.hasChild(email) &&
+                                dataSnapshot.child(email).child(PASSWORD).getValue().equals(currentUser.getPassword())) {
+                            User user = dataSnapshot.child(email).getValue(User.class);
+                            Connection.logIn(user);
+                        } else {
+                            logOff();
+                            App.showMessage("Your email or password has been changed");
+                        }
+                    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                App.showMessage(App.getStringResource(R.string.error_occurred));
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        App.showMessage(App.getStringResource(R.string.error_occurred));
+                    }
+                });
             }
         });
+
     }
 }

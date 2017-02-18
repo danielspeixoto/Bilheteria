@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
+import com.danielspeixoto.bilheteria.view.recycler.holder.BaseHolder;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import lombok.Setter;
 /**
  * Created by danielspeixoto on 17/11/16.
  */
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter, T>> extends RecyclerView.Adapter<S> {
 
     @Getter
     protected BaseActivity activity;
@@ -21,7 +22,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     @Setter
     protected ArrayList<T> data = new ArrayList<>();
 
-    public BaseRecyclerAdapter(BaseActivity activity) {
+    public BaseAdapter(BaseActivity activity) {
         this.activity = activity;
     }
 
@@ -33,10 +34,13 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     public abstract void getItems();
 
     @Override
-    public abstract void onBindViewHolder(RecyclerView.ViewHolder holder, int position);
+    public void onBindViewHolder(S holder, int position) {
+        holder.setMItem(data.get(position));
+        holder.onPostCreated();
+    }
 
     @Override
-    public abstract RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType);
+    public abstract S onCreateViewHolder(ViewGroup parent, int viewType);
 
     @Override
     public int getItemCount() {

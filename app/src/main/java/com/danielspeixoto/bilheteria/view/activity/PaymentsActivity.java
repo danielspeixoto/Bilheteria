@@ -6,11 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 
 import com.danielspeixoto.bilheteria.R;
-import com.danielspeixoto.bilheteria.model.pojo.PaymentInfo;
+import com.danielspeixoto.bilheteria.model.pojo.Payment;
 import com.danielspeixoto.bilheteria.module.InsertPayment;
 import com.danielspeixoto.bilheteria.presenter.AllPaymentsPresenter;
 import com.danielspeixoto.bilheteria.presenter.InsertPaymentPresenter;
-import com.danielspeixoto.bilheteria.view.recycler.adapter.PaymentsRecyclerAdapter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.PaymentsShowAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -22,7 +22,7 @@ public class PaymentsActivity extends BaseActivity implements InsertPayment.View
     @BindView(R.id.list)
     RecyclerView list;
 
-    private PaymentsRecyclerAdapter mAdapter = new PaymentsRecyclerAdapter(this);
+    private PaymentsShowAdapter mAdapter = new PaymentsShowAdapter(this);
     private InsertPayment.Presenter mPresenter;
 
     @Override
@@ -36,7 +36,7 @@ public class PaymentsActivity extends BaseActivity implements InsertPayment.View
 
     @OnClick(R.id.addButton)
     public void createPayment() {
-        mPresenter.insert(new PaymentInfo(nameEdit.getText().toString()));
+        mPresenter.insert(new Payment(nameEdit.getText().toString()));
     }
 
     @Override

@@ -22,20 +22,32 @@ public class NumPicker extends LinearLayout {
 
     public NumPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
         amount = new TextView(context);
         amount.setText("0");
+        amount.setTextSize(18);
         amount.setGravity(Gravity.CENTER);
+        amount.setPadding(32, 0, 32, 0);
         minus = new Button(context);
         minus.setText("-");
         plus = new Button(context);
         plus.setText("+");
-        addView(plus);
-        addView(amount);
+        setUpButton(plus);
+        setUpButton(minus);
         addView(minus);
+        addView(amount);
+        addView(plus);
     }
 
-    public void setUp(SimpleCallback callback) {
+    public void setUpButton(Button button) {
+        button.setMinHeight(50);
+        button.setMinWidth(50);
+        button.setMinimumHeight(50);
+        button.setMinimumWidth(50);
+
+    }
+
+    public void setOnAmountChanged(SimpleCallback callback) {
         mCallback = callback;
         minus.setOnClickListener(v -> {
             lastValue = getAmount();
@@ -57,6 +69,11 @@ public class NumPicker extends LinearLayout {
 
     public int getAmountChanged() {
         return Integer.valueOf(amount.getText().toString()) - lastValue;
+    }
+
+    public void reset() {
+        lastValue = 0;
+        amount.setText("0");
     }
 
 

@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.danielspeixoto.bilheteria.R;
-import com.danielspeixoto.bilheteria.view.recycler.adapter.DrawerRecyclerAdapter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.DrawerAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,7 +25,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_home);
-        drawer.setAdapter(new DrawerRecyclerAdapter(this));
+        drawer.setAdapter(new DrawerAdapter(this));
         drawer.setLayoutManager(new LinearLayoutManager(this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);
         drawerLayout.addDrawerListener(drawerToggle);

@@ -1,18 +1,18 @@
 package com.danielspeixoto.bilheteria.module;
 
-import com.danielspeixoto.bilheteria.model.pojo.Payment;
+import com.danielspeixoto.bilheteria.model.pojo.Ticket;
 
 /**
- * Created by danielspeixoto on 2/15/17.
+ * Created by danielspeixoto on 2/18/17.
  */
 
-public class InsertPayment {
+public class InsertTicket {
 
     public interface View extends ActivityBase.View {
         void clear();
     }
 
     public interface Presenter extends ActivityBase.Presenter {
-        void insert(Payment payment);
+        void insert(Ticket ticket);
     }
 }

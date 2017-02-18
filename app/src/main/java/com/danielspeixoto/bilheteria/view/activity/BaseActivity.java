@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.danielspeixoto.bilheteria.R;
@@ -47,5 +48,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
 
     protected boolean checkTextEmpty(EditText editText) {
         return editText.getText().toString().equals(EMPTY_STRING);
+    }
+
+    protected String getText(TextView text) {
+        return text.getText().toString();
+    }
+
+    protected void clear(EditText editText) {
+        editText.setText(EMPTY_STRING);
     }
 }

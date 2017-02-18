@@ -1,7 +1,8 @@
 package com.danielspeixoto.bilheteria.presenter;
 
+import com.danielspeixoto.bilheteria.helper.App;
 import com.danielspeixoto.bilheteria.model.CRUDPayments;
-import com.danielspeixoto.bilheteria.model.pojo.PaymentInfo;
+import com.danielspeixoto.bilheteria.model.pojo.Payment;
 import com.danielspeixoto.bilheteria.module.Source;
 
 import rx.Subscriber;
@@ -12,15 +13,15 @@ import rx.Subscriber;
 
 public class AllPaymentsPresenter implements Source.Presenter {
 
-    private Source.View<PaymentInfo> mView;
+    private Source.View<Payment> mView;
 
-    public AllPaymentsPresenter(Source.View<PaymentInfo> view) {
+    public AllPaymentsPresenter(Source.View<Payment> view) {
         mView = view;
     }
 
     @Override
     public void getItems() {
-        CRUDPayments.getAll().subscribe(new Subscriber<PaymentInfo>() {
+        CRUDPayments.getAll().subscribe(new Subscriber<Payment>() {
             @Override
             public void onCompleted() {
 
@@ -28,12 +29,12 @@ public class AllPaymentsPresenter implements Source.Presenter {
 
             @Override
             public void onError(Throwable e) {
-                mView.getActivity().showMessage(e.getMessage());
+                App.showMessage(e.getMessage());
             }
 
             @Override
-            public void onNext(PaymentInfo paymentInfo) {
-                mView.addItem(paymentInfo);
+            public void onNext(Payment Payment) {
+                mView.addItem(Payment);
             }
         });
     }

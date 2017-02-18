@@ -7,11 +7,23 @@ import lombok.Data;
  */
 
 @Data
-public class Payment extends PaymentInfo {
+public class Payment {
+
+    private String uid, name;
     private String observations;
     private float amount;
 
+    public Payment() {
+
+    }
+
     public Payment(String name) {
-        super(name);
+        this.name = name;
+    }
+
+    public Payment(String name, String observations, float amount) {
+        this.name = name;
+        this.observations = observations;
+        this.amount = amount;
     }
 }

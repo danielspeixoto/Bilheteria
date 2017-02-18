@@ -36,7 +36,7 @@ public class LoginPresenter implements Login.Presenter {
 
             @Override
             public void onError(Throwable error) {
-                mActivity.showMessage(error.getMessage());
+                App.showMessage(error.getMessage());
             }
         });
     }

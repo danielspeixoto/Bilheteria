@@ -2,19 +2,19 @@ package com.danielspeixoto.bilheteria.view.recycler.adapter;
 
 import com.danielspeixoto.bilheteria.module.Source;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
-
-import lombok.Setter;
+import com.danielspeixoto.bilheteria.view.recycler.holder.BaseHolder;
 
 /**
  * Created by danielspeixoto on 2/15/17.
  */
 
-public abstract class SourceRecyclerAdapter<T> extends BaseRecyclerAdapter<T> implements Source.View<T> {
+public abstract class SourceAdapter<T, S extends BaseHolder<? extends SourceAdapter, T>>
+        extends BaseAdapter<T, S>
+        implements Source.View<T> {
 
-    @Setter
     private Source.Presenter presenter;
 
-    public SourceRecyclerAdapter(BaseActivity activity) {
+    public SourceAdapter(BaseActivity activity) {
         super(activity);
     }
 
@@ -28,4 +28,6 @@ public abstract class SourceRecyclerAdapter<T> extends BaseRecyclerAdapter<T> im
         presenter.getItems();
         notifyDataSetChanged();
     }
+
+    public abstract void reset();
 }

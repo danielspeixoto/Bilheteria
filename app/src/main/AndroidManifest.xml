@@ -30,7 +30,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".view.activity.ItemsActivity"
+            android:name=".view.activity.OffersActivity"
             android:label="@string/title_activity_items"
             android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">

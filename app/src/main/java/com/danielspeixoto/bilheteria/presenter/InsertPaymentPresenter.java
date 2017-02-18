@@ -1,7 +1,8 @@
 package com.danielspeixoto.bilheteria.presenter;
 
+import com.danielspeixoto.bilheteria.helper.App;
 import com.danielspeixoto.bilheteria.model.CRUDPayments;
-import com.danielspeixoto.bilheteria.model.pojo.PaymentInfo;
+import com.danielspeixoto.bilheteria.model.pojo.Payment;
 import com.danielspeixoto.bilheteria.module.InsertPayment;
 import com.danielspeixoto.bilheteria.util.Validate;
 
@@ -18,13 +19,13 @@ public class InsertPaymentPresenter implements InsertPayment.Presenter {
     }
 
     @Override
-    public void insert(PaymentInfo payment) {
+    public void insert(Payment payment) {
         String result = Validate.Payment(payment);
         if (result.equals(Validate.OK)) {
             CRUDPayments.insertPayment(payment);
             result = "Payment has been added";
             mView.clear();
         }
-        mView.getActivity().showMessage(result);
+        App.showMessage(result);
     }
 }

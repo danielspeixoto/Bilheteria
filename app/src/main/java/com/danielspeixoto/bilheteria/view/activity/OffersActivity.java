@@ -6,19 +6,19 @@ import android.support.v7.widget.RecyclerView;
 
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.presenter.AllItemsPresenter;
-import com.danielspeixoto.bilheteria.presenter.InsertItemPresenter;
+import com.danielspeixoto.bilheteria.presenter.InsertOfferPresenter;
 import com.danielspeixoto.bilheteria.view.dialog.ItemDialog;
-import com.danielspeixoto.bilheteria.view.recycler.adapter.ItemsRecyclerAdapter;
+import com.danielspeixoto.bilheteria.view.recycler.adapter.OffersShowAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ItemsActivity extends BaseActivity {
+public class OffersActivity extends BaseActivity {
 
     @BindView(R.id.list)
     RecyclerView list;
 
-    private ItemsRecyclerAdapter mAdapter = new ItemsRecyclerAdapter<>(this);
+    private OffersShowAdapter mAdapter = new OffersShowAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class ItemsActivity extends BaseActivity {
     @OnClick(R.id.fab)
     public void createItem() {
         ItemDialog dialog = new ItemDialog(this);
-        dialog.setMPresenter(new InsertItemPresenter(dialog));
+        dialog.setMPresenter(new InsertOfferPresenter(dialog));
         dialog.show();
     }
 
