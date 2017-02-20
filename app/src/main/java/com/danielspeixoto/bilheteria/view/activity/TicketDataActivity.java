@@ -10,7 +10,7 @@ import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.model.pojo.Ticket;
 import com.danielspeixoto.bilheteria.module.InsertTicket;
 import com.danielspeixoto.bilheteria.module.onItemChanged;
-import com.danielspeixoto.bilheteria.presenter.AllItemsPresenter;
+import com.danielspeixoto.bilheteria.presenter.ActivatedOffersPresenter;
 import com.danielspeixoto.bilheteria.presenter.AllPaymentsPresenter;
 import com.danielspeixoto.bilheteria.presenter.InsertTicketPresenter;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.OffersBuyAdapter;
@@ -42,7 +42,7 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
-        mOffersAdapter.setPresenter(new AllItemsPresenter(mOffersAdapter));
+        mOffersAdapter.setPresenter(new ActivatedOffersPresenter(mOffersAdapter));
         itemsList.setLayoutManager(new LinearLayoutManager(this));
         itemsList.setNestedScrollingEnabled(false);
         itemsList.setAdapter(mOffersAdapter);
@@ -70,6 +70,7 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     public void clear() {
         clear(idEdit);
         clear(observationsEdit);
+        idEdit.requestFocus();
         clear(mOffersAdapter);
         clear(mPaymentsAdapter);
         priceText.setText("$0.0");

@@ -14,7 +14,7 @@ public class Source {
 
     public interface Presenter extends ActivityBase.Presenter {
 
-        void getItems();
+        void syncItems();
 
     }
 }

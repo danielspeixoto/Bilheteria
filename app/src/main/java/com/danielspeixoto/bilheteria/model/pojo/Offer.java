@@ -9,9 +9,12 @@ import lombok.Data;
 @Data
 public class Offer {
 
+    public static final String IS_ACTIVATED = "activated";
+
     private String uid, name;
     private float price;
     private int amount = 0;
+    private boolean isActivated = true;
 
     public Offer() {
 
@@ -30,5 +33,9 @@ public class Offer {
 
     public void changeAmount(int variation) {
         amount += variation;
+    }
+
+    public void toggleActivated() {
+        isActivated = !isActivated;
     }
 }

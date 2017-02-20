@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Ticket {
+
     private String uid, identification, observations, seller;
     private long timestamp;
     private List<Offer> offers;

@@ -36,6 +36,7 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     @Override
     public void onBindViewHolder(S holder, int position) {
         holder.setMItem(data.get(position));
+        holder.setPosition(position);
         holder.onPostCreated();
     }
 

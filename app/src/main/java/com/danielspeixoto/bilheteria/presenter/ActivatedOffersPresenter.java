@@ -8,19 +8,19 @@ import com.danielspeixoto.bilheteria.module.Source;
 import rx.Subscriber;
 
 /**
- * Created by danielspeixoto on 2/15/17.
+ * Created by danielspeixoto on 2/20/17.
  */
 
-public class AllItemsPresenter implements Source.Presenter {
+public class ActivatedOffersPresenter implements Source.Presenter {
 
     private Source.View<Offer> mView;
 
-    public AllItemsPresenter(Source.View<Offer> view) {
+    public ActivatedOffersPresenter(Source.View<Offer> view) {
         mView = view;
     }
 
     @Override
-    public void getItems() {
+    public void syncItems() {
         CRUDOffers.getAll().subscribe(new Subscriber<Offer>() {
             @Override
             public void onCompleted() {
@@ -33,8 +33,8 @@ public class AllItemsPresenter implements Source.Presenter {
             }
 
             @Override
-            public void onNext(Offer Payment) {
-                mView.addItem(Payment);
+            public void onNext(Offer offer) {
+                mView.addItem(offer);
             }
         });
     }

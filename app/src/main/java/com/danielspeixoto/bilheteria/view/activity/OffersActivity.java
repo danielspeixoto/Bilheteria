@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.danielspeixoto.bilheteria.R;
-import com.danielspeixoto.bilheteria.presenter.AllItemsPresenter;
+import com.danielspeixoto.bilheteria.presenter.AllOffersPresenter;
 import com.danielspeixoto.bilheteria.presenter.InsertOfferPresenter;
 import com.danielspeixoto.bilheteria.view.dialog.ItemDialog;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.OffersShowAdapter;
@@ -23,7 +23,7 @@ public class OffersActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_items);
-        mAdapter.setPresenter(new AllItemsPresenter(mAdapter));
+        mAdapter.setPresenter(new AllOffersPresenter(mAdapter));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);
     }

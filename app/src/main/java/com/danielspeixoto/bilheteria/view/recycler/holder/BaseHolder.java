@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
+import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.BaseAdapter;
 
 import butterknife.ButterKnife;
@@ -19,6 +20,8 @@ public abstract class BaseHolder<T extends BaseAdapter, S> extends RecyclerView.
     protected T mAdapter;
     @Setter
     protected S mItem;
+    @Setter
+    protected int position;
 
     public BaseHolder(View itemView, T mAdapter) {
         super(itemView);
@@ -38,5 +41,13 @@ public abstract class BaseHolder<T extends BaseAdapter, S> extends RecyclerView.
 
     protected void clear(EditText editText) {
         editText.setText(EMPTY_STRING);
+    }
+
+    public BaseActivity getActivity() {
+        return mAdapter.getActivity();
+    }
+
+    public void goToActivity(Class clazz) {
+        mAdapter.getActivity().goToActivity(clazz);
     }
 }

@@ -50,4 +50,40 @@ public class CRUDOffers extends CRUD {
             }
         }));
     }
+
+    public static Observable<Offer> getActivated() {
+        tempDatabase = mDatabase.child(Offer.class.getSimpleName());
+        return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if ((boolean) dataSnapshot.child(Offer.IS_ACTIVATED).getValue()) {
+                    subscriber.onNext(dataSnapshot.getValue(Offer.class));
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                subscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+            }
+        }));
+    }
+
+
+    public static void toggleActivated(String UID, boolean activated) {
+        mDatabase.child(Offer.class.getSimpleName()).child(UID).child(Offer.IS_ACTIVATED).setValue(activated);
+    }
 }

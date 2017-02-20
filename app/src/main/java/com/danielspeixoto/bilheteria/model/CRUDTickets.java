@@ -19,7 +19,14 @@ public class CRUDTickets extends CRUD {
     public static void insertTicket(Ticket ticket) {
         tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getToday()));
         ticket.setUid(tempDatabase.push().getKey());
-        tempDatabase.child(ticket.getUid()).setValue(ticket);
+        tempDatabase.child(ticket.getUid()).setValue(ticket, (databaseError, databaseReference) -> {
+            //TODO
+//            if(databaseError == null) {
+//
+//            } else {
+//
+//            }
+        });
     }
 
     public static Observable<Ticket> getAll() {
@@ -51,4 +58,5 @@ public class CRUDTickets extends CRUD {
             }
         }));
     }
+
 }

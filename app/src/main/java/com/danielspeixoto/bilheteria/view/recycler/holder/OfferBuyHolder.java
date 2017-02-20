@@ -16,7 +16,6 @@ import butterknife.BindView;
 
 public class OfferBuyHolder extends OfferHolder<OffersBuyAdapter> {
 
-    // It's static only to save memory space
     private static int amount;
     @BindView(R.id.amountEdit)
     EditText amountEdit;
