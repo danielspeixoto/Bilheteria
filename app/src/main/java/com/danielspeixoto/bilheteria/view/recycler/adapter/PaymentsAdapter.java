@@ -3,6 +3,7 @@ package com.danielspeixoto.bilheteria.view.recycler.adapter;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.bilheteria.model.pojo.Payment;
+import com.danielspeixoto.bilheteria.module.Source;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
 import com.danielspeixoto.bilheteria.view.recycler.holder.PaymentHolder;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 
 public abstract class PaymentsAdapter<S extends PaymentHolder<? extends PaymentsAdapter>>
-        extends SourceAdapter<Payment, S> {
+        extends SourceAdapter<Payment, S, Source.Presenter> {
 
     public PaymentsAdapter(BaseActivity activity) {
         super(activity);

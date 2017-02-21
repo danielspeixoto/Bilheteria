@@ -3,6 +3,7 @@ package com.danielspeixoto.bilheteria.view.recycler.adapter;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.bilheteria.model.pojo.Offer;
+import com.danielspeixoto.bilheteria.module.Source;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
 import com.danielspeixoto.bilheteria.view.recycler.holder.OfferHolder;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 
 public abstract class OffersAdapter<S extends OfferHolder<? extends OffersAdapter>>
-        extends SourceAdapter<Offer, S> {
+        extends SourceAdapter<Offer, S, Source.Presenter> {
 
     public OffersAdapter(BaseActivity activity) {
         super(activity);

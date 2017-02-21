@@ -28,7 +28,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/itemsList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/adapter_offer_buy"/>
 
         <TextView
             android:id="@+id/priceText"
@@ -42,7 +43,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/paymentsList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/adapter_payment_buy"/>
 
         <EditText
             android:id="@+id/observationsEdit"

@@ -8,17 +8,17 @@ import com.danielspeixoto.bilheteria.view.recycler.holder.BaseHolder;
  * Created by danielspeixoto on 2/15/17.
  */
 
-public abstract class SourceAdapter<T, S extends BaseHolder<? extends SourceAdapter, T>>
+public abstract class SourceAdapter<T, S extends BaseHolder<? extends SourceAdapter, T>, P extends Source.Presenter>
         extends BaseAdapter<T, S>
         implements Source.View<T> {
 
-    protected Source.Presenter presenter;
+    protected P presenter;
 
     public SourceAdapter(BaseActivity activity) {
         super(activity);
     }
 
-    public void setPresenter(Source.Presenter presenter) {
+    public void setPresenter(P presenter) {
         this.presenter = presenter;
         getItems();
     }

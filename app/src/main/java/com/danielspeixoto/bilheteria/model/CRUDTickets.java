@@ -84,4 +84,35 @@ public class CRUDTickets extends CRUD {
         }));
     }
 
+    //TODO Use elastic search
+    public static Observable<Ticket> search(String query) {
+        tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
+        return Observable.create(subscriber -> tempDatabase.orderByValue().startAt(query).endAt(query).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                subscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+            }
+        }));
+    }
+
 }
