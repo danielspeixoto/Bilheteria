@@ -17,7 +17,7 @@ import lombok.Setter;
  * Created by danielspeixoto on 2/14/17.
  */
 
-public class ItemDialog extends BaseDialog implements InsertOffer.View {
+public class OfferDialog extends BaseDialog implements InsertOffer.View {
 
     @BindView(R.id.nameEdit)
     EditText nameEdit;
@@ -26,7 +26,7 @@ public class ItemDialog extends BaseDialog implements InsertOffer.View {
     @Setter
     private CRUDOffer.Presenter mPresenter;
 
-    public ItemDialog(BaseActivity activity) {
+    public OfferDialog(BaseActivity activity) {
         super(activity);
         this.setContentView(R.layout.item_dialog);
         ButterKnife.bind(this);

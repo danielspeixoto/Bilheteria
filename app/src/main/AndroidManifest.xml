@@ -65,6 +65,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
         </activity>
+        <activity
+            android:name=".view.activity.HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
+        </activity>
     </application>
 
 </manifest>

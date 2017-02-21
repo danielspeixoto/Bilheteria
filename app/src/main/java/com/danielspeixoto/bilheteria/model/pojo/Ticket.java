@@ -14,6 +14,7 @@ public class Ticket {
     private long timestamp;
     private List<Offer> offers;
     private List<Payment> payments;
+    private Float price;
 
     public Ticket(String identification, String observations, String seller, long timestamp, List<Offer> offers, List<Payment> payments) {
         this.identification = identification;
@@ -33,6 +34,14 @@ public class Ticket {
 
     public void addPayment(Payment payment) {
         payments.add(payment);
+    }
+
+    public float getAmountPayed() {
+        float price = 0;
+        for (Offer offer : offers) {
+            price += offer.getPrice();
+        }
+        return price;
     }
 
 

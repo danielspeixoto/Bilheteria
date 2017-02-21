@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.model.pojo.Ticket;
 import com.danielspeixoto.bilheteria.module.InsertTicket;
-import com.danielspeixoto.bilheteria.module.onItemChanged;
+import com.danielspeixoto.bilheteria.module.OnItemChanged;
 import com.danielspeixoto.bilheteria.presenter.ActivatedOffersPresenter;
 import com.danielspeixoto.bilheteria.presenter.AllPaymentsPresenter;
 import com.danielspeixoto.bilheteria.presenter.InsertTicketPresenter;
@@ -20,7 +20,7 @@ import com.danielspeixoto.bilheteria.view.recycler.adapter.SourceAdapter;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class TicketDataActivity extends BaseActivity implements InsertTicket.View, onItemChanged<Float> {
+public class TicketDataActivity extends BaseActivity implements InsertTicket.View, OnItemChanged<Float> {
 
     @BindView(R.id.idEdit)
     EditText idEdit;

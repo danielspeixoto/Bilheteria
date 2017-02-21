@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.helper.SimpleCallback;
-import com.danielspeixoto.bilheteria.module.onItemChanged;
+import com.danielspeixoto.bilheteria.module.OnItemChanged;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
 import com.danielspeixoto.bilheteria.view.recycler.holder.PaymentBuyHolder;
 
@@ -15,14 +15,14 @@ import java.util.ArrayList;
  * Created by danielspeixoto on 2/18/17.
  */
 
-public class PaymentsBuyAdapter extends PaymentsAdapter<PaymentBuyHolder> implements onItemChanged<Float> {
+public class PaymentsBuyAdapter extends PaymentsAdapter<PaymentBuyHolder> implements OnItemChanged<Float> {
 
-    private onItemChanged<Float> mOnItemChanged;
+    private OnItemChanged<Float> mOnItemChanged;
     private ArrayList<SimpleCallback> mSimpleCallbacks = new ArrayList<>();
 
-    public PaymentsBuyAdapter(BaseActivity activity, onItemChanged<Float> onItemChanged) {
+    public PaymentsBuyAdapter(BaseActivity activity, OnItemChanged<Float> OnItemChanged) {
         super(activity);
-        mOnItemChanged = onItemChanged;
+        mOnItemChanged = OnItemChanged;
     }
 
     @Override

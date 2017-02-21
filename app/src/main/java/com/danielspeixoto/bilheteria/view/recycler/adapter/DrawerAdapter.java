@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.model.pojo.Link;
 import com.danielspeixoto.bilheteria.view.activity.BaseActivity;
+import com.danielspeixoto.bilheteria.view.activity.HistoryActivity;
 import com.danielspeixoto.bilheteria.view.activity.OffersActivity;
+import com.danielspeixoto.bilheteria.view.activity.PaymentsActivity;
 import com.danielspeixoto.bilheteria.view.recycler.holder.DrawerHolder;
 
 /**
@@ -22,12 +24,10 @@ public class DrawerAdapter extends BaseAdapter<Link, DrawerHolder> {
 
     @Override
     public void getItems() {
-//        addItem("History");
-//        addItem("Balance");
+        addItem(new Link("History", () -> activity.goToActivity(HistoryActivity.class)));
         addItem(new Link("Manage Offers", () -> activity.goToActivity(OffersActivity.class)));
 //        addItem("Manage Users");
-        addItem(new Link("Manage Payment", () -> activity.goToActivity(OffersActivity.class)));
-//        addItem("About");
+        addItem(new Link("Manage Payment", () -> activity.goToActivity(PaymentsActivity.class)));
     }
 
     @Override

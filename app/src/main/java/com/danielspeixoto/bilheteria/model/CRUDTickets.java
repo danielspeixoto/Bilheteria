@@ -17,7 +17,7 @@ import rx.Observable;
 public class CRUDTickets extends CRUD {
 
     public static void insertTicket(Ticket ticket) {
-        tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getToday()));
+        tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
         ticket.setUid(tempDatabase.push().getKey());
         tempDatabase.child(ticket.getUid()).setValue(ticket, (databaseError, databaseReference) -> {
             //TODO
@@ -29,12 +29,37 @@ public class CRUDTickets extends CRUD {
         });
     }
 
-    public static Observable<Ticket> getAll() {
+    public static Observable<Ticket> getInPeriod(long start, long end) {
         tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
-        return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
+        return Observable.create(subscriber -> tempDatabase.orderByKey().startAt(String.valueOf(start)).endAt(String.valueOf(end)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                subscriber.onNext(dataSnapshot.getValue(Ticket.class));
+                dataSnapshot.getRef().addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        subscriber.onNext(dataSnapshot.getValue(Ticket.class));
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override

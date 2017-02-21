@@ -21,7 +21,7 @@ public class ActivatedOffersPresenter implements Source.Presenter {
 
     @Override
     public void syncItems() {
-        CRUDOffers.getAll().subscribe(new Subscriber<Offer>() {
+        CRUDOffers.getActivated().subscribe(new Subscriber<Offer>() {
             @Override
             public void onCompleted() {
 

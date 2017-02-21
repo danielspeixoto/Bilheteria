@@ -12,7 +12,7 @@ public abstract class SourceAdapter<T, S extends BaseHolder<? extends SourceAdap
         extends BaseAdapter<T, S>
         implements Source.View<T> {
 
-    private Source.Presenter presenter;
+    protected Source.Presenter presenter;
 
     public SourceAdapter(BaseActivity activity) {
         super(activity);

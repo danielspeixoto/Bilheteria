@@ -8,4 +8,5 @@
     <string name="loading">Loading...</string>
     <string name="title_activity_payments">Payments Manager</string>
     <string name="title_activity_ticket_data">TicketDataActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
 </resources>

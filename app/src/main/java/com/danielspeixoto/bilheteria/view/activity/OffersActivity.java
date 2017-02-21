@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.presenter.AllOffersPresenter;
 import com.danielspeixoto.bilheteria.presenter.InsertOfferPresenter;
-import com.danielspeixoto.bilheteria.view.dialog.ItemDialog;
+import com.danielspeixoto.bilheteria.view.dialog.OfferDialog;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.OffersShowAdapter;
 
 import butterknife.BindView;
@@ -30,7 +30,7 @@ public class OffersActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void createItem() {
-        ItemDialog dialog = new ItemDialog(this);
+        OfferDialog dialog = new OfferDialog(this);
         dialog.setMPresenter(new InsertOfferPresenter(dialog));
         dialog.show();
     }
