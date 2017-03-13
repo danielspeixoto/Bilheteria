@@ -10,4 +10,6 @@
     <string name="title_activity_ticket_data">TicketDataActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
     <string name="title_activity_search">Search Results</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="title_activity_user_data">UserDataActivity</string>
 </resources>

@@ -6,10 +6,6 @@ package com.danielspeixoto.bilheteria.helper;
 
 public interface DatabaseContract {
 
-    int ADMIN = 1;
-    int MANAGER = 2;
-    int SELLER = 3;
-
     String EMAIL = "email";
     String ADM = "adm";
     String NAME = "name";

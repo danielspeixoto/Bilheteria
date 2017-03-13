@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.danielspeixoto.bilheteria.R;
+import com.danielspeixoto.bilheteria.model.Connection;
 import com.danielspeixoto.bilheteria.view.recycler.adapter.DrawerAdapter;
 
 import butterknife.BindView;
@@ -34,6 +35,13 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.fab)
     public void createTicket() {
         goToActivity(TicketDataActivity.class);
+    }
+
+    @OnClick(R.id.logOutButton)
+    public void logOut() {
+        Connection.logOff();
+        goToActivity(MainActivity.class);
+        finish();
     }
 
     @Override

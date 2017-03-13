@@ -17,7 +17,9 @@ public class CRUD implements DatabaseContract {
     }
 
     public static void updateDatabase() {
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(Connection.getCurrentUser().getAdm());
+        if (Connection.isLogged()) {
+            mDatabase = mDatabase.child(Connection.getCurrentUser().getAdm());
+        }
     }
 
 }

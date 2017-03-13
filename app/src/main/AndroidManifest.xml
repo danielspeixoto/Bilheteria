@@ -12,6 +12,7 @@
         <meta-data
             android:name="android.app.searchable"
             android:resource="@xml/searchable"/>
+
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -82,13 +83,33 @@
             android:label="@string/app_name"
             android:parentActivityName=".view.activity.HistoryActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--android:launchMode="singleTop">-->
+
+            <!-- android:launchMode="singleTop"> -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.danielspeixoto.bilheteria.view.activity.HistoryActivity"/>
+        </activity>
+        <activity
+            android:name=".view.activity.UsersActivity"
+            android:label="@string/title_activity_users"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.HomeActivity"/>
+        </activity>
+        <activity
+            android:name=".view.activity.UserDataActivity"
+            android:label="@string/title_activity_user_data"
+            android:parentActivityName=".view.activity.UsersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.bilheteria.view.activity.UsersActivity"/>
         </activity>
     </application>
 

@@ -1,5 +1,7 @@
 package com.danielspeixoto.bilheteria.model.pojo;
 
+import java.util.HashMap;
+
 import lombok.Data;
 
 /**
@@ -8,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class User {
-    private int level;
+    private HashMap<String, Boolean> permissions;
     private String name, email, password, adm;
 
     public User() {
@@ -19,12 +21,12 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String email, String password, String adm, int level) {
+    public User(String name, String email, String password, String adm, HashMap<String, Boolean> permissions) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.adm = adm;
-        this.level = level;
+        this.permissions = permissions;
 
     }
 

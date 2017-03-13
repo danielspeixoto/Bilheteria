@@ -17,7 +17,7 @@ import butterknife.BindView;
 public class PaymentBuyHolder extends PaymentHolder<PaymentsBuyAdapter> {
 
     private static float amount;
-    @BindView(R.id.amountEdit)
+    @BindView(R.id.amountPicker)
     EditText amountEdit;
 
     public PaymentBuyHolder(View itemView, PaymentsBuyAdapter mAdapter) {

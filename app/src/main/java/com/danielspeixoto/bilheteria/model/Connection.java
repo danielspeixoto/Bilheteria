@@ -12,6 +12,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
 import lombok.Getter;
 import rx.Single;
 import rx.SingleSubscriber;
@@ -35,8 +43,17 @@ public class Connection implements DatabaseContract {
         editor.putString(PASSWORD, user.getPassword());
         editor.putString(ADM, user.getAdm());
         editor.putString(NAME, user.getName());
-        editor.putInt(LEVEL, user.getLevel());
         editor.apply();
+        try {
+            File file = new File(App.getContext().getDir("data", App.MODE_PRIVATE), "permissions");
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(user.getPermissions());
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static Single<User> logIn(String email, String password) {
@@ -48,9 +65,16 @@ public class Connection implements DatabaseContract {
         if (currentUser == null) {
             SharedPreferences preferences = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
             if (preferences.contains(EMAIL)) {
-                currentUser = new User(preferences.getString(NAME, ""), preferences.getString(EMAIL, ""), preferences.getString(PASSWORD, ""), preferences.getString(ADM, ""), preferences.getInt(LEVEL, 0));
-                //updateUser();
-                CRUD.updateDatabase();
+                try {
+                    File file = new File(App.getContext().getDir("data", App.MODE_PRIVATE), "permissions");
+                    ObjectInputStream outputStream = new ObjectInputStream(new FileInputStream(file));
+                    currentUser = new User(preferences.getString(NAME, ""), preferences.getString(EMAIL, ""), preferences.getString(PASSWORD, ""), preferences.getString(ADM, ""), (HashMap<String, Boolean>) outputStream.readObject());
+                    CRUD.updateDatabase();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return currentUser != null;
@@ -59,8 +83,8 @@ public class Connection implements DatabaseContract {
 
     public static void logOff() {
         currentUser = null;
+        App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit().clear().commit();
         CRUD.updateDatabase();
-        App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit().clear().apply();
     }
 
     private static Single<User> updateUser() {
