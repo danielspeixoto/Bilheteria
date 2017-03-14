@@ -22,7 +22,6 @@ import java.util.HashMap;
 
 import lombok.Getter;
 import rx.Single;
-import rx.SingleSubscriber;
 
 import static com.danielspeixoto.bilheteria.model.CRUD.mDatabase;
 
@@ -70,9 +69,7 @@ public class Connection implements DatabaseContract {
                     ObjectInputStream outputStream = new ObjectInputStream(new FileInputStream(file));
                     currentUser = new User(preferences.getString(NAME, ""), preferences.getString(EMAIL, ""), preferences.getString(PASSWORD, ""), preferences.getString(ADM, ""), (HashMap<String, Boolean>) outputStream.readObject());
                     CRUD.updateDatabase();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
@@ -88,30 +85,25 @@ public class Connection implements DatabaseContract {
     }
 
     private static Single<User> updateUser() {
-        return Single.create(new Single.OnSubscribe<User>() {
+        return Single.create(singleSubscriber -> mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void call(SingleSubscriber<? super User> singleSubscriber) {
-                mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String email = currentUser.getEmail();
-                        if (dataSnapshot.hasChild(email) &&
-                                dataSnapshot.child(email).child(PASSWORD).getValue().equals(currentUser.getPassword())) {
-                            User user = dataSnapshot.child(email).getValue(User.class);
-                            Connection.logIn(user);
-                        } else {
-                            logOff();
-                            App.showMessage("Your email or password has been changed");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        App.showMessage(App.getStringResource(R.string.error_occurred));
-                    }
-                });
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = currentUser.getEmail();
+                if (dataSnapshot.hasChild(email) &&
+                        dataSnapshot.child(email).child(PASSWORD).getValue().equals(currentUser.getPassword())) {
+                    User user = dataSnapshot.child(email).getValue(User.class);
+                    Connection.logIn(user);
+                } else {
+                    logOff();
+                    App.showMessage("Your email or password has been changed");
+                }
             }
-        });
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                App.showMessage(App.getStringResource(R.string.error_occurred));
+            }
+        }));
 
     }
 }

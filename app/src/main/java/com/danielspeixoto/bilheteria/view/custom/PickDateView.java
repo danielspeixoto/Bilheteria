@@ -1,6 +1,7 @@
 package com.danielspeixoto.bilheteria.view.custom;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.Button;
@@ -26,18 +27,20 @@ public class PickDateView extends LinearLayout {
         mContext = context;
         startDialog = new DateDialog(mContext);
         endDialog = new DateDialog(mContext);
-        setGravity(Gravity.CENTER_HORIZONTAL);
+        setGravity(Gravity.CENTER);
         setUp("Start Date");
         setUp("End Date");
     }
 
     public void setUp(String name) {
         LinearLayout linearLayout = new LinearLayout(mContext);
+        linearLayout.setGravity(Gravity.CENTER_VERTICAL);
         linearLayout.setOrientation(VERTICAL);
-        linearLayout.setPadding(32, 32, 32, 32);
+        linearLayout.setPadding(64, 64, 64, 64);
         TextView textView = new TextView(mContext);
         textView.setText(Time.getFormat(Time.getDate(), Time.DD_MM_YYYY));
         textView.setTextSize(18);
+        textView.setPadding(32, 32, 32, 32);
         DateDialog dialog = name.equals("Start Date") ? startDialog : endDialog;
         dialog.setDate(Time.getDate());
         dialog.setMCallback(() -> {
@@ -48,9 +51,10 @@ public class PickDateView extends LinearLayout {
         button.setOnClickListener(v -> {
             dialog.show();
         });
+        button.setBackgroundColor(Color.WHITE);
+        button.setPadding(32, 32, 32, 32);
         button.setText(name);
         button.setTextSize(18);
-        button.setPadding(0, 0, 0, 16);
         linearLayout.addView(button);
         linearLayout.addView(textView);
         addView(linearLayout);

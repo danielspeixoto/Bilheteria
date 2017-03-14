@@ -1,5 +1,6 @@
 package com.danielspeixoto.bilheteria.presenter;
 
+import com.danielspeixoto.bilheteria.helper.App;
 import com.danielspeixoto.bilheteria.model.CRUDOffers;
 import com.danielspeixoto.bilheteria.model.pojo.Offer;
 import com.danielspeixoto.bilheteria.module.InsertOffer;
@@ -25,6 +26,6 @@ public class InsertOfferPresenter implements InsertOffer.Presenter {
             result = "Offer has been added";
             mView.getDialog().dismiss();
         }
-        mView.getDialog().getActivity().showMessage(result);
+        App.showMessage(result);
     }
 }

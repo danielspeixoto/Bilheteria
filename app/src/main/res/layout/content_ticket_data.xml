@@ -6,8 +6,8 @@
     android:id="@+id/content_ticket_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:clipToPadding="false"
-    android:padding="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.danielspeixoto.bilheteria.view.activity.TicketDataActivity"
     tools:showIn="@layout/activity_ticket_data">
@@ -21,9 +21,12 @@
             android:id="@+id/idEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:drawable/editbox_background"
             android:ems="10"
             android:hint="Identification"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName"
+            android:padding="16dp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/itemsList"
@@ -44,23 +47,21 @@
             android:id="@+id/paymentsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             tools:listitem="@layout/adapter_payment_buy"/>
 
         <EditText
             android:id="@+id/observationsEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:drawable/editbox_background"
             android:ems="10"
+            android:gravity="start"
             android:hint="Observations"
-            android:inputType="textPersonName"/>
-
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"/>
+            android:inputType="textPersonName"
+            android:minHeight="100dp"/>
 
     </LinearLayout>
-
 
 </android.support.v4.widget.NestedScrollView>

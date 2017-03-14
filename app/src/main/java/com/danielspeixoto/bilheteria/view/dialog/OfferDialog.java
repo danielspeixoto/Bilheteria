@@ -28,12 +28,13 @@ public class OfferDialog extends BaseDialog implements InsertOffer.View {
 
     public OfferDialog(BaseActivity activity) {
         super(activity);
-        this.setContentView(R.layout.item_dialog);
+        this.setContentView(R.layout.offer_dialog);
         ButterKnife.bind(this);
     }
 
     @OnClick(R.id.saveButton)
     public void save() {
-        mPresenter.save(new Offer(nameEdit.getText().toString(), Float.valueOf(priceEdit.getText().toString())));
+        float amount = priceEdit.getText().toString().equals("") ? 0 : Float.valueOf(priceEdit.getText().toString());
+        mPresenter.save(new Offer(nameEdit.getText().toString(), amount));
     }
 }

@@ -4,10 +4,12 @@ import com.danielspeixoto.bilheteria.R;
 import com.danielspeixoto.bilheteria.helper.App;
 import com.danielspeixoto.bilheteria.helper.Permissions;
 import com.danielspeixoto.bilheteria.model.pojo.User;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import rx.Observable;
 import rx.Single;
 
 /**
@@ -102,5 +104,35 @@ public class CRUDUsers extends CRUD {
                 }
             });
         });
+    }
+
+    public static Observable<User> getAll() {
+        tempDatabase = mDatabase.child(User.class.getSimpleName());
+        return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                subscriber.onNext(dataSnapshot.getValue(User.class));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                subscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+            }
+        }));
     }
 }

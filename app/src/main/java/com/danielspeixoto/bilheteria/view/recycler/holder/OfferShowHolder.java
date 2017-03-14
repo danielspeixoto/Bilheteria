@@ -29,7 +29,7 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        if (mItem.isActivated()) {
+        if (mItem.isActivated() && !switchActivated.isChecked()) {
             switchActivated.toggle();
         }
     }

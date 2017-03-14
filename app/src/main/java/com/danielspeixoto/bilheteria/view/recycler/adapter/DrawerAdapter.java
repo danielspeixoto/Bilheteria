@@ -40,7 +40,7 @@ public class DrawerAdapter extends BaseAdapter<Link, DrawerHolder> {
             addItem(new Link("Manage Payment", () -> activity.goToActivity(PaymentsActivity.class)));
         }
         if (permissions.get(Permissions.MANAGE_USERS)) {
-            addItem(new Link("Manage User", () -> activity.goToActivity(UsersActivity.class)));
+            addItem(new Link("Manage Users", () -> activity.goToActivity(UsersActivity.class)));
         }
     }
 

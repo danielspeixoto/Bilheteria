@@ -55,8 +55,12 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
 
     @OnClick(R.id.saveButton)
     public void save() {
-        if (!getText(priceText).equals("$0.0")) {
+        if (getText(idEdit).equals(EMPTY_STRING)) {
+            showMessage("Must have an identification");
+        } else if (!getText(priceText).equals("$0.0")) {
             showMessage("Payment is not completed");
+        } else if (mPaymentsAdapter.getNotZero().size() == 0) {
+            showMessage("You must buy something");
         } else {
             ticket.setIdentification(getText(idEdit));
             ticket.setObservations(getText(observationsEdit));

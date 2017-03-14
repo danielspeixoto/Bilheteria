@@ -16,6 +16,7 @@ public class MainActivity extends BaseActivity {
             finish();
         }
         super.onCreate(savedInstanceState, R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
     @OnClick(R.id.signUpButton)

@@ -19,6 +19,8 @@ public class CRUD implements DatabaseContract {
     public static void updateDatabase() {
         if (Connection.isLogged()) {
             mDatabase = mDatabase.child(Connection.getCurrentUser().getAdm());
+        } else {
+            mDatabase = mDatabase.getParent();
         }
     }
 

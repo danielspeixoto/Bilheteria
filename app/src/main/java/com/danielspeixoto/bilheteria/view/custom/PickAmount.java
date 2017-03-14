@@ -2,8 +2,8 @@ package com.danielspeixoto.bilheteria.view.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,26 +24,31 @@ public class PickAmount extends LinearLayout {
 
     public PickAmount(Context context, AttributeSet attrs) {
         super(context, attrs);
-        textView = new EditText(context);
+        // Text
+        textView = new TextView(context);
         textView.setText("0");
-        textView.setPadding(16, 16, 16, 16);
+        textView.setTextSize(24);
+        textView.setPadding(24, 24, 24, 24);
+        // Plus
         Button plus = new Button(context);
-        plus.setText("+");
         plus.setOnClickListener(v -> {
             textView.setText(String.valueOf(++amount));
             mCallback.run();
         });
-        plus.setMinWidth(0);
-        plus.setWidth(0);
-        plus.setMinEms(0);
+        plus.setLayoutParams(new LayoutParams(150, 150));
+        plus.setText("+");
+        // Minus
         Button minus = new Button(context);
         minus.setText("-");
+        minus.setLayoutParams(new LayoutParams(150, 150));
         minus.setOnClickListener(v -> {
             if (amount > 0) {
                 textView.setText(String.valueOf(--amount));
             }
             mCallback.run();
         });
+        // Setting up
+        setGravity(Gravity.CENTER);
         addView(minus, 0);
         addView(textView, 1);
         addView(plus, 2);
