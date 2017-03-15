@@ -6,17 +6,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.danielspeixoto.bilheteria.view.activity.OffersActivity"
+                tools:context="com.danielspeixoto.ticket.view.activity.OffersActivity"
                 tools:showIn="@layout/activity_items">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         tools:listitem="@layout/adapter_offer_info"/>
 
 </RelativeLayout>

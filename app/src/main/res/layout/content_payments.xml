@@ -7,18 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.danielspeixoto.bilheteria.view.activity.PaymentsActivity"
+    tools:context="com.danielspeixoto.ticket.view.activity.PaymentsActivity"
     tools:showIn="@layout/activity_payments">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        tools:listitem="@layout/adapter_payments"/>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -50,9 +40,17 @@
             android:layout_marginLeft="16dp"
             android:layout_toLeftOf="@+id/addButton"
             android:layout_toStartOf="@+id/addButton"
+            android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="New payment type"
+            android:hint="@string/new_payment"
             android:inputType="textPersonName"/>
     </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/relativeLayout"
+        tools:listitem="@layout/adapter_payments"/>
 
 </RelativeLayout>

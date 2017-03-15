@@ -6,12 +6,8 @@
     android:id="@+id/content_users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.danielspeixoto.bilheteria.view.activity.UsersActivity"
+    tools:context="com.danielspeixoto.ticket.view.activity.UsersActivity"
     tools:showIn="@layout/activity_users">
 
     <android.support.v7.widget.RecyclerView

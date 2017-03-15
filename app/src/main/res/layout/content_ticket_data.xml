@@ -9,7 +9,7 @@
     android:layout_margin="16dp"
     android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.danielspeixoto.bilheteria.view.activity.TicketDataActivity"
+    tools:context="com.danielspeixoto.ticket.view.activity.TicketDataActivity"
     tools:showIn="@layout/activity_ticket_data">
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:ems="10"
-            android:hint="Identification"
+            android:hint="@string/identification"
             android:inputType="textPersonName"
             android:padding="16dp"/>
 
@@ -58,7 +58,7 @@
             android:background="@android:drawable/editbox_background"
             android:ems="10"
             android:gravity="start"
-            android:hint="Observations"
+            android:hint="@string/observations"
             android:inputType="textPersonName"
             android:minHeight="100dp"/>
 

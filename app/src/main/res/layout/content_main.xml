@@ -15,7 +15,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"
         android:background="?attr/colorBackgroundFloating"
-        android:text="I don't have an account"/>
+        android:text="@string/has_no_account"/>
 
     <Button
         android:id="@+id/haveAccountButton"
@@ -26,7 +26,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"
         android:background="?attr/colorBackgroundFloating"
-        android:text="I already have an account"/>
+        android:text="@string/has_account"/>
 
     <ImageView
         android:id="@+id/imageView"
