@@ -35,6 +35,6 @@ public class OfferDialog extends BaseDialog implements InsertOffer.View {
     @OnClick(R.id.saveButton)
     public void save() {
         float amount = priceEdit.getText().toString().equals("") ? 0 : Float.valueOf(priceEdit.getText().toString());
-        mPresenter.save(new Offer(nameEdit.getText().toString(), amount));
+        mPresenter.save(new Offer(nameEdit.getText().toString().trim(), amount));
     }
 }

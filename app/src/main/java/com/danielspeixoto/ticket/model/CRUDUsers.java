@@ -28,7 +28,7 @@ public class CRUDUsers extends CRUD {
                     subscriber.onSuccess(user);
                     Connection.logIn(user);
                 } else {
-                    subscriber.onError(new Throwable(App.getStringResource(R.string.incorrect_email_password)));
+                    subscriber.onError(new Throwable(App.getStringResource(R.string.incorrect_username_password)));
                 }
             }
 
@@ -43,15 +43,15 @@ public class CRUDUsers extends CRUD {
         return Single.create(singleSubscriber -> mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                String email = user.getEmail();
-                // Verifica se ja existe algum usuario com este email
+                String email = user.getUsername();
+                // Verifica se ja existe algum usuario com este username
                 if (!snapshot.hasChild(email)) {
                     user.setPermissions(Permissions.getADMPermissions());
                     user.setAdm(email);
                     mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
                     singleSubscriber.onSuccess(user);
                 }
-                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.user_already_exists)));
+                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
             }
 
             @Override
@@ -64,20 +64,20 @@ public class CRUDUsers extends CRUD {
     public static Single<User> createUser(User user) {
         String adm = Connection.getCurrentUser().getAdm();
         user.setAdm(adm);
-        String email = user.getEmail();
+        String email = user.getUsername();
         return Single.create(singleSubscriber -> {
             // Users general node
             tempDatabase = mDatabase.getParent().child(User.class.getSimpleName());
             tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    // Verifica se ja existe algum usuario com este email
+                    // Verifica se ja existe algum usuario com este username
                     if (!snapshot.hasChild(email)) {
                         mDatabase.getParent().child(User.class.getSimpleName()).child(email).setValue(user);
                         singleSubscriber.onSuccess(user);
 
                     }
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.user_already_exists)));
+                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
                 }
 
                 @Override
@@ -90,12 +90,12 @@ public class CRUDUsers extends CRUD {
             tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    // Verifica se ja existe algum usuario com este email
+                    // Verifica se ja existe algum usuario com este username
                     if (!snapshot.hasChild(email)) {
                         mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
                         singleSubscriber.onSuccess(user);
                     }
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.user_already_exists)));
+                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
                 }
 
                 @Override

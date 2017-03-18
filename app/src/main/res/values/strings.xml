@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bilheteria</string>
+    <string name="app_name" translatable="false">Ticket</string>
     <string name="title_activity_sign_up">Sign Up</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_offers">Offers</string>
@@ -13,7 +13,7 @@
     <string name="title_activity_users">Users</string>
     <string name="title_activity_user_data">Create User</string>
     <string name="name">Name</string>
-    <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="confirm_your_password">Confirm your password</string>
     <string name="permissions">Permissions</string>
@@ -26,7 +26,7 @@
     <string name="price">Price</string>
     <string name="save">Save</string>
     <string name="name_must_fill">Name must be filled</string>
-    <string name="email_must_fill">Email must be filled</string>
+    <string name="username_must_fill">Username must be filled</string>
     <string name="password_must_fill">Must have a password</string>
     <string name="password_must_match">Passwords must match</string>
     <string name="start_date">Start Date</string>
@@ -39,10 +39,12 @@
     <string name="manage_payment">Manage Payment</string>
     <string name="manage_users">Manage Users</string>
     <string name="manage_tickets">Manage Tickets</string>
-    <string name="incorrect_email_password">Incorrect email or password</string>
-    <string name="user_already_exists">User already exists</string>
+    <string name="incorrect_username_password">Incorrect username or password</string>
+    <string name="username_already_exists">User already exists</string>
     <string name="offer_added">Offer has been added</string>
     <string name="payment_added">Payment has been added</string>
     <string name="ticket_added">Ticket created successfully</string>
     <string name="user_added">User created</string>
+    <string name="username_letters_numbers">Username must only contain letters and numbers</string>
+    <string name="icon">icon</string>
 </resources>

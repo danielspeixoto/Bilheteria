@@ -6,7 +6,7 @@ package com.danielspeixoto.ticket.helper;
 
 public interface DatabaseContract {
 
-    String EMAIL = "email";
+    String EMAIL = "username";
     String ADM = "adm";
     String NAME = "name";
     String LEVEL = "level";

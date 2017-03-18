@@ -12,7 +12,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements Login.View {
 
-    @BindView(R.id.emailEdit)
+    @BindView(R.id.usernameEdit)
     EditText emailEdit;
     @BindView(R.id.passEdit)
     EditText passEdit;
@@ -26,7 +26,7 @@ public class LoginActivity extends BaseActivity implements Login.View {
 
     @OnClick(R.id.fab)
     public void logIn() {
-        mPresenter.logIn(emailEdit.getText().toString(), passEdit.getText().toString());
+        mPresenter.logIn(getText(emailEdit), getText(passEdit));
     }
 
 }

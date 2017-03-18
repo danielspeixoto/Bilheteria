@@ -5,6 +5,7 @@ import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.Login;
+import com.danielspeixoto.ticket.util.Validate;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.activity.HomeActivity;
 
@@ -27,17 +28,23 @@ public class LoginPresenter implements Login.Presenter {
     @Override
     public void logIn(String email, String password) {
         mActivity.showMessage(App.getStringResource(R.string.loading));
-        Connection.logIn(email, password).subscribe(new SingleSubscriber<User>() {
-            @Override
-            public void onSuccess(User value) {
-                mView.goToActivity(HomeActivity.class);
-                mActivity.finish();
-            }
+        User user = new User(email, password);
+        String result = Validate.User(user);
+        if (result.equals(Validate.OK)) {
+            Connection.logIn(email, password).subscribe(new SingleSubscriber<User>() {
+                @Override
+                public void onSuccess(User value) {
+                    mView.goToActivity(HomeActivity.class);
+                    mActivity.finish();
+                }
 
-            @Override
-            public void onError(Throwable error) {
-                App.showMessage(error.getMessage());
-            }
-        });
+                @Override
+                public void onError(Throwable error) {
+                    App.showMessage(error.getMessage());
+                }
+            });
+        } else {
+            App.showMessage(result);
+        }
     }
 }

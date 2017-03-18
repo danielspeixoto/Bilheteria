@@ -51,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     }
 
     protected String getText(TextView text) {
-        return text.getText().toString();
+        return text.getText().toString().trim();
     }
 
     protected void clear(EditText editText) {

@@ -36,7 +36,7 @@ public class PaymentsActivity extends BaseActivity implements InsertPayment.View
 
     @OnClick(R.id.addButton)
     public void createPayment() {
-        mPresenter.insert(new Payment(nameEdit.getText().toString()));
+        mPresenter.insert(new Payment(getText(nameEdit)));
     }
 
     @Override

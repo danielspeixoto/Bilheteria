@@ -5,6 +5,7 @@ import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.model.CRUDUsers;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.InsertUser;
+import com.danielspeixoto.ticket.util.Validate;
 
 import rx.SingleSubscriber;
 
@@ -23,16 +24,22 @@ public class InsertUserPresenter implements InsertUser.Presenter {
 
     @Override
     public void createUser(User user) {
-        CRUDUsers.createUser(user).subscribe(new SingleSubscriber<User>() {
-            @Override
-            public void onSuccess(User user) {
-                App.showMessage(App.getStringResource(R.string.user_added));
-            }
+        String result = Validate.User(user);
+        if (result.equals(Validate.OK)) {
+            result = App.getStringResource(R.string.user_added);
+            CRUDUsers.createUser(user).subscribe(new SingleSubscriber<User>() {
+                @Override
+                public void onSuccess(User user) {
+                    App.showMessage(App.getStringResource(R.string.user_added));
+                }
 
-            @Override
-            public void onError(Throwable error) {
-                App.showMessage(error.getMessage());
-            }
-        });
+                @Override
+                public void onError(Throwable error) {
+                    App.showMessage(error.getMessage());
+                }
+            });
+        } else {
+            App.showMessage(result);
+        }
     }
 }

@@ -38,7 +38,7 @@ public class Connection implements DatabaseContract {
         currentUser = user;
         CRUD.updateDatabase();
         SharedPreferences.Editor editor = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit();
-        editor.putString(EMAIL, user.getEmail());
+        editor.putString(EMAIL, user.getUsername());
         editor.putString(PASSWORD, user.getPassword());
         editor.putString(ADM, user.getAdm());
         editor.putString(NAME, user.getName());
@@ -88,14 +88,14 @@ public class Connection implements DatabaseContract {
         return Single.create(singleSubscriber -> mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String email = currentUser.getEmail();
+                String email = currentUser.getUsername();
                 if (dataSnapshot.hasChild(email) &&
                         dataSnapshot.child(email).child(PASSWORD).getValue().equals(currentUser.getPassword())) {
                     User user = dataSnapshot.child(email).getValue(User.class);
                     Connection.logIn(user);
                 } else {
                     logOff();
-                    App.showMessage("Your email or password has been changed");
+                    App.showMessage("Your username or password has been changed");
                 }
             }
 

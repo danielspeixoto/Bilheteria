@@ -15,7 +15,7 @@ public class SignUpActivity extends BaseActivity implements SignUp.View {
 
     @BindView(R.id.nameEdit)
     EditText nameEdit;
-    @BindView(R.id.emailEdit)
+    @BindView(R.id.usernameEdit)
     EditText emailEdit;
     @BindView(R.id.passEdit)
     EditText passEdit;
@@ -41,13 +41,13 @@ public class SignUpActivity extends BaseActivity implements SignUp.View {
         } else if (checkTextEmpty(passEdit)) {
             passEdit.requestFocus();
             showMessage("Must have a password");
-        } else if (!passEdit.getText().toString().equals(confirmPassEdit.getText().toString())) {
+        } else if (!getText(passEdit).equals(getText(confirmPassEdit))) {
             confirmPassEdit.requestFocus();
             showMessage("Passwords must match");
         } else {
-            user.setName(nameEdit.getText().toString());
-            user.setEmail(emailEdit.getText().toString());
-            user.setPassword(passEdit.getText().toString());
+            user.setName(getText(nameEdit));
+            user.setUsername(getText(emailEdit));
+            user.setPassword(getText(passEdit));
             mPresenter.signUp(user);
         }
     }

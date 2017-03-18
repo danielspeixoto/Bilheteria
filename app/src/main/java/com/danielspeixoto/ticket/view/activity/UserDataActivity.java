@@ -19,7 +19,7 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
 
     @BindView(R.id.nameEdit)
     EditText nameEdit;
-    @BindView(R.id.emailEdit)
+    @BindView(R.id.usernameEdit)
     EditText emailEdit;
     @BindView(R.id.passEdit)
     EditText passEdit;
@@ -48,17 +48,17 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
             showMessage(getString(R.string.name_must_fill));
         } else if (checkTextEmpty(emailEdit)) {
             emailEdit.requestFocus();
-            showMessage(getString(R.string.email_must_fill));
+            showMessage(getString(R.string.username_must_fill));
         } else if (checkTextEmpty(passEdit)) {
             passEdit.requestFocus();
             showMessage(getString(R.string.password_must_fill));
-        } else if (!passEdit.getText().toString().equals(confirmPassEdit.getText().toString())) {
+        } else if (!getText(passEdit).equals(getText(confirmPassEdit))) {
             confirmPassEdit.requestFocus();
             showMessage(getString(R.string.password_must_match));
         } else {
-            mUser.setName(nameEdit.getText().toString());
-            mUser.setEmail(emailEdit.getText().toString());
-            mUser.setPassword(passEdit.getText().toString());
+            mUser.setName(getText(nameEdit));
+            mUser.setUsername(getText(emailEdit));
+            mUser.setPassword(getText(passEdit));
             mPresenter.createUser(mUser);
         }
     }

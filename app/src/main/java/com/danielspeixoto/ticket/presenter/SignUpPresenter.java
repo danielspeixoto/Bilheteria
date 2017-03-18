@@ -6,6 +6,7 @@ import com.danielspeixoto.ticket.model.CRUDUsers;
 import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.SignUp;
+import com.danielspeixoto.ticket.util.Validate;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.activity.HomeActivity;
 
@@ -29,19 +30,25 @@ public class SignUpPresenter implements SignUp.Presenter {
     @Override
     public void signUp(User user) {
         App.showMessage(mActivity.getResources().getString(R.string.loading));
-        CRUDUsers.createAdm(user).subscribe(new SingleSubscriber<User>() {
-            @Override
-            public void onSuccess(User user) {
-                App.showMessage(App.getStringResource(R.string.user_added));
-                Connection.logIn(user);
-                mView.goToActivity(HomeActivity.class);
-                mView.getActivity().finish();
-            }
+        String result = Validate.User(user);
+        if (result.equals(Validate.OK)) {
+            CRUDUsers.createAdm(user).subscribe(new SingleSubscriber<User>() {
+                @Override
+                public void onSuccess(User user) {
+                    App.showMessage(App.getStringResource(R.string.user_added));
+                    Connection.logIn(user);
+                    mView.goToActivity(HomeActivity.class);
+                    mView.getActivity().finish();
+                }
 
-            @Override
-            public void onError(Throwable error) {
-                App.showMessage(error.getMessage());
-            }
-        });
+                @Override
+                public void onError(Throwable error) {
+                    App.showMessage(error.getMessage());
+                }
+            });
+        } else {
+            App.showMessage(result);
+        }
+
     }
 }

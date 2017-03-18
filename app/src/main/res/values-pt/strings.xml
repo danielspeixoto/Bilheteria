@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bilheteria</string>
     <string name="are_you_sure">Tem certeza disso?</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm_your_password">Confirme sua senha</string>
-    <string name="email_must_fill">Preencha o email</string>
+    <string name="username_must_fill">Preencha o nome de usuário</string>
     <string name="end_date">Data de término</string>
     <string name="error_occurred">Um erro ocorreu</string>
     <string name="has_account">Já tenho conta</string>
     <string name="has_no_account">Ainda não tenho conta</string>
     <string name="history">Histórico</string>
     <string name="identification">Identificação</string>
-    <string name="incorrect_email_password">Email e/ou senha incorreta</string>
+    <string name="incorrect_username_password">Usuário e/ou senha incorreta</string>
     <string name="loading">Carregando...</string>
     <string name="manage_offers">Gerenciar ofertas</string>
     <string name="manage_payment">Gerenciar Pagamento</string>
@@ -40,6 +39,9 @@
     <string name="title_activity_user_data">Criar Usuário</string>
     <string name="title_activity_users">Usuários</string>
     <string name="user_added">Usuário criado</string>
-    <string name="user_already_exists">Usuário com este email já existe</string>
+    <string name="username_already_exists">Usuário com este nome já existe</string>
     <string name="yes">Sim</string>
+    <string name="username">Nome de usuário</string>
+    <string name="icon">ícone</string>
+    <string name="username_letters_numbers">Nome de usuário deve conter apenas letras e números</string>
 </resources>

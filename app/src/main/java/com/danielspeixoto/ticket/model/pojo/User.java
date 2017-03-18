@@ -11,19 +11,19 @@ import lombok.Data;
 @Data
 public class User {
     private HashMap<String, Boolean> permissions;
-    private String name, email, password, adm;
+    private String name, username, password, adm;
 
     public User() {
     }
 
-    public User(String email, String password) {
-        this.email = email;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public User(String name, String email, String password, String adm, HashMap<String, Boolean> permissions) {
+    public User(String name, String username, String password, String adm, HashMap<String, Boolean> permissions) {
         this.name = name;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.adm = adm;
         this.permissions = permissions;
