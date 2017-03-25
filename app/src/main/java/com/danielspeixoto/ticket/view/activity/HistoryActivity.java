@@ -27,6 +27,7 @@ public class HistoryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_history);
+        activityInfo = getString(R.string.info_history);
         mAdapter.setPresenter(new TicketsInPeriodPresenter(mAdapter));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);

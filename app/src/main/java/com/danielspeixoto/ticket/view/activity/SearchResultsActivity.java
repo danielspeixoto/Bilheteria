@@ -22,6 +22,7 @@ public class SearchResultsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_search_results);
+        activityInfo = getString(R.string.info_search_results);
         mAdapter.setPresenter(new SearchTicketPresenter(mAdapter));
         handleIntent(getIntent());
         list.setLayoutManager(new LinearLayoutManager(this));

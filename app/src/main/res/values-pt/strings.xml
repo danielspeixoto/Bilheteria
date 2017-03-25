@@ -44,4 +44,19 @@
     <string name="username">Nome de usuário</string>
     <string name="icon">ícone</string>
     <string name="username_letters_numbers">Nome de usuário deve conter apenas letras e números</string>
+    <string name="info">Info</string>
+    <string name="info_history">Você pode ver todos os tickets que foram vendidos em um período colocando a data de início e fim</string>
+    <string name="info_home">Você pode acessar suas opções abrindo o menu à esquerda</string>
+    <string name="info_login">Coloque seu nome de usuário e senha abaixo para entrar.\\nSe você ainda não tem uma, peça ao seu supervisor.\\nSe você deseja criar um novo grupo, você precisa criar uma conta</string>
+    <string name="info_main">Bem vindo ao nosso app.\\nSe você ainda não possue uma conta você pode criar uma clicando no botão abaixo</string>
+    <string name="info_offers">As ofertas ativadas são as que podem ser vendidas.\\nVocê pode criar novas ofertas clicando no botão flutuante abaixo.</string>
+    <string name="info_payments">Todas as formas de pagamentos autorizadas estão dispostas abaixo, se você deseja criar uma nova, clique na barra abaixo</string>
+    <string name="info_search_results">Os tickets abaixo são aqueles que você procurou</string>
+    <string name="info_sign_up">Nós precisamos de algumas informações suas para criar sua conta</string>
+    <string name="info_ticket_data">Se você desejar, você pode pôr algo para identificar o comprador desse ticket.\\n Você precisa colocar o número de ofertas que serão vendidas incrementando e diminuindo cada oferta mostrada abaixo.\\n</string>
+    <string name="info_user_data">Você precisa nos dar informações sobre o novo usuário, inclusive as àreas que ele terá acesso no app</string>
+    <string name="info_users">Todos os usuários que trabalham com esse app estão dispostos abaixo.\nVocê pode criar novos usuários clicando no botão flutuante abaixo</string>
+    <string name="no_description">Desculpe, não há descrição para essa página</string>
+    <string name="payment_not_completed">O pagamento não está completo</string>
+    <string name="must_buy_something">Você precisa comprar algo</string>
 </resources>

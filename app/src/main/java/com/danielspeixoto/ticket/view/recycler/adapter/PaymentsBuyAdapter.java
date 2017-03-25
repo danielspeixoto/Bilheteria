@@ -2,6 +2,7 @@ package com.danielspeixoto.ticket.view.recycler.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.SimpleCallback;
@@ -11,6 +12,9 @@ import com.danielspeixoto.ticket.view.recycler.holder.PaymentBuyHolder;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by danielspeixoto on 2/18/17.
  */
@@ -19,6 +23,9 @@ public class PaymentsBuyAdapter extends PaymentsAdapter<PaymentBuyHolder> implem
 
     private OnItemChanged<Float> mOnItemChanged;
     private ArrayList<SimpleCallback> mSimpleCallbacks = new ArrayList<>();
+    @Setter
+    @Getter
+    private TextView priceText;
 
     public PaymentsBuyAdapter(BaseActivity activity, OnItemChanged<Float> OnItemChanged) {
         super(activity);

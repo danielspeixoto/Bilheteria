@@ -16,6 +16,7 @@ public class MainActivity extends BaseActivity {
             finish();
         }
         super.onCreate(savedInstanceState, R.layout.activity_main);
+        activityInfo = getString(R.string.info_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 

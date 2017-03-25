@@ -35,6 +35,7 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_user_data);
+        activityInfo = getString(R.string.info_user_data);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setNestedScrollingEnabled(false);
         list.setAdapter(mAdapter);

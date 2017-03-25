@@ -23,6 +23,7 @@ public class OffersActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_items);
+        activityInfo = getString(R.string.info_offers);
         mAdapter.setPresenter(new AllOffersPresenter(mAdapter));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);

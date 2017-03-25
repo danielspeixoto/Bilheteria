@@ -47,4 +47,19 @@
     <string name="user_added">User created</string>
     <string name="username_letters_numbers">Username must only contain letters and numbers</string>
     <string name="icon">icon</string>
+    <string name="info">Info</string>
+    <string name="no_description">Sorry, no description given to this activity</string>
+    <string name="info_home">You can access your options by opening the menu on the left</string>
+    <string name="info_history">You can view all tickets that were sold in a period by setting a start and a end date</string>
+    <string name="info_login">Put your username and password below to login.\nIf you don\'t have one, ask your manager.\nIf you want to create a new group, you need to create an account</string>
+    <string name="info_main">Welcome to our app.\nIf you don\'t have an account you can create one by clicking the button on the bottom</string>
+    <string name="info_offers">The offers that are activated are those that are available to be sold</string>
+    <string name="info_payments">All acceptable payments types are displayed below, if you want to create a new one, just type on the bar at the bottom</string>
+    <string name="info_search_results">The tickets below are those you\'ve searched</string>
+    <string name="info_sign_up">We need your information to create an account for you</string>
+    <string name="info_ticket_data">If you want, you can put something to identify the buyer of this ticket.\nYou need to put the amount of offers that are going to be sold by increasing and decreasing each offer.\n You need to put how is payment being given by putting its value on each box shown</string>
+    <string name="info_user_data">You need to give us some information about this new user, including what areas of the app he will have access</string>
+    <string name="info_users">All users that work in this app with you are displayed in here.\nYou can create new ones by clicking on the floating button at the bottom</string>
+    <string name="payment_not_completed">Payment is not completed</string>
+    <string name="must_buy_something">You must buy something</string>
 </resources>

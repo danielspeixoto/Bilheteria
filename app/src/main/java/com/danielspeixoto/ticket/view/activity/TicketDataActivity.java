@@ -43,11 +43,13 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
+        activityInfo = getString(R.string.info_ticket_data);
         mOffersAdapter.setPresenter(new ActivatedOffersPresenter(mOffersAdapter));
         itemsList.setLayoutManager(new LinearLayoutManager(this));
         itemsList.setNestedScrollingEnabled(false);
         itemsList.setAdapter(mOffersAdapter);
         mPaymentsAdapter.setPresenter(new AllPaymentsPresenter(mPaymentsAdapter));
+        mPaymentsAdapter.setPriceText(priceText);
         paymentsList.setLayoutManager(new LinearLayoutManager(this));
         paymentsList.setNestedScrollingEnabled(false);
         paymentsList.setAdapter(mPaymentsAdapter);
@@ -57,9 +59,9 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     @OnClick(R.id.saveButton)
     public void save() {
         if (!getText(priceText).equals("$0.0")) {
-            showMessage("Payment is not completed");
+            showMessage(getString(R.string.payment_not_completed));
         } else if (mPaymentsAdapter.getNotZero().size() == 0) {
-            showMessage("You must buy something");
+            showMessage(getString(R.string.must_buy_something));
         } else {
             ticket.setIdentification(getText(idEdit));
             ticket.setObservations(getText(observationsEdit));
