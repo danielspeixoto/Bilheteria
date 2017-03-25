@@ -24,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
 
     protected static final String EMPTY_STRING = "";
     public final String TAG = getClass().getSimpleName();
-    protected String activityInfo = getString(R.string.no_description);
+    protected String activityInfo;
 
     public void showMessage(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     protected void onCreate(@Nullable Bundle savedInstanceState, int layout) {
         super.onCreate(savedInstanceState);
         setContentView(layout);
+        activityInfo = getString(R.string.no_description);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

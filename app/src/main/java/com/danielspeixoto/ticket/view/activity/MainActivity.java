@@ -11,7 +11,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (Connection.isLogged()) {
+        if (Connection.hasAccountSavedOnDevice()) {
             goToActivity(HomeActivity.class);
             finish();
         }

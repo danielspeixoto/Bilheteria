@@ -36,13 +36,5 @@ public class Ticket {
         payments.add(payment);
     }
 
-    public float getAmountPayed() {
-        float price = 0;
-        for (Offer offer : offers) {
-            price += offer.getPrice();
-        }
-        return price;
-    }
-
 
 }

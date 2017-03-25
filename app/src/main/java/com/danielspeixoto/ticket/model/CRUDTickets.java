@@ -22,6 +22,12 @@ public class CRUDTickets extends CRUD {
         tempDatabase.child(ticket.getUid()).setValue(ticket);
     }
 
+    public static void updateTicket(Ticket ticket) {
+        mDatabase.child(Ticket.class.getSimpleName())
+                .child(String.valueOf(Time.getDayInMillis(ticket.getTimestamp())))
+                .child(ticket.getUid()).setValue(ticket);
+    }
+
     public static Observable<Ticket> getInPeriod(long start, long end) {
         tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.orderByKey().startAt(String.valueOf(start)).endAt(String.valueOf(end)).addChildEventListener(new ChildEventListener() {

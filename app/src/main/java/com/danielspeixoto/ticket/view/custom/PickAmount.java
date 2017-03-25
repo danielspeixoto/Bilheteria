@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.danielspeixoto.ticket.R;
-import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.helper.SimpleCallback;
 
 import lombok.Getter;
@@ -29,7 +28,8 @@ public class PickAmount extends LinearLayout {
         // Text
         textView = new TextView(context);
         textView.setText("0");
-        textView.setTextSize(App.getContext().getResources().getDimensionPixelSize(R.dimen.text_important));
+        // Replace with R.dimen.text_important
+        textView.setTextSize(18);
         textView.setPadding(36, 18, 36, 18);
         // Plus
         Button plus = new Button(context);

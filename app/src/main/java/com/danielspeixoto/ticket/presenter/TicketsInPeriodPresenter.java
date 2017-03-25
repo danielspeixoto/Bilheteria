@@ -3,6 +3,7 @@ package com.danielspeixoto.ticket.presenter;
 import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.helper.Time;
 import com.danielspeixoto.ticket.model.CRUDTickets;
+import com.danielspeixoto.ticket.model.pojo.Payment;
 import com.danielspeixoto.ticket.model.pojo.Ticket;
 import com.danielspeixoto.ticket.module.TicketsInPeriod;
 
@@ -48,8 +49,13 @@ public class TicketsInPeriodPresenter implements TicketsInPeriod.Presenter {
 
             @Override
             public void onNext(Ticket ticket) {
-                price = ticket.getAmountPayed();
+                // TODO Fix this after corrections in users apps are made
+                price = 0;
+                for (Payment payment : ticket.getPayments()) {
+                    price += payment.getAmount();
+                }
                 ticket.setPrice(price);
+                CRUDTickets.updateTicket(ticket);
                 mView.addItem(ticket);
                 total += price;
                 mView.setAmount(total);
