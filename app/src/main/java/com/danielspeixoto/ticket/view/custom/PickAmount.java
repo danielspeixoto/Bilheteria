@@ -28,8 +28,9 @@ public class PickAmount extends LinearLayout {
         // Text
         textView = new TextView(context);
         textView.setText("0");
-        textView.setTextSize(24);
-        textView.setPadding(48, 24, 48, 24);
+        // Replace with R.dimen.text_important
+        textView.setTextSize(18);
+        textView.setPadding(36, 18, 36, 18);
         // Plus
         Button plus = new Button(context);
         plus.setOnClickListener(v -> {

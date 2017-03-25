@@ -9,6 +9,7 @@ import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.view.recycler.adapter.PaymentsBuyAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by danielspeixoto on 2/18/17.
@@ -45,5 +46,18 @@ public class PaymentBuyHolder extends PaymentHolder<PaymentsBuyAdapter> {
             }
         });
         mAdapter.addCallback(() -> amountEdit.setText(""));
+    }
+
+    @OnClick(R.id.cardItem)
+    public void onItemTouched() {
+        // Whenever an item is touched the remaining to be payed will be filled inside it
+        float amount = mItem.getAmount();
+        float toFillWith = Float.valueOf(getText(mAdapter.getPriceText()).substring(1));
+        mItem.setAmount(toFillWith + amount);
+        mAdapter.onItemChanged(-toFillWith);
+        if (toFillWith != 0) {
+            amountEdit.setText(String.valueOf(mItem.getAmount()));
+        }
+
     }
 }

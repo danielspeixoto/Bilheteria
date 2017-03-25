@@ -21,6 +21,7 @@ public class LoginActivity extends BaseActivity implements Login.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_login);
+        activityInfo = getString(R.string.info_login);
         mPresenter = new LoginPresenter(this);
     }
 

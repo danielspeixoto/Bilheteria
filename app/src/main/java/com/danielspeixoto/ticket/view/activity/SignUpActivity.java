@@ -27,6 +27,7 @@ public class SignUpActivity extends BaseActivity implements SignUp.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_sign_up);
+        activityInfo = getString(R.string.info_sign_up);
         mPresenter = new SignUpPresenter(this);
     }
 

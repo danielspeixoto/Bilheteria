@@ -31,9 +31,10 @@ public class LoginPresenter implements Login.Presenter {
         User user = new User(email, password);
         String result = Validate.User(user);
         if (result.equals(Validate.OK)) {
-            Connection.logIn(email, password).subscribe(new SingleSubscriber<User>() {
+            Connection.findUser(email, password).subscribe(new SingleSubscriber<User>() {
                 @Override
-                public void onSuccess(User value) {
+                public void onSuccess(User user) {
+                    Connection.logIn(user);
                     mView.goToActivity(HomeActivity.class);
                     mActivity.finish();
                 }

@@ -15,9 +15,14 @@ public class Time {
         return getMillis(getDate());
     }
 
+    public static long getDayInMillis(long timestamp) {
+        return getMillis(new Timestamp(timestamp).toString().substring(0, 10));
+    }
+
     public static String getDate() {
         return new Timestamp(System.currentTimeMillis()).toString().substring(0, 10);
     }
+
 
     public static long getMillis(String date) {
         return Date.valueOf(date).getTime();

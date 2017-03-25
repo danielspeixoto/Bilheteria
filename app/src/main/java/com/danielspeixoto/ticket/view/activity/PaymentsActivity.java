@@ -28,6 +28,7 @@ public class PaymentsActivity extends BaseActivity implements InsertPayment.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_payments);
+        activityInfo = getString(R.string.info_payments);
         mAdapter.setPresenter(new AllPaymentsPresenter(mAdapter));
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);

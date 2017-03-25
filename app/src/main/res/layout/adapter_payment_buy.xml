@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:text="$"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/text_important"/>
 
         <EditText
             android:id="@+id/amountPicker"
@@ -34,7 +34,7 @@
             android:ems="3"
             android:hint="0.0"
             android:inputType="numberDecimal"
-            android:textSize="24dp"/>
+            android:textSize="@dimen/text_important"/>
 
         <TextView
             android:id="@+id/nameText"
@@ -46,7 +46,7 @@
             android:layout_toEndOf="@+id/amountPicker"
             android:layout_toRightOf="@+id/amountPicker"
             android:text="Name"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_important"
             android:textStyle="normal|bold"/>
 
     </RelativeLayout>

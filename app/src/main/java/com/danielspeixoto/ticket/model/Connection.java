@@ -37,29 +37,30 @@ public class Connection implements DatabaseContract {
     public static void logIn(User user) {
         currentUser = user;
         CRUD.updateDatabase();
-        SharedPreferences.Editor editor = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit();
-        editor.putString(EMAIL, user.getUsername());
-        editor.putString(PASSWORD, user.getPassword());
-        editor.putString(ADM, user.getAdm());
-        editor.putString(NAME, user.getName());
-        editor.apply();
-        try {
-            File file = new File(App.getContext().getDir("data", App.MODE_PRIVATE), "permissions");
-            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
-            outputStream.writeObject(user.getPermissions());
-            outputStream.flush();
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        new Thread(() -> {
+            SharedPreferences.Editor editor = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit();
+            editor.putString(EMAIL, user.getUsername());
+            editor.putString(PASSWORD, user.getPassword());
+            editor.putString(ADM, user.getAdm());
+            editor.putString(NAME, user.getName());
+            editor.apply();
+            try {
+                File file = new File(App.getContext().getDir("data", App.MODE_PRIVATE), "permissions");
+                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+                outputStream.writeObject(user.getPermissions());
+                outputStream.flush();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).run();
     }
 
-    public static Single<User> logIn(String email, String password) {
+    public static Single<User> findUser(String email, String password) {
         return CRUDUsers.logIn(email, password);
     }
 
-    public static boolean isLogged() {
+    public static boolean hasAccountSavedOnDevice() {
         //TODO Get validation without consuming much time
         if (currentUser == null) {
             SharedPreferences preferences = App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
@@ -69,13 +70,17 @@ public class Connection implements DatabaseContract {
                     ObjectInputStream outputStream = new ObjectInputStream(new FileInputStream(file));
                     currentUser = new User(preferences.getString(NAME, ""), preferences.getString(EMAIL, ""), preferences.getString(PASSWORD, ""), preferences.getString(ADM, ""), (HashMap<String, Boolean>) outputStream.readObject());
                     CRUD.updateDatabase();
+                    updateUser();
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
         }
         return currentUser != null;
+    }
 
+    public static boolean isLogged() {
+        return currentUser != null;
     }
 
     public static void logOff() {

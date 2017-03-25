@@ -20,7 +20,7 @@ public class CRUD implements DatabaseContract {
         if (Connection.isLogged()) {
             mDatabase = mDatabase.child(Connection.getCurrentUser().getAdm());
         } else {
-            mDatabase = mDatabase.getParent();
+            mDatabase = FirebaseDatabase.getInstance().getReference();
         }
     }
 

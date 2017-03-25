@@ -26,6 +26,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_home);
+        activityInfo = getString(R.string.info_home);
         drawer.setAdapter(new DrawerAdapter(this));
         drawer.setLayoutManager(new LinearLayoutManager(this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);

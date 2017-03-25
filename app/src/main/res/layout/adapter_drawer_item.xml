@@ -16,7 +16,7 @@
         android:layout_margin="20dp"
         android:text="Item"
         android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_important"/>
 
     <View
         android:layout_width="match_parent"

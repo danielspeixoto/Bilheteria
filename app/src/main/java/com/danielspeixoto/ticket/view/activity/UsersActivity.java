@@ -21,6 +21,7 @@ public class UsersActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_users);
+        activityInfo = getString(R.string.info_users);
         list.setLayoutManager(new LinearLayoutManager(this));
         mAdapter.setPresenter(new AllUsersPresenter(mAdapter));
         list.setAdapter(mAdapter);

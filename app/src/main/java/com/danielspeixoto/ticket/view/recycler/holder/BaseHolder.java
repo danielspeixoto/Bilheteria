@@ -3,6 +3,7 @@ package com.danielspeixoto.ticket.view.recycler.holder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.adapter.BaseAdapter;
@@ -33,8 +34,8 @@ public abstract class BaseHolder<T extends BaseAdapter, S> extends RecyclerView.
         return editText.getText().toString().equals(EMPTY_STRING);
     }
 
-    protected String getText(EditText editText) {
-        return editText.getText().toString();
+    protected String getText(TextView textView) {
+        return textView.getText().toString();
     }
 
     public abstract void onPostCreated();
