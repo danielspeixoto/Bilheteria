@@ -2,6 +2,7 @@ package com.danielspeixoto.ticket.helper;
 
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -28,5 +29,9 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+    }
+	
+	public static void log(String s) {
+        Log.d("Testing", s);
     }
 }

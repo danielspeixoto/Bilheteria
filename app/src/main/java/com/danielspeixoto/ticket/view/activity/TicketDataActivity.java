@@ -27,8 +27,8 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     EditText idEdit;
     @BindView(R.id.observationsEdit)
     EditText observationsEdit;
-    @BindView(R.id.itemsList)
-    RecyclerView itemsList;
+    @BindView(R.id.offersList)
+    RecyclerView offersList;
     @BindView(R.id.priceText)
     TextView priceText;
     @BindView(R.id.paymentsList)
@@ -45,9 +45,9 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
         super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
         activityInfo = getString(R.string.info_ticket_data);
         mOffersAdapter.setPresenter(new ActivatedOffersPresenter(mOffersAdapter));
-        itemsList.setLayoutManager(new LinearLayoutManager(this));
-        itemsList.setNestedScrollingEnabled(false);
-        itemsList.setAdapter(mOffersAdapter);
+        offersList.setLayoutManager(new LinearLayoutManager(this));
+        offersList.setNestedScrollingEnabled(false);
+        offersList.setAdapter(mOffersAdapter);
         mPaymentsAdapter.setPresenter(new AllPaymentsPresenter(mPaymentsAdapter));
         mPaymentsAdapter.setPriceText(priceText);
         paymentsList.setLayoutManager(new LinearLayoutManager(this));

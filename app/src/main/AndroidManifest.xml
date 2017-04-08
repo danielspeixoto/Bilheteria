@@ -70,8 +70,8 @@
                 android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.HistoryActivity"
-            android:label="@string/title_activity_history"
+            android:name="com.danielspeixoto.ticket.view.activity.ReportActivity"
+            android:label="@string/title_activity_report"
             android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -81,7 +81,7 @@
         <activity
             android:name="com.danielspeixoto.ticket.view.activity.SearchResultsActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HistoryActivity"
+            android:parentActivityName="com.danielspeixoto.ticket.view.activity.ReportActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- android:launchMode="singleTop"> -->
@@ -91,7 +91,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HistoryActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.ReportActivity"/>
         </activity>
         <activity
             android:name="com.danielspeixoto.ticket.view.activity.UsersActivity"

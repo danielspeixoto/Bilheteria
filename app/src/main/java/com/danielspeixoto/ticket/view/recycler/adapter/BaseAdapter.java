@@ -19,6 +19,7 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     @Getter
     protected BaseActivity activity;
     @Getter
+    //TODO Encapsulate data, and track all its movements, so we can handle empty data on recycler view
     @Setter
     protected ArrayList<T> data = new ArrayList<>();
 

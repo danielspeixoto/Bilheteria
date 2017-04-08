@@ -19,7 +19,7 @@ import rx.Single;
 public class CRUDUsers extends CRUD {
 
     public static Single<User> logIn(String email, String password) {
-        return Single.create(subscriber -> mDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
+        return Single.create(subscriber -> rootDatabase.child(User.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(email) &&
@@ -40,7 +40,7 @@ public class CRUDUsers extends CRUD {
     }
 
     public static Single<User> createAdm(User user) {
-        return Single.create(singleSubscriber -> mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        return Single.create(singleSubscriber -> rootDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String email = user.getUsername();
@@ -48,7 +48,7 @@ public class CRUDUsers extends CRUD {
                 if (!snapshot.hasChild(email)) {
                     user.setPermissions(Permissions.getADMPermissions());
                     user.setAdm(email);
-                    mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
+                    rootDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
                     singleSubscriber.onSuccess(user);
                 }
                 singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
@@ -132,6 +132,34 @@ public class CRUDUsers extends CRUD {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 subscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+            }
+        }));
+    }
+    
+    public static Single<User> update(User user) {
+    	tempDatabase = rootDatabase;
+    	if(!user.getAdm().equals(user.getUsername())) {
+    		tempDatabase = tempDatabase.child(user.getAdm());
+	    }
+	    tempDatabase = rootDatabase.child(User.class.getSimpleName());
+	    return Single.create(singleSubscriber -> tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String email = user.getUsername();
+	            if (snapshot.hasChild(email) &&
+	                    snapshot.child(email).child(PASSWORD)
+			            .getValue().equals(user.getPassword())) {
+	            	
+		            tempDatabase.child(email).setValue(user);
+		            singleSubscriber.onSuccess(user);
+	            } else {
+		            App.showMessage("Your username or password has been changed");
+	            }
+            }
+        
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
             }
         }));
     }

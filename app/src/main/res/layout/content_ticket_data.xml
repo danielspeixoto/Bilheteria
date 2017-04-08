@@ -30,7 +30,7 @@
             android:padding="16dp"/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/itemsList"
+            android:id="@+id/offersList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/adapter_offer_buy"/>
@@ -42,7 +42,7 @@
             android:layout_margin="15dp"
             android:gravity="center"
             android:text="$0"
-            android:textSize="30sp"/>
+            android:textSize="@dimen/label_text"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/paymentsList"

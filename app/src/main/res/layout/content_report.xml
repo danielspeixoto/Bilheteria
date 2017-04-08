@@ -8,26 +8,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.danielspeixoto.ticket.view.activity.HistoryActivity"
-    tools:showIn="@layout/activity_history">
-
-    <TextView
-        android:id="@+id/amountText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="end"
-        android:background="?attr/colorPrimaryDark"
-        android:padding="16dp"
-        android:text="$0.0"
-        android:textAlignment="center"
-        android:textSize="36sp"/>
+    tools:context="com.danielspeixoto.ticket.view.activity.ReportActivity"
+    tools:showIn="@layout/activity_report">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/amountText"
         android:layout_alignParentTop="true"
         android:clipToPadding="false">
 
@@ -40,14 +27,35 @@
                 android:id="@+id/pickDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/payments"
+                android:textSize="@dimen/label_text"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
+                android:id="@+id/paymentsList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/pickDate"
-                tools:listitem="@layout/adapter_ticket"/>
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/offers"
+                android:textSize="@dimen/label_text"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/offersList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
