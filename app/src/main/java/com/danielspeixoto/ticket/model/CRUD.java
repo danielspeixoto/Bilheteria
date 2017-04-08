@@ -10,17 +10,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CRUD implements DatabaseContract {
 
-    protected static DatabaseReference mDatabase, tempDatabase;
+    protected static final DatabaseReference rootDatabase;
+    protected static DatabaseReference mDatabase;
 
     static {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        rootDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = rootDatabase;
     }
 
     public static void updateDatabase() {
         if (Connection.isLogged()) {
-            mDatabase = mDatabase.child(Connection.getCurrentUser().getAdm());
+            mDatabase = rootDatabase.child(Connection.getCurrentUser().getAdm());
         } else {
-            mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase = rootDatabase;
         }
     }
 

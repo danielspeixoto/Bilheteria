@@ -9,7 +9,7 @@
                 tools:context="com.danielspeixoto.ticket.view.activity.OffersActivity"
                 tools:showIn="@layout/activity_items">
 
-    <android.support.v7.widget.RecyclerView
+    <com.danielspeixoto.ticket.view.custom.RecyclerList
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

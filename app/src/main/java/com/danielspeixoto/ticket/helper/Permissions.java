@@ -14,11 +14,17 @@ import lombok.Getter;
 
 public class Permissions {
 
-    public static final String MANAGE_TICKET = App.getStringResource(R.string.manage_tickets),
-            MANAGE_USERS = App.getStringResource(R.string.manage_users),
-            VIEW_HISTORY = App.getStringResource(R.string.history),
-            MANAGE_OFFERS = App.getStringResource(R.string.manage_offers),
-            MANAGE_PAYMENT = App.getStringResource(R.string.manage_payment);
+    public static final String MANAGE_TICKET = "MANAGE_TICKET",
+            MANAGE_USERS = "MANAGE_USERS",
+            VIEW_HISTORY = "VIEW_HISTORY",
+            MANAGE_OFFERS = "MANAGE_OFFERS",
+            MANAGE_PAYMENT = "MANAGE_PAYMENT";
+    
+    public static final String MANAGE_TICKET_DEPRECATED = App.getStringResource(R.string.manage_tickets),
+            MANAGE_USERS_DEPRECATED = App.getStringResource(R.string.manage_users),
+            VIEW_HISTORY_DEPRECATED = App.getStringResource(R.string.history),
+            MANAGE_OFFERS_DEPRECATED = App.getStringResource(R.string.manage_offers),
+            MANAGE_PAYMENT_DEPRECATED = App.getStringResource(R.string.manage_payment);
 
     public static final ArrayList<String> permissions = new ArrayList<>();
     @Getter

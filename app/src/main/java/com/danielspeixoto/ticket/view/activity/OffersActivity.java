@@ -1,12 +1,11 @@
 package com.danielspeixoto.ticket.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.presenter.AllOffersPresenter;
 import com.danielspeixoto.ticket.presenter.InsertOfferPresenter;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.dialog.OfferDialog;
 import com.danielspeixoto.ticket.view.recycler.adapter.OffersShowAdapter;
 
@@ -16,7 +15,7 @@ import butterknife.OnClick;
 public class OffersActivity extends BaseActivity {
 
     @BindView(R.id.list)
-    RecyclerView list;
+    RecyclerList list;
 
     private OffersShowAdapter mAdapter = new OffersShowAdapter(this);
 
@@ -25,7 +24,6 @@ public class OffersActivity extends BaseActivity {
         super.onCreate(savedInstanceState, R.layout.activity_items);
         activityInfo = getString(R.string.info_offers);
         mAdapter.setPresenter(new AllOffersPresenter(mAdapter));
-        list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);
     }
 

@@ -1,8 +1,6 @@
 package com.danielspeixoto.ticket.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,6 +11,7 @@ import com.danielspeixoto.ticket.module.OnItemChanged;
 import com.danielspeixoto.ticket.presenter.ActivatedOffersPresenter;
 import com.danielspeixoto.ticket.presenter.AllPaymentsPresenter;
 import com.danielspeixoto.ticket.presenter.InsertTicketPresenter;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.dialog.InfoDialog;
 import com.danielspeixoto.ticket.view.recycler.adapter.OffersBuyAdapter;
 import com.danielspeixoto.ticket.view.recycler.adapter.PaymentsBuyAdapter;
@@ -27,12 +26,12 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
     EditText idEdit;
     @BindView(R.id.observationsEdit)
     EditText observationsEdit;
-    @BindView(R.id.itemsList)
-    RecyclerView itemsList;
+    @BindView(R.id.offersList)
+    RecyclerList offersList;
     @BindView(R.id.priceText)
     TextView priceText;
     @BindView(R.id.paymentsList)
-    RecyclerView paymentsList;
+    RecyclerList paymentsList;
 
     private InsertTicket.Presenter mPresenter;
     private Ticket ticket = new Ticket();
@@ -45,13 +44,11 @@ public class TicketDataActivity extends BaseActivity implements InsertTicket.Vie
         super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
         activityInfo = getString(R.string.info_ticket_data);
         mOffersAdapter.setPresenter(new ActivatedOffersPresenter(mOffersAdapter));
-        itemsList.setLayoutManager(new LinearLayoutManager(this));
-        itemsList.setNestedScrollingEnabled(false);
-        itemsList.setAdapter(mOffersAdapter);
+        offersList.setNestedScrollEnabled(false);
+        offersList.setAdapter(mOffersAdapter);
         mPaymentsAdapter.setPresenter(new AllPaymentsPresenter(mPaymentsAdapter));
         mPaymentsAdapter.setPriceText(priceText);
-        paymentsList.setLayoutManager(new LinearLayoutManager(this));
-        paymentsList.setNestedScrollingEnabled(false);
+        paymentsList.setNestedScrollEnabled(false);
         paymentsList.setAdapter(mPaymentsAdapter);
         mPresenter = new InsertTicketPresenter(this);
     }

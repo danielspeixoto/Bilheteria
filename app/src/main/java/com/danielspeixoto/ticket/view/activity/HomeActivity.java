@@ -4,12 +4,11 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.model.Connection;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.DrawerAdapter;
 
 import butterknife.BindView;
@@ -18,7 +17,7 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseActivity {
 
     @BindView(R.id.drawer)
-    RecyclerView drawer;
+    RecyclerList drawer;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -28,7 +27,6 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState, R.layout.activity_home);
         activityInfo = getString(R.string.info_home);
         drawer.setAdapter(new DrawerAdapter(this));
-        drawer.setLayoutManager(new LinearLayoutManager(this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);
         drawerLayout.addDrawerListener(drawerToggle);
     }

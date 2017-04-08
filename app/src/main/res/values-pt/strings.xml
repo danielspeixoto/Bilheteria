@@ -8,7 +8,7 @@
     <string name="error_occurred">Um erro ocorreu</string>
     <string name="has_account">Já tenho conta</string>
     <string name="has_no_account">Ainda não tenho conta</string>
-    <string name="history">Histórico</string>
+    <string name="report">Relatório</string>
     <string name="identification">Identificação(opcional)</string>
     <string name="incorrect_username_password">Usuário e/ou senha incorreta</string>
     <string name="loading">Carregando...</string>
@@ -30,7 +30,7 @@
     <string name="save">Salvar</string>
     <string name="start_date">Data de início</string>
     <string name="ticket_added">Ticket criado com sucesso</string>
-    <string name="title_activity_history">Histórico</string>
+    <string name="title_activity_report">Histórico</string>
     <string name="title_activity_home">Página Inicial</string>
     <string name="title_activity_offers">Ofertas</string>
     <string name="title_activity_payments">Pagamentos</string>
@@ -45,7 +45,7 @@
     <string name="icon">ícone</string>
     <string name="username_letters_numbers">Nome de usuário deve conter apenas letras e números</string>
     <string name="info">Info</string>
-    <string name="info_history">Você pode ver todos os tickets que foram vendidos em um período colocando a data de início e fim</string>
+    <string name="info_report">Você pode ver tudo que foi vendido em um período colocando a data de início e fim</string>
     <string name="info_home">Você pode acessar suas opções abrindo o menu à esquerda</string>
     <string name="info_login">Coloque seu nome de usuário e senha abaixo para entrar.\n\nSe você ainda não tem uma, peça ao seu supervisor.\n\nSe você deseja criar um novo grupo, você precisa criar uma conta</string>
     <string name="info_main">Bem vindo ao nosso app.\n\nSe você ainda não possue uma conta você pode criar uma clicando no botão abaixo</string>
@@ -59,4 +59,10 @@
     <string name="no_description">Desculpe, não há descrição para essa página</string>
     <string name="payment_not_completed">O pagamento não está completo</string>
     <string name="must_buy_something">Você precisa comprar algo</string>
+    <string name="history">Histórico</string>
+    <string name="payments">Pagamentos</string>
+    <string name="offers">Ofertas</string>
+    <string name="total">Total</string>
+    <string name="sold">Vendidos:</string>
+    <string name="no_items">Não há itens para serem mostrados</string>
 </resources>

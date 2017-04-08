@@ -8,7 +8,7 @@
     <string name="loading">Loading...</string>
     <string name="title_activity_payments">Payments Manager</string>
     <string name="title_activity_ticket_data" translatable="false">Ticket</string>
-    <string name="title_activity_history">History</string>
+    <string name="title_activity_report">History</string>
     <string name="title_activity_search">Search Results</string>
     <string name="title_activity_users">Users</string>
     <string name="title_activity_user_data">Create User</string>
@@ -34,7 +34,7 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
-    <string name="history">History</string>
+    <string name="report">Report</string>
     <string name="manage_offers">Manage Offers</string>
     <string name="manage_payment">Manage Payment</string>
     <string name="manage_users">Manage Users</string>
@@ -50,7 +50,7 @@
     <string name="info">Info</string>
     <string name="no_description">Sorry, no description given to this activity</string>
     <string name="info_home">You can access your options by opening the menu on the left</string>
-    <string name="info_history">You can view all tickets that were sold in a period by setting a start and a end date</string>
+    <string name="info_report">You can view all that were sold in a period by setting a start and a end date</string>
     <string name="info_login">Put your username and password below to login.\n\nIf you don\'t have one, ask your manager.\n\nIf you want to create a new group, you need to create an account</string>
     <string name="info_main">Welcome to our app.\n\nIf you don\'t have an account you can create one by clicking the button on the bottom</string>
     <string name="info_offers">The offers that are activated are those that are available to be sold</string>
@@ -62,4 +62,10 @@
     <string name="info_users">All users that work in this app with you are displayed in here.\n\nYou can create new ones by clicking on the floating button at the bottom</string>
     <string name="payment_not_completed">Payment is not completed</string>
     <string name="must_buy_something">You must buy something</string>
+    <string name="offers">Offers</string>
+    <string name="payments">Payments</string>
+    <string name="history">History</string>
+    <string name="total">Total</string>
+    <string name="sold">Sold: </string>
+    <string name="no_items">No items to be shown</string>
 </resources>

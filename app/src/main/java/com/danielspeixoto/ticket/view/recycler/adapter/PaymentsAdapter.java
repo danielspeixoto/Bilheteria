@@ -8,6 +8,7 @@ import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.PaymentHolder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -26,15 +27,18 @@ public abstract class PaymentsAdapter<S extends PaymentHolder<? extends Payments
 
     @Override
     public void reset() {
-        for (Payment payment : data) {
-            payment.setAmount(0);
+        Iterator<Payment> iterator = getIterator();
+        while(iterator.hasNext()) {
+            iterator.next().setAmount(0);
         }
     }
 
     public List<Payment> getNotZero() {
         List<Payment> list = new ArrayList<Payment>();
-        for (Payment payment : data) {
-            if (payment.getAmount() != 0) {
+        Iterator<Payment> iterator = getIterator();
+        while(iterator.hasNext()) {
+            Payment payment = iterator.next();
+            if(payment.getAmount() != 0) {
                 list.add(payment);
             }
         }

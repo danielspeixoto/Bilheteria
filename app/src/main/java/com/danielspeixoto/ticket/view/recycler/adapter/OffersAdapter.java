@@ -8,6 +8,7 @@ import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.OfferHolder;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,15 +27,18 @@ public abstract class OffersAdapter<S extends OfferHolder<? extends OffersAdapte
 
     @Override
     public void reset() {
-        for (Offer offer : data) {
-            offer.setAmount(0);
+        Iterator<Offer> iterator = getIterator();
+        while(iterator.hasNext()) {
+            iterator.next().setAmount(0);
         }
     }
 
     public List<Offer> getNotZero() {
         List<Offer> list = new ArrayList<Offer>();
-        for (Offer offer : data) {
-            if (offer.getAmount() != 0) {
+        Iterator<Offer> iterator = getIterator();
+        while(iterator.hasNext()) {
+            Offer offer = iterator.next();
+            if(offer.getAmount() != 0) {
                 list.add(offer);
             }
         }

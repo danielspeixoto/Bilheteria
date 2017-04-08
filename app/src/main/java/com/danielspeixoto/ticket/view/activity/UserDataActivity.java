@@ -1,8 +1,6 @@
 package com.danielspeixoto.ticket.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 
 import com.danielspeixoto.ticket.R;
@@ -10,6 +8,7 @@ import com.danielspeixoto.ticket.helper.Permissions;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.InsertUser;
 import com.danielspeixoto.ticket.presenter.InsertUserPresenter;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.PermissionAdapter;
 
 import butterknife.BindView;
@@ -26,7 +25,7 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
     @BindView(R.id.confirmPassEdit)
     EditText confirmPassEdit;
     @BindView(R.id.list)
-    RecyclerView list;
+    RecyclerList list;
 
     private InsertUser.Presenter mPresenter = new InsertUserPresenter(this);
     private User mUser = new User();
@@ -36,8 +35,7 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_user_data);
         activityInfo = getString(R.string.info_user_data);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        list.setNestedScrollingEnabled(false);
+        list.setNestedScrollEnabled(false);
         list.setAdapter(mAdapter);
     }
 
