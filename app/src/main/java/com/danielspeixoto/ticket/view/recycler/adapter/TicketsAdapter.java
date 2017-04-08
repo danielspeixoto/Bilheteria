@@ -22,7 +22,7 @@ public abstract class TicketsAdapter<P extends Source.Presenter> extends SourceA
 
     @Override
     public void reset() {
-        data.clear();
+        clearData();
     }
 
     @Override

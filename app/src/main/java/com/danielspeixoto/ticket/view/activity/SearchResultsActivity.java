@@ -3,11 +3,10 @@ package com.danielspeixoto.ticket.view.activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.presenter.SearchTicketPresenter;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.SearchTicketsAdapter;
 
 import butterknife.BindView;
@@ -15,7 +14,7 @@ import butterknife.BindView;
 public class SearchResultsActivity extends BaseActivity {
 
     @BindView(R.id.list)
-    RecyclerView list;
+    RecyclerList list;
 
     private SearchTicketsAdapter mAdapter = new SearchTicketsAdapter(this);
 
@@ -25,7 +24,6 @@ public class SearchResultsActivity extends BaseActivity {
         activityInfo = getString(R.string.info_search_results);
         mAdapter.setPresenter(new SearchTicketPresenter(mAdapter));
         handleIntent(getIntent());
-        list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(mAdapter);
     }
 

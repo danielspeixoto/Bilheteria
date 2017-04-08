@@ -23,10 +23,11 @@ public class OffersReportAdapter extends BaseAdapter<OfferReport, OfferReportHol
 	
 	public OffersReportAdapter(BaseActivity activity) {
 		super(activity);
+		addItem(new OfferReport(App.getStringResource(R.string.total), numItems,  amount));
 	}
 	
 	public void setMReport(Report mReport) {
-		data.clear();
+		clearData();
 		amount = 0;
 		numItems = 0;
 		this.mReport = mReport;

@@ -29,7 +29,16 @@
             android:inputType="textPersonName"
             android:padding="16dp"/>
 
-        <android.support.v7.widget.RecyclerView
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/offers"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="@dimen/label_text" />
+
+        <com.danielspeixoto.ticket.view.custom.RecyclerList
             android:id="@+id/offersList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +53,16 @@
             android:text="$0"
             android:textSize="@dimen/label_text"/>
 
-        <android.support.v7.widget.RecyclerView
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/payments"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="@dimen/label_text" />
+
+        <com.danielspeixoto.ticket.view.custom.RecyclerList
             android:id="@+id/paymentsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

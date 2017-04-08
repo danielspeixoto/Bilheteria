@@ -67,4 +67,5 @@
     <string name="history">History</string>
     <string name="total">Total</string>
     <string name="sold">Sold: </string>
+    <string name="no_items">No items to be shown</string>
 </resources>

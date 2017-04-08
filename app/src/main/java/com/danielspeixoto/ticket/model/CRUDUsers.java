@@ -7,6 +7,7 @@ import com.danielspeixoto.ticket.model.pojo.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import rx.Observable;
@@ -67,7 +68,7 @@ public class CRUDUsers extends CRUD {
         String email = user.getUsername();
         return Single.create(singleSubscriber -> {
             // Users general node
-            tempDatabase = mDatabase.getParent().child(User.class.getSimpleName());
+            DatabaseReference tempDatabase = mDatabase.getParent().child(User.class.getSimpleName());
             tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -107,7 +108,7 @@ public class CRUDUsers extends CRUD {
     }
 
     public static Observable<User> getAll() {
-        tempDatabase = mDatabase.child(User.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(User.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -137,12 +138,13 @@ public class CRUDUsers extends CRUD {
     }
     
     public static Single<User> update(User user) {
-    	tempDatabase = rootDatabase;
+        DatabaseReference tempDatabase = rootDatabase;
     	if(!user.getAdm().equals(user.getUsername())) {
     		tempDatabase = tempDatabase.child(user.getAdm());
 	    }
 	    tempDatabase = rootDatabase.child(User.class.getSimpleName());
-	    return Single.create(singleSubscriber -> tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference tempFinalDatabase = tempDatabase;
+	    return Single.create(singleSubscriber -> tempFinalDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String email = user.getUsername();
@@ -150,7 +152,7 @@ public class CRUDUsers extends CRUD {
 	                    snapshot.child(email).child(PASSWORD)
 			            .getValue().equals(user.getPassword())) {
 	            	
-		            tempDatabase.child(email).setValue(user);
+		            tempFinalDatabase.child(email).setValue(user);
 		            singleSubscriber.onSuccess(user);
 	            } else {
 		            App.showMessage("Your username or password has been changed");

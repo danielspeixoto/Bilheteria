@@ -10,8 +10,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CRUD implements DatabaseContract {
 
-    protected static DatabaseReference mDatabase, tempDatabase;
     protected static final DatabaseReference rootDatabase;
+    protected static DatabaseReference mDatabase;
 
     static {
         rootDatabase = FirebaseDatabase.getInstance().getReference();

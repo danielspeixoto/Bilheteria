@@ -33,9 +33,11 @@ public class Report {
         index = offer.getName();
         if(offers.containsKey(index)) {
             Pair<Integer, Double> pair = offers.get(index);
-            offers.put(index, new Pair<>(pair.first + 1, pair.second + offer.getPrice()));
+            offers.put(index, new Pair<>(pair.first + offer.getAmount(),
+		            pair.second + offer.getPrice() * offer.getAmount()));
         } else {
-            offers.put(index, new Pair<>(1, (double) offer.getPrice()));
+            offers.put(index, new Pair<>(offer.getAmount(),
+		            (double) offer.getPrice() * offer.getAmount()));
         }
     }
     

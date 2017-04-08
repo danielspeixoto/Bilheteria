@@ -6,6 +6,7 @@ import com.danielspeixoto.ticket.model.pojo.Offer;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
 
@@ -16,13 +17,13 @@ import rx.Observable;
 public class CRUDOffers extends CRUD {
 
     public static void insertOffer(Offer offer) {
-        tempDatabase = mDatabase.child(Offer.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
         offer.setUid(tempDatabase.push().getKey());
         tempDatabase.child(offer.getUid()).setValue(offer);
     }
 
     public static Observable<Offer> getAll() {
-        tempDatabase = mDatabase.child(Offer.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -52,7 +53,7 @@ public class CRUDOffers extends CRUD {
     }
 
     public static Observable<Offer> getActivated() {
-        tempDatabase = mDatabase.child(Offer.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

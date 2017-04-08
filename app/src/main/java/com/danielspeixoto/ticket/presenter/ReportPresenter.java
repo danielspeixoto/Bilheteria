@@ -18,7 +18,7 @@ public class ReportPresenter implements Reports.Presenter {
 
     private static float price;
     private static double total = 0;
-    private static Report mReport;
+    private static Report mReport = new Report();
     private Reports.View mView;
     private String startDate = Time.getDate(), endDate = startDate;
 
@@ -30,11 +30,12 @@ public class ReportPresenter implements Reports.Presenter {
     public void setDates(String start, String end) {
         startDate = start;
         endDate = end;
+        mReport = new Report();
+        mView.setReport(mReport);
         getItems();
     }
     
     public void getItems() {
-    	mReport = new Report();
         CRUDTickets.getInPeriod(Time.getMillis(startDate), Time.getMillis(endDate)).subscribe(new Subscriber<Ticket>() {
             @Override
             public void onCompleted() {

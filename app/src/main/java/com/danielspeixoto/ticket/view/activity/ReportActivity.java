@@ -1,14 +1,13 @@
 package com.danielspeixoto.ticket.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.model.Report;
 import com.danielspeixoto.ticket.module.Reports;
 import com.danielspeixoto.ticket.presenter.ReportPresenter;
 import com.danielspeixoto.ticket.view.custom.PickDateView;
+import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.OffersReportAdapter;
 import com.danielspeixoto.ticket.view.recycler.adapter.PaymentsReportAdapter;
 
@@ -19,9 +18,9 @@ public class ReportActivity extends BaseActivity implements Reports.View {
     @BindView(R.id.pickDate)
     PickDateView pickDate;
     @BindView(R.id.paymentsList)
-    RecyclerView paymentsList;
+    RecyclerList paymentsList;
     @BindView(R.id.offersList)
-    RecyclerView offersList;
+    RecyclerList offersList;
     
     private PaymentsReportAdapter paymentAdapter = new PaymentsReportAdapter(this);
     private OffersReportAdapter offerAdapter = new OffersReportAdapter(this);
@@ -36,11 +35,9 @@ public class ReportActivity extends BaseActivity implements Reports.View {
         mPresenter.getItems();
         pickDate.setOnPeriodChangedListener(() -> mPresenter.setDates(pickDate.getStartDate(), pickDate.getEndDate()));
         paymentsList.setAdapter(paymentAdapter);
-        paymentsList.setLayoutManager(new LinearLayoutManager(this));
-        paymentsList.setNestedScrollingEnabled(false);
+        paymentsList.setNestedScrollEnabled(false);
         offersList.setAdapter(offerAdapter);
-        offersList.setLayoutManager(new LinearLayoutManager(this));
-        offersList.setNestedScrollingEnabled(false);
+        offersList.setNestedScrollEnabled(false);
     }
     
     @Override

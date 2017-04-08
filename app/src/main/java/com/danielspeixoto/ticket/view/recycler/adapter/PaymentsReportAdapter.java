@@ -22,10 +22,11 @@ public class PaymentsReportAdapter extends BaseAdapter<PaymentReport, PaymentRep
 	
 	public PaymentsReportAdapter(BaseActivity activity) {
 		super(activity);
+		addItem(new PaymentReport(App.getStringResource(R.string.total), total));
 	}
 	
 	public void setMReport(Report mReport) {
-		data.clear();
+		clearData();
 		total = 0;
 		this.mReport = mReport;
 		getItems();

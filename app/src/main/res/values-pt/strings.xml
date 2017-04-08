@@ -64,4 +64,5 @@
     <string name="offers">Ofertas</string>
     <string name="total">Total</string>
     <string name="sold">Vendidos:</string>
+    <string name="no_items">Não há itens para serem mostrados</string>
 </resources>

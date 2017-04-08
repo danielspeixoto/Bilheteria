@@ -7,6 +7,7 @@ import com.danielspeixoto.ticket.model.pojo.Ticket;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
 
@@ -17,7 +18,7 @@ import rx.Observable;
 public class CRUDTickets extends CRUD {
 
     public static void insertTicket(Ticket ticket) {
-        tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
+        DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
         ticket.setUid(tempDatabase.push().getKey());
         tempDatabase.child(ticket.getUid()).setValue(ticket);
     }
@@ -29,7 +30,7 @@ public class CRUDTickets extends CRUD {
     }
 
     public static Observable<Ticket> getInPeriod(long start, long end) {
-        tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.orderByKey().startAt(String.valueOf(start)).endAt(String.valueOf(end)).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -85,7 +86,7 @@ public class CRUDTickets extends CRUD {
 
     //TODO Use elastic search
     public static Observable<Ticket> search(String query) {
-        tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.orderByValue().startAt(query).endAt(query).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

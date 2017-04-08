@@ -6,6 +6,7 @@ import com.danielspeixoto.ticket.model.pojo.Payment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
 
@@ -16,7 +17,7 @@ import rx.Observable;
 public class CRUDPayments extends CRUD {
 
     public static Observable<Payment> getAll() {
-        tempDatabase = mDatabase.child(Payment.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Payment.class.getSimpleName());
         return Observable.create(subscriber -> tempDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -46,7 +47,7 @@ public class CRUDPayments extends CRUD {
     }
 
     public static void insertPayment(Payment payment) {
-        tempDatabase = mDatabase.child(Payment.class.getSimpleName());
+        DatabaseReference tempDatabase = mDatabase.child(Payment.class.getSimpleName());
         payment.setUid(tempDatabase.push().getKey());
         tempDatabase.child(payment.getUid()).setValue(payment);
     }

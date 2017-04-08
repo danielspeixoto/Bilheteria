@@ -20,7 +20,11 @@ public class App extends MultiDexApplication {
     public static String getStringResource(int resId) {
         return mContext.getString(resId);
     }
-
+    
+    public static float getDimenResource(int resId) {
+        return mContext.getResources().getDimension(resId);
+    }
+ 
     public static void showMessage(String message) {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
