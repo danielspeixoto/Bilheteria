@@ -26,7 +26,6 @@ public class InsertUserPresenter implements InsertUser.Presenter {
     public void createUser(User user) {
         String result = Validate.User(user);
         if (result.equals(Validate.OK)) {
-            result = App.getStringResource(R.string.user_added);
             CRUDUsers.createUser(user).subscribe(new SingleSubscriber<User>() {
                 @Override
                 public void onSuccess(User user) {

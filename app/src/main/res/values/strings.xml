@@ -5,7 +5,7 @@
     <string name="title_activity_offers">Offers</string>
     <string name="title_activity_login" translatable="false">Login</string>
     <string name="error_occurred">An error occurred</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="title_activity_payments">Payments Manager</string>
     <string name="title_activity_ticket_data" translatable="false">Ticket</string>
     <string name="title_activity_report">History</string>
@@ -57,7 +57,7 @@
     <string name="info_payments">All acceptable payments types are displayed below, if you want to create a new one, just type on the bar at the bottom</string>
     <string name="info_search_results">The tickets below are those you\'ve searched</string>
     <string name="info_sign_up">We need your information to create an account for you</string>
-    <string name="info_ticket_data">If you want, you can put something to identify the buyer of this ticket.\n\nYou need to put the amount of offers that are going to be sold by increasing and decreasing each offer.\n\n You need to put how is payment being given by putting its value on each box shown</string>
+    <string name="info_ticket_data">If you want, you can put something to identify the buyer of this ticket.\n\nYou need to put the amount of offers that are going to be sold by increasing and decreasing each offer.</string>
     <string name="info_user_data">You need to give us some information about this new user, including what areas of the app he will have access</string>
     <string name="info_users">All users that work in this app with you are displayed in here.\n\nYou can create new ones by clicking on the floating button at the bottom</string>
     <string name="payment_not_completed">Payment is not completed</string>
@@ -68,4 +68,9 @@
     <string name="total">Total</string>
     <string name="sold">Sold: </string>
     <string name="no_items">No items to be shown</string>
+    <string name="title_activity_pay_ticket">Payment</string>
+    <string name="info_pay_ticket">Insert payment types below.\n\nYou need to fill until the amount of the right is equal 0.\n\nWhen the amount is marked as red, it means that the consumer must pay, when marked as green it means that the payment is completed or you should give the consumer the change</string>
+    <string name="cust">Cust</string>
+    <string name="to_be_payed">To be payed</string>
+    <string name="username_password_changed">Your username or password has been changed</string>
 </resources>

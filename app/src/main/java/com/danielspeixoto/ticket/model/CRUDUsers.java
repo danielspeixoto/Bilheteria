@@ -142,20 +142,19 @@ public class CRUDUsers extends CRUD {
     	if(!user.getAdm().equals(user.getUsername())) {
     		tempDatabase = tempDatabase.child(user.getAdm());
 	    }
-	    tempDatabase = rootDatabase.child(User.class.getSimpleName());
+	    tempDatabase = tempDatabase.child(User.class.getSimpleName());
         final DatabaseReference tempFinalDatabase = tempDatabase;
 	    return Single.create(singleSubscriber -> tempFinalDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String email = user.getUsername();
 	            if (snapshot.hasChild(email) &&
-	                    snapshot.child(email).child(PASSWORD)
-			            .getValue().equals(user.getPassword())) {
-	            	
+	                    snapshot.child(email)
+			                    .child(PASSWORD).getValue().equals(user.getPassword())) {
 		            tempFinalDatabase.child(email).setValue(user);
 		            singleSubscriber.onSuccess(user);
 	            } else {
-		            App.showMessage("Your username or password has been changed");
+	                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_password_changed)));
 	            }
             }
         

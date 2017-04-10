@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.danielspeixoto.ticket">
+    package="com.danielspeixoto.ticket">
 
     <application
-        android:name="com.danielspeixoto.ticket.helper.App"
+        android:name=".helper.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,105 +11,114 @@
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.app.searchable"
-            android:resource="@xml/searchable"/>
+            android:resource="@xml/searchable" />
 
-        <activity android:name="com.danielspeixoto.ticket.view.activity.MainActivity">
+        <activity android:name=".view.activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.SignUpActivity"
+            android:name=".view.activity.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.MainActivity"
+            android:parentActivityName=".view.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.MainActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:name=".view.activity.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.OffersActivity"
+            android:name=".view.activity.OffersActivity"
             android:label="@string/title_activity_offers"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.MainActivity"
+            android:parentActivityName=".view.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.MainActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.PaymentsActivity"
+            android:name=".view.activity.PaymentsActivity"
             android:label="@string/title_activity_payments"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.TicketDataActivity"
+            android:name=".view.activity.TicketDataActivity"
             android:label="@string/title_activity_ticket_data"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.ReportActivity"
+            android:name=".view.activity.ReportActivity"
             android:label="@string/title_activity_report"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.SearchResultsActivity"
+            android:name=".view.activity.SearchResultsActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.ReportActivity"
+            android:parentActivityName=".view.activity.ReportActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- android:launchMode="singleTop"> -->
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.ReportActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.ReportActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.UsersActivity"
+            android:name=".view.activity.UsersActivity"
             android:label="@string/title_activity_users"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.HomeActivity"
+            android:parentActivityName=".view.activity.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name="com.danielspeixoto.ticket.view.activity.UserDataActivity"
+            android:name=".view.activity.UserDataActivity"
             android:label="@string/title_activity_user_data"
-            android:parentActivityName="com.danielspeixoto.ticket.view.activity.UsersActivity"
+            android:parentActivityName=".view.activity.UsersActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.UsersActivity"/>
+                android:value="com.danielspeixoto.ticket.view.activity.UsersActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.PayTicketActivity"
+            android:label="@string/title_activity_pay_ticket"
+            android:parentActivityName=".view.activity.TicketDataActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.ticket.view.activity.TicketDataActivity" />
         </activity>
     </application>
 
