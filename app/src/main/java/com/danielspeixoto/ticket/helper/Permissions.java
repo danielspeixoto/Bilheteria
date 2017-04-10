@@ -1,6 +1,5 @@
 package com.danielspeixoto.ticket.helper;
 
-import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.model.pojo.Permission;
 
 import java.util.ArrayList;
@@ -14,28 +13,16 @@ import lombok.Getter;
 
 public class Permissions {
 
-    public static final String MANAGE_TICKET = "MANAGE_TICKET",
-            MANAGE_USERS = "MANAGE_USERS",
-            VIEW_HISTORY = "VIEW_HISTORY",
-            MANAGE_OFFERS = "MANAGE_OFFERS",
-            MANAGE_PAYMENT = "MANAGE_PAYMENT";
-    
-    public static final String MANAGE_TICKET_DEPRECATED = App.getStringResource(R.string.manage_tickets),
-            MANAGE_USERS_DEPRECATED = App.getStringResource(R.string.manage_users),
-            VIEW_HISTORY_DEPRECATED = App.getStringResource(R.string.history),
-            MANAGE_OFFERS_DEPRECATED = App.getStringResource(R.string.manage_offers),
-            MANAGE_PAYMENT_DEPRECATED = App.getStringResource(R.string.manage_payment);
-
     public static final ArrayList<String> permissions = new ArrayList<>();
     @Getter
     public static final HashMap<String, Boolean> permissionsHash = new HashMap<>();
 
     static {
-        permissions.add(MANAGE_TICKET);
-        permissions.add(MANAGE_USERS);
-        permissions.add(VIEW_HISTORY);
-        permissions.add(MANAGE_OFFERS);
-        permissions.add(MANAGE_PAYMENT);
+        permissions.add(Permission.MANAGE_TICKET);
+        permissions.add(Permission.MANAGE_USERS);
+        permissions.add(Permission.VIEW_HISTORY);
+        permissions.add(Permission.MANAGE_OFFERS);
+        permissions.add(Permission.MANAGE_PAYMENT);
         for (String string : permissions) {
             permissionsHash.put(string, false);
         }
@@ -59,9 +46,8 @@ public class Permissions {
     }
 
     public static ArrayList<Permission> getPermissionsList() {
-        ArrayList<Permission> permissionsList = new ArrayList() {
-        };
-        for (String string : permissions) {
+        ArrayList<Permission> permissionsList = new ArrayList<>();
+        for(String string : permissions) {
             permissionsList.add(new Permission(string, false));
         }
         return permissionsList;

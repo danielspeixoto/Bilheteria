@@ -1,5 +1,8 @@
 package com.danielspeixoto.ticket.model.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import lombok.Data;
 
 /**
@@ -7,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class Offer {
+public class Offer implements Parcelable {
 
     public static final String IS_ACTIVATED = "activated";
 
@@ -30,12 +33,47 @@ public class Offer {
         this.name = name;
         this.price = price;
     }
-
+    
+    protected Offer(Parcel in) {
+        uid = in.readString();
+        name = in.readString();
+        price = in.readFloat();
+        amount = in.readInt();
+        isActivated = in.readByte() != 0;
+    }
+    
+    public static final Creator<Offer> CREATOR = new Creator<Offer>() {
+        @Override
+        public Offer createFromParcel(Parcel in) {
+            return new Offer(in);
+        }
+        
+        @Override
+        public Offer[] newArray(int size) {
+            return new Offer[size];
+        }
+    };
+    
     public void changeAmount(int variation) {
         amount += variation;
     }
 
     public void toggleActivated() {
         isActivated = !isActivated;
+    }
+    
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    
+        dest.writeString(uid);
+        dest.writeString(name);
+        dest.writeFloat(price);
+        dest.writeInt(amount);
+        dest.writeByte((byte) (isActivated ? 1 : 0));
     }
 }

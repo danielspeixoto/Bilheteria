@@ -9,8 +9,6 @@ import com.danielspeixoto.ticket.model.pojo.Ticket;
 public class InsertTicket {
 
     public interface View extends ActivityBase.View {
-        void clear();
-
         void onResult(String message);
     }
 

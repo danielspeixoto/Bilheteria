@@ -4,7 +4,6 @@ package com.danielspeixoto.ticket.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.helper.DatabaseContract;
 import com.danielspeixoto.ticket.model.pojo.User;
@@ -106,7 +105,7 @@ public class Connection implements DatabaseContract {
 		    @Override
 		    public void onError(Throwable error) {
 			    logOff();
-			    App.showMessage(App.getStringResource(R.string.error_occurred));
+			    App.showMessage(error.getMessage());
 		    }
 	    });
     }

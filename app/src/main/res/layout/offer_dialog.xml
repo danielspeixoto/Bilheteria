@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/nextButton"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorBackgroundFloating"

@@ -1,7 +1,7 @@
 package com.danielspeixoto.ticket.view.recycler.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
@@ -22,7 +22,6 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     @Getter
     protected BaseActivity activity;
     @Getter
-    //TODO Encapsulate data, and track all its movements, so we can handle empty data on recycler view
     @Setter
     private ArrayList<T> data = new ArrayList<>();
     protected RecyclerView mRecyclerView;
@@ -34,7 +33,7 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     // It's public because it is used in interfaces
     public void addItem(T t) {
         data.add(t);
-        dataChanged();
+        notifyDataSetChanged();
     }
 	
 	@Override
@@ -49,35 +48,19 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     
     protected final void removeItem(int position) {
         data.remove(position);
-        dataChanged();
+        notifyDataSetChanged();
     }
     
     protected final void clearData() {
         data.clear();
-        dataChanged();
+        notifyDataSetChanged();
     }
     
+    @NonNull
     protected final Iterator<T> getIterator() {
         return data.iterator();
     }
     
-    private void dataChanged() {
-    	/*if(data.isEmpty()) {
-    		onListEmpty();
-	    } else {
-    		onListPopulated();
-	    }*/
-	    notifyDataSetChanged();
-    }
-    
-    protected void onListPopulated() {
-    	mRecyclerView.setVisibility(View.VISIBLE);
-    }
-    
-    protected void onListEmpty() {
-    	mRecyclerView.setVisibility(View.GONE);
-    }
-
     public abstract void getItems();
 
     @Override

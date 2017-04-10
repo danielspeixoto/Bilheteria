@@ -4,9 +4,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.ticket.R;
-import com.danielspeixoto.ticket.helper.Permissions;
 import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.pojo.Link;
+import com.danielspeixoto.ticket.model.pojo.Permission;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.activity.OffersActivity;
 import com.danielspeixoto.ticket.view.activity.PaymentsActivity;
@@ -30,19 +30,19 @@ public class DrawerAdapter extends BaseAdapter<Link, DrawerHolder> {
     @Override
     public void getItems() {
         HashMap<String, Boolean> permissions = Connection.getCurrentUser().getPermissions();
-        if (permissions.get(Permissions.VIEW_HISTORY)) {
+        if (permissions.get(Permission.VIEW_HISTORY)) {
             addItem(new Link(activity.getString(R.string.report),
                     () -> activity.goToActivity(ReportActivity.class)));
         }
-        if (permissions.get(Permissions.MANAGE_OFFERS)) {
+        if (permissions.get(Permission.MANAGE_OFFERS)) {
             addItem(new Link(activity.getString(R.string.manage_offers),
                     () -> activity.goToActivity(OffersActivity.class)));
         }
-        if (permissions.get(Permissions.MANAGE_PAYMENT)) {
+        if (permissions.get(Permission.MANAGE_PAYMENT)) {
             addItem(new Link(activity.getString(R.string.manage_payment),
                     () -> activity.goToActivity(PaymentsActivity.class)));
         }
-        if (permissions.get(Permissions.MANAGE_USERS)) {
+        if (permissions.get(Permission.MANAGE_USERS)) {
             addItem(new Link(activity.getString(R.string.manage_users)
                     , () -> activity.goToActivity(UsersActivity.class)));
         }
