@@ -9,6 +9,7 @@ public interface DatabaseContract {
     String EMAIL = "username";
     String ADM = "adm";
     String NAME = "name";
-    String LEVEL = "level";
     String PASSWORD = "password";
+    String LOGIN = "login";
+    String PERMISSIONS = "permissions";
 }

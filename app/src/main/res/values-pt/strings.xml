@@ -11,7 +11,7 @@
     <string name="report">Relatório</string>
     <string name="identification">Identificação(opcional)</string>
     <string name="incorrect_username_password">Usuário e/ou senha incorreta</string>
-    <string name="loading">Carregando...</string>
+    <string name="loading">Carregando…</string>
     <string name="manage_offers">Gerenciar ofertas</string>
     <string name="manage_payment">Gerenciar Pagamento</string>
     <string name="manage_tickets">Gerenciar Tickets</string>

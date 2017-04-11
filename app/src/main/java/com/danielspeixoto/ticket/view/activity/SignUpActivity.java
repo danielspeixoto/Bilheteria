@@ -52,5 +52,4 @@ public class SignUpActivity extends BaseActivity implements SignUp.View {
             mPresenter.signUp(user);
         }
     }
-
 }

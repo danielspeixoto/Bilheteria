@@ -35,7 +35,7 @@ public class Connection implements DatabaseContract {
         CRUD.updateDatabase();
         new Thread(() -> {
             SharedPreferences.Editor editor = App.getContext()
-		            .getSharedPreferences("login", Context.MODE_PRIVATE).edit();
+		            .getSharedPreferences(LOGIN, Context.MODE_PRIVATE).edit();
             editor.putString(EMAIL, user.getUsername());
             editor.putString(PASSWORD, user.getPassword());
             editor.putString(ADM, user.getAdm());
@@ -43,7 +43,7 @@ public class Connection implements DatabaseContract {
             editor.apply();
             try {
                 File file = new File(App.getContext()
-		                .getDir("data", App.MODE_PRIVATE), "permissions");
+		                .getDir("data", App.MODE_PRIVATE), PERMISSIONS);
                 ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
                 outputStream.writeObject(user.getPermissions());
                 outputStream.flush();
@@ -62,11 +62,11 @@ public class Connection implements DatabaseContract {
         //TODO Get validation without consuming much time
         if (!isLogged()) {
             SharedPreferences preferences = App.getContext()
-		            .getSharedPreferences("login", Context.MODE_PRIVATE);
+		            .getSharedPreferences(LOGIN, Context.MODE_PRIVATE);
             if (preferences.contains(EMAIL)) {
                 try {
                     File file = new File(App.getContext()
-		                    .getDir("data", App.MODE_PRIVATE), "permissions");
+		                    .getDir("data", App.MODE_PRIVATE), PERMISSIONS);
                     ObjectInputStream outputStream = new ObjectInputStream(new FileInputStream(file));
                     currentUser = Structure.User(new User(preferences.getString(NAME, ""),
 		                    preferences.getString(EMAIL, ""),
@@ -89,7 +89,7 @@ public class Connection implements DatabaseContract {
 
     public static void logOff() {
         currentUser = null;
-        App.getContext().getSharedPreferences("login", Context.MODE_PRIVATE).edit().clear().commit();
+        App.getContext().getSharedPreferences(LOGIN, Context.MODE_PRIVATE).edit().clear().commit();
         CRUD.updateDatabase();
     }
 
