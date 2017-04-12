@@ -1,16 +1,16 @@
 package com.danielspeixoto.ticket.module;
 
 /**
- * Created by danielspeixoto on 2/14/17.
+ * Created by danielspeixoto on 4/11/17.
  */
 
-public class InsertOffer {
+public class UpdateOffer {
 
     public interface View extends CreateUpdateOffer.View {
-
     }
 
     public interface Presenter extends CreateUpdateOffer.Presenter {
 
     }
+
 }

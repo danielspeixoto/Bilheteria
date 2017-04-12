@@ -6,35 +6,27 @@ import android.widget.EditText;
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.Permissions;
 import com.danielspeixoto.ticket.model.pojo.User;
-import com.danielspeixoto.ticket.module.InsertUser;
-import com.danielspeixoto.ticket.presenter.InsertUserPresenter;
 import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.PermissionAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class UserDataActivity extends BaseActivity implements InsertUser.View {
+public abstract class UserDataActivity extends BaseActivity {
 
     @BindView(R.id.nameEdit)
     EditText nameEdit;
     @BindView(R.id.usernameEdit)
-    EditText emailEdit;
-    @BindView(R.id.passEdit)
-    EditText passEdit;
-    @BindView(R.id.confirmPassEdit)
-    EditText confirmPassEdit;
+    EditText usernameEit;
     @BindView(R.id.list)
     RecyclerList list;
-
-    private InsertUser.Presenter mPresenter = new InsertUserPresenter(this);
-    private User mUser = new User();
-    private PermissionAdapter mAdapter = new PermissionAdapter(this);
+    
+    protected User mUser = new User();
+    protected PermissionAdapter mAdapter = new PermissionAdapter(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.activity_user_data);
-        activityInfo = getString(R.string.info_user_data);
+    protected void onCreate(Bundle savedInstanceState, int resLayout) {
+        super.onCreate(savedInstanceState, resLayout);
         list.setNestedScrollEnabled(false);
         list.setAdapter(mAdapter);
     }
@@ -45,20 +37,12 @@ public class UserDataActivity extends BaseActivity implements InsertUser.View {
         if (checkTextEmpty(nameEdit)) {
             nameEdit.requestFocus();
             showMessage(getString(R.string.name_must_fill));
-        } else if (checkTextEmpty(emailEdit)) {
-            emailEdit.requestFocus();
+        } else if (checkTextEmpty(usernameEit)) {
+            usernameEit.requestFocus();
             showMessage(getString(R.string.username_must_fill));
-        } else if (checkTextEmpty(passEdit)) {
-            passEdit.requestFocus();
-            showMessage(getString(R.string.password_must_fill));
-        } else if (!getText(passEdit).equals(getText(confirmPassEdit))) {
-            confirmPassEdit.requestFocus();
-            showMessage(getString(R.string.password_must_match));
         } else {
             mUser.setName(getText(nameEdit));
-            mUser.setUsername(getText(emailEdit));
-            mUser.setPassword(getText(passEdit));
-            mPresenter.createUser(mUser);
+            mUser.setUsername(getText(usernameEit));
         }
     }
 

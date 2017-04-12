@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_ticket_data"/>
+    <include layout="@layout/content_insert_ticket"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/nextButton"

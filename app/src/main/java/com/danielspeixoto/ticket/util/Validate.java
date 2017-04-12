@@ -15,7 +15,7 @@ public class Validate {
     public static final String OK = "OK";
     private static String message;
 
-    public static String User(User user) {
+    public static String user(User user) {
         message = OK;
         if (user.getUsername().length() == 0) {
             message = App.getStringResource(R.string.username_must_fill);
@@ -25,7 +25,7 @@ public class Validate {
         return message;
     }
 
-    public static String Offer(Offer offer) {
+    public static String offer(Offer offer) {
         message = OK;
         offer.setName(offer.getName().trim());
         if (offer.getName().length() == 0) {
@@ -34,7 +34,7 @@ public class Validate {
         return message;
     }
 
-    public static String Payment(Payment payment) {
+    public static String payment(Payment payment) {
         message = OK;
         payment.setName(payment.getName().trim());
         if (payment.getName().length() == 0) {

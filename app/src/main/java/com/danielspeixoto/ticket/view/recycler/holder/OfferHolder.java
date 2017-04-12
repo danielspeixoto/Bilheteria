@@ -1,5 +1,6 @@
 package com.danielspeixoto.ticket.view.recycler.holder;
 
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class OfferHolder<T extends OffersAdapter> extends BaseHolder<T, Offer> {
     TextView nameText;
     @BindView(R.id.priceText)
     TextView priceText;
+    @BindView(R.id.cardItem)
+    CardView cardItem;
 
     public OfferHolder(View itemView, T mAdapter) {
         super(itemView, mAdapter);

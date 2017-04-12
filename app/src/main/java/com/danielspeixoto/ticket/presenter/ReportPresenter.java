@@ -58,7 +58,7 @@ public class ReportPresenter implements Reports.Presenter {
                     price += payment.getAmount();
                 }
                 ticket.setPrice(price);
-                CRUDTickets.updateTicket(ticket);
+                CRUDTickets.update(ticket);
                 /**/
             }
         });

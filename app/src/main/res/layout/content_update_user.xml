@@ -13,7 +13,7 @@
     android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.danielspeixoto.ticket.view.activity.UserDataActivity"
-    tools:showIn="@layout/activity_user_data">
+    tools:showIn="@layout/activity_insert_user">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,38 +31,11 @@
             android:inputType="textPersonName"
             android:padding="16dp"/>
 
-        <EditText
-            android:id="@+id/usernameEdit"
+        <Button
+            android:id="@+id/changePassButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:ems="10"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
-            android:padding="16dp"/>
-
-        <EditText
-            android:id="@+id/passEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="16dp"/>
-
-        <EditText
-            android:id="@+id/confirmPassEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:ems="10"
-            android:hint="@string/confirm_your_password"
-            android:inputType="textPassword"
-            android:padding="16dp"/>
+            android:text="@string/change_password"/>
 
         <TextView
             android:layout_width="match_parent"

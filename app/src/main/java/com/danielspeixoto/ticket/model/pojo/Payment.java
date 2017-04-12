@@ -10,9 +10,8 @@ import lombok.Data;
  */
 
 @Data
-public class Payment implements Parcelable {
-
-    private String uid, name;
+public class Payment extends DatabaseItem implements Parcelable {
+    
     private String observations;
     private float amount;
 

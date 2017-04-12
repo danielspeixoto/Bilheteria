@@ -30,7 +30,7 @@ public class SignUpPresenter implements SignUp.Presenter {
     @Override
     public void signUp(User user) {
         App.showMessage(mActivity.getResources().getString(R.string.loading));
-        String result = Validate.User(user);
+        String result = Validate.user(user);
         if (result.equals(Validate.OK)) {
             CRUDUsers.createAdm(user).subscribe(new SingleSubscriber<User>() {
                 @Override

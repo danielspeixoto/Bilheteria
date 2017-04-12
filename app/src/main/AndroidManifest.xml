@@ -120,6 +120,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.danielspeixoto.ticket.view.activity.TicketDataActivity" />
         </activity>
+        <activity
+            android:name=".view.activity.InsertUserActivity"
+            android:label="@string/title_activity_insert_user"
+            android:parentActivityName=".view.activity.UsersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.ticket.view.activity.UsersActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.UpdateUserActivity"
+            android:label="@string/title_activity_update_user"
+            android:parentActivityName=".view.activity.UsersActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.ticket.view.activity.UsersActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.ChangePassActivity"
+            android:label="@string/title_activity_change_pass"
+            android:parentActivityName=".view.activity.UpdateUserActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.ticket.view.activity.UpdateUserActivity" />
+        </activity>
     </application>
 
 </manifest>

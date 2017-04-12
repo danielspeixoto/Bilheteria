@@ -25,6 +25,7 @@ public abstract class SourceAdapter<T, S extends BaseHolder<? extends SourceAdap
 
     @Override
     public void getItems() {
+        clearData();
         presenter.syncItems();
         notifyDataSetChanged();
     }

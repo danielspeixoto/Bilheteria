@@ -20,6 +20,10 @@ import java.util.HashMap;
  * Created by danielspeixoto on 05/12/16.
  */
 
+/**
+ * @deprecated use {@link OptionsAdapter} instead;
+ */
+@Deprecated
 public class DrawerAdapter extends BaseAdapter<Link, DrawerHolder> {
 
     public DrawerAdapter(BaseActivity activity) {

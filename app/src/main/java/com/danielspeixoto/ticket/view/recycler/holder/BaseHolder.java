@@ -19,7 +19,6 @@ public abstract class BaseHolder<T extends BaseAdapter, S> extends RecyclerView.
     protected static final String EMPTY_STRING = "";
 
     protected T mAdapter;
-    @Setter
     protected S mItem;
     @Setter
     protected int position;
@@ -28,6 +27,10 @@ public abstract class BaseHolder<T extends BaseAdapter, S> extends RecyclerView.
         super(itemView);
         this.mAdapter = mAdapter;
         ButterKnife.bind(this, itemView);
+    }
+
+    public void setItem(Object mItem) {
+        this.mItem = (S) mItem;
     }
 
     protected boolean checkTextEmpty(EditText editText) {

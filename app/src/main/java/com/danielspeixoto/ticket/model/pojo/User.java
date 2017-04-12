@@ -9,7 +9,7 @@ import lombok.Data;
  */
 
 @Data
-public class User {
+public class User extends DatabaseItem {
     private HashMap<String, Boolean> permissions;
     private String name, username, password, adm;
 

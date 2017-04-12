@@ -137,7 +137,7 @@ public class CRUDUsers extends CRUD {
         }));
     }
     
-    public static Single<User> update(User user) {
+    public static Single<User> compareWithRemote(User user) {
         DatabaseReference tempDatabase = rootDatabase;
     	if(!user.getAdm().equals(user.getUsername())) {
     		tempDatabase = tempDatabase.child(user.getAdm());
@@ -164,4 +164,12 @@ public class CRUDUsers extends CRUD {
             }
         }));
     }
+    
+    public static void delete(String uid) {
+        mDatabase.child(User.class.getSimpleName()).child(uid).removeValue();
+    }
+	
+	public static void update(User user) {
+		mDatabase.child(User.class.getSimpleName()).child(user.getUid()).setValue(user);
+	}
 }

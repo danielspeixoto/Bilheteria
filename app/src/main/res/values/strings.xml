@@ -73,4 +73,21 @@
     <string name="cust">Cust</string>
     <string name="to_be_payed">To be payed</string>
     <string name="username_password_changed">Your username or password has been changed</string>
+    <string name="offer_deleted">Offer deleted</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="no">No</string>
+    <string name="payment_deleted">Payment type deleted</string>
+    <string name="user_deleted">User deleted</string>
+    <string name="ticket_updated">Ticket updated</string>
+    <string name="offer_updated">Offer updated</string>
+    <string name="user_updated">User updated</string>
+    <string name="ticket_deleted">Ticket deleted</string>
+    <string name="title_activity_insert_user">InsertUserActivity</string>
+    <string name="title_activity_update_user">UpdateUserActivity</string>
+    <string name="change_password">Change password</string>
+    <string name="info_update_user">Update User</string>
+    <string name="title_activity_change_pass">ChangePassActivity</string>
+    <string name="info_change_pass">Change Pass</string>
+    <string name="old_pass_must_match">Old passsword must be correct</string>
 </resources>

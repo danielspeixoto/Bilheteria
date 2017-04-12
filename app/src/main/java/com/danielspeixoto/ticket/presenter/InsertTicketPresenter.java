@@ -25,8 +25,8 @@ public class InsertTicketPresenter implements InsertTicket.Presenter {
     @Override
     public void insert(Ticket ticket) {
         ticket.setTimestamp(new Timestamp(System.currentTimeMillis()).getTime());
-        ticket.setSeller(Connection.getCurrentUser().getName());
-        CRUDTickets.insertTicket(ticket);
+        ticket.setSeller(Connection.getCurrentUser().getUsername());
+        CRUDTickets.insert(ticket);
         mView.onResult(App.getStringResource(R.string.ticket_added));
     }
 }

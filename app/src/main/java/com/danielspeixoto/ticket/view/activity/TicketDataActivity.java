@@ -35,7 +35,7 @@ public class TicketDataActivity extends BaseActivity implements OnItemChanged<Fl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.activity_ticket_data);
+        super.onCreate(savedInstanceState, R.layout.activity_insert_ticket);
         activityInfo = getString(R.string.info_ticket_data);
         mOffersAdapter.setPresenter(new ActivatedOffersPresenter(mOffersAdapter));
         offersList.setNestedScrollEnabled(false);

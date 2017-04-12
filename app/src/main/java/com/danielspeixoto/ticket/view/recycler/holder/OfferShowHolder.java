@@ -4,9 +4,20 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.danielspeixoto.ticket.R;
+import com.danielspeixoto.ticket.helper.App;
+import com.danielspeixoto.ticket.model.pojo.Link;
+import com.danielspeixoto.ticket.module.DeleteOffer;
 import com.danielspeixoto.ticket.module.ToggleOffer;
+import com.danielspeixoto.ticket.module.UpdateOffer;
+import com.danielspeixoto.ticket.presenter.DeleteOfferPresenter;
 import com.danielspeixoto.ticket.presenter.ToggleOfferPresenter;
+import com.danielspeixoto.ticket.presenter.UpdateOfferPresenter;
+import com.danielspeixoto.ticket.view.dialog.AreYouSureDialog;
+import com.danielspeixoto.ticket.view.dialog.OfferDialog;
+import com.danielspeixoto.ticket.view.dialog.OptionsDialog;
 import com.danielspeixoto.ticket.view.recycler.adapter.OffersShowAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -15,7 +26,8 @@ import butterknife.OnClick;
  * Created by danielspeixoto on 2/20/17.
  */
 
-public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements ToggleOffer.View {
+public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements ToggleOffer.View,
+        DeleteOffer.View, UpdateOffer.View {
 
     private static ToggleOffer.Presenter mPresenter;
     @BindView(R.id.switchActivated)
@@ -24,6 +36,27 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
     public OfferShowHolder(View itemView, OffersShowAdapter mAdapter) {
         super(itemView, mAdapter);
         mPresenter = new ToggleOfferPresenter(this);
+        OptionsDialog dialog = new OptionsDialog(getActivity());
+        ArrayList<Link> links = new ArrayList<>();
+        // DELETE OFFER
+        links.add(new Link(App.getStringResource(R.string.delete), () -> {
+            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteOfferPresenter(OfferShowHolder.this).delete(mItem));
+            areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
+            dialog.dismiss();
+        }));
+        // EDIT OFFER
+        links.add(new Link(App.getStringResource(R.string.edit), () -> {
+            OfferDialog offerDialog = new OfferDialog(getActivity());
+            offerDialog.setOffer(mItem);
+            offerDialog.setMPresenter(new UpdateOfferPresenter(OfferShowHolder.this));
+            offerDialog.show();
+            dialog.dismiss();
+        }));
+        dialog.setLinks(links);
+        cardItem.setOnLongClickListener((l) -> {
+            dialog.show();
+            return true;
+        });
     }
 
     @Override
@@ -39,4 +72,15 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
         mItem.toggleActivated();
         mPresenter.update(mItem.getUid(), mItem.isActivated());
     }
+
+    @Override
+    public void onDeleted() {
+        mAdapter.getItems();
+    }
+
+    @Override
+    public void onSaveSuccess() {
+        mAdapter.getItems();
+    }
+
 }

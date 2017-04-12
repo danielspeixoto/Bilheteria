@@ -21,9 +21,9 @@ public class InsertPaymentPresenter implements InsertPayment.Presenter {
 
     @Override
     public void insert(Payment payment) {
-        String result = Validate.Payment(payment);
+        String result = Validate.payment(payment);
         if (result.equals(Validate.OK)) {
-            CRUDPayments.insertPayment(payment);
+            CRUDPayments.insert(payment);
             result = App.getStringResource(R.string.payment_added);
             mView.clear();
         }

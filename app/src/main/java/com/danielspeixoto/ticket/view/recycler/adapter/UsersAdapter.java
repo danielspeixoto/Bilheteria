@@ -13,9 +13,9 @@ import com.danielspeixoto.ticket.view.recycler.holder.UserHolder;
  * Created by danielspeixoto on 3/13/17.
  */
 
-public class UserAdapter extends SourceAdapter<User, UserHolder, Source.Presenter> implements Source.View<User> {
+public class UsersAdapter extends SourceAdapter<User, UserHolder, Source.Presenter> implements Source.View<User> {
 
-    public UserAdapter(BaseActivity activity) {
+    public UsersAdapter(BaseActivity activity) {
         super(activity);
     }
 

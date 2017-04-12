@@ -3,59 +3,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_ticket_data"
+    android:id="@+id/content_user_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.danielspeixoto.ticket.view.activity.TicketDataActivity"
-    tools:showIn="@layout/activity_ticket_data">
+    tools:context="com.danielspeixoto.ticket.view.activity.UserDataActivity"
+    tools:showIn="@layout/activity_insert_user">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/idEdit"
+            android:id="@+id/oldPassEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:ems="10"
-            android:hint="@string/identification"
-            android:inputType="textPersonName"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:padding="16dp"/>
 
-        <com.danielspeixoto.ticket.view.custom.RecyclerList
-            android:id="@+id/offersList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/adapter_offer_buy"/>
-
-        <TextView
-            android:id="@+id/priceText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:gravity="center"
-            android:text="$0.0"
-            android:textSize="@dimen/label_text"/>
-
         <EditText
-            android:id="@+id/observationsEdit"
+            android:id="@+id/passEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:ems="10"
-            android:gravity="start"
-            android:hint="@string/observations"
-            android:inputType="textPersonName"
-            android:minHeight="100dp"/>
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/confirmPassEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:hint="@string/confirm_your_password"
+            android:inputType="textPassword"
+            android:padding="16dp"/>
 
     </LinearLayout>
+
 
 </android.support.v4.widget.NestedScrollView>
