@@ -72,7 +72,7 @@
     <string name="info_pay_ticket">Insert payment types below.\n\nYou need to fill until the amount of the right is equal 0.\n\nWhen the amount is marked as red, it means that the consumer must pay, when marked as green it means that the payment is completed or you should give the consumer the change</string>
     <string name="cust">Cust</string>
     <string name="to_be_payed">To be payed</string>
-    <string name="username_password_changed">Your username or password has been changed</string>
+    <string name="username_password_changed">Your password has been changed</string>
     <string name="offer_deleted">Offer deleted</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
@@ -83,14 +83,16 @@
     <string name="offer_updated">Offer updated</string>
     <string name="user_updated">User updated</string>
     <string name="ticket_deleted">Ticket deleted</string>
-    <string name="title_activity_insert_user">InsertUserActivity</string>
-    <string name="title_activity_update_user">UpdateUserActivity</string>
+    <string name="title_activity_insert_user">Create User</string>
+    <string name="title_activity_update_user">Edit User</string>
     <string name="change_password">Change password</string>
-    <string name="info_update_user">Update User</string>
+    <string name="info_update_user">Você pode alterar o nome e as permissões de um usuário aqui</string>
     <string name="title_activity_change_pass">ChangePassActivity</string>
-    <string name="info_change_pass">Change Pass</string>
+    <string name="info_change_pass">Put your old password on the first field and the desired password on the next two fields</string>
     <string name="old_pass_must_match">Old passsword must be correct</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="info_settings">Settings</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
 </resources>

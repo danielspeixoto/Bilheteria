@@ -1,6 +1,5 @@
 package com.danielspeixoto.ticket.view.recycler.holder;
 
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +16,7 @@ import com.danielspeixoto.ticket.view.recycler.adapter.TicketsAdapter;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by danielspeixoto on 2/21/17.
@@ -28,12 +28,11 @@ public class TicketHolder extends BaseHolder<TicketsAdapter, Ticket> implements 
     TextView nameText;
     @BindView(R.id.priceText)
     TextView priceText;
-    @BindView(R.id.cardItem)
-    CardView cardItem;
-    
+	private OptionsDialog dialog;
+	
 	public TicketHolder(View itemView, TicketsAdapter mAdapter) {
 		super(itemView, mAdapter);
-		OptionsDialog dialog = new OptionsDialog(getActivity());
+		dialog = new OptionsDialog(getActivity());
 		ArrayList<Link> links = new ArrayList<>();
 		// DELETE TICKET
 		links.add(new Link(App.getStringResource(R.string.delete), () -> {
@@ -42,10 +41,11 @@ public class TicketHolder extends BaseHolder<TicketsAdapter, Ticket> implements 
 			dialog.dismiss();
 		}));
 		dialog.setLinks(links);
-		cardItem.setOnLongClickListener((l) -> {
-			dialog.show();
-			return true;
-		});
+	}
+	
+	@OnClick(R.id.item)
+	public void onItemClicked() {
+		dialog.show();
 	}
 	
 	@Override

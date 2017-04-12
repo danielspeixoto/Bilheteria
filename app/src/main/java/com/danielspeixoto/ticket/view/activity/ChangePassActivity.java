@@ -49,9 +49,4 @@ public class ChangePassActivity extends BaseActivity implements UpdateUser.View 
 			mPresenter.save(mUser);
 		}
 	}
-	
-	@Override
-	public void onUpdated() {
-		finish();
-	}
 }

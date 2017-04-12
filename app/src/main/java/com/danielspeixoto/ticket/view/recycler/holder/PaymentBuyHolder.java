@@ -48,7 +48,7 @@ public class PaymentBuyHolder extends PaymentHolder<PaymentsBuyAdapter> {
         mAdapter.addCallback(() -> amountEdit.setText(""));
     }
 
-    @OnClick(R.id.cardItem)
+    @OnClick(R.id.item)
     public void onItemTouched() {
         // Whenever an item is touched the remaining to be payed will be filled inside it
         float amount = mItem.getAmount();

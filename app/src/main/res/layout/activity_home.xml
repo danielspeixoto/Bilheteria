@@ -48,8 +48,7 @@
         android:clickable="true"
         android:divider="#ccc"
         android:dividerHeight="1dp"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground" />
+        android:focusable="true" />
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -9,7 +9,6 @@ import com.danielspeixoto.ticket.model.pojo.User;
 public class InsertUser {
 
     public interface View extends ActivityBase.View {
-
     }
 
     public interface Presenter extends ActivityBase.Presenter {

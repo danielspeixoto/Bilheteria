@@ -9,7 +9,6 @@ import com.danielspeixoto.ticket.model.pojo.User;
 public class UpdateUser {
 	
 	public interface View extends ActivityBase.View {
-		void onUpdated();
 	}
 	
 	public interface Presenter extends ActivityBase.Presenter {

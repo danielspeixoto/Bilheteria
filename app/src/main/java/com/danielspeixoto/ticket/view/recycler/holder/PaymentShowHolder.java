@@ -13,14 +13,19 @@ import com.danielspeixoto.ticket.view.recycler.adapter.PaymentsShowAdapter;
 
 import java.util.ArrayList;
 
+import butterknife.OnClick;
+
 /**
  * Created by danielspeixoto on 4/11/17.
  */
 
 public class PaymentShowHolder extends PaymentHolder<PaymentsShowAdapter> implements DeletePayment.View {
+	
+	private OptionsDialog dialog;
+	
 	public PaymentShowHolder(View itemView, PaymentsShowAdapter mAdapter) {
 		super(itemView, mAdapter);
-		OptionsDialog dialog = new OptionsDialog(getActivity());
+		dialog = new OptionsDialog(getActivity());
 		ArrayList<Link> links = new ArrayList<>();
 		// DELETE PAYMENT
 		links.add(new Link(App.getStringResource(R.string.delete), () -> {
@@ -29,10 +34,11 @@ public class PaymentShowHolder extends PaymentHolder<PaymentsShowAdapter> implem
 			dialog.dismiss();
 		}));
 		dialog.setLinks(links);
-		cardItem.setOnLongClickListener((l) -> {
-			dialog.show();
-			return true;
-		});
+	}
+	
+	@OnClick(R.id.item)
+	public void onItemClicked() {
+		dialog.show();
 	}
 	
 	@Override

@@ -26,9 +26,4 @@ public class UpdateUserActivity extends UserDataActivity implements UpdateUser.V
 		super.save();
 		mPresenter.save(mUser);
 	}
-	
-	@Override
-	public void onUpdated() {
-		finish();
-	}
 }

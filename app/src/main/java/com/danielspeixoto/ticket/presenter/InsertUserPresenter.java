@@ -30,6 +30,7 @@ public class InsertUserPresenter implements InsertUser.Presenter {
                 @Override
                 public void onSuccess(User user) {
                     App.showMessage(App.getStringResource(R.string.user_added));
+                    mView.getActivity().finish();
                 }
 
                 @Override

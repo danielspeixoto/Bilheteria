@@ -25,7 +25,7 @@ public class UpdateUserPresenter implements UpdateUser.Presenter {
 		if (result.equals(Validate.OK)) {
 			CRUDUsers.update(user);
 			result = App.getStringResource(R.string.user_updated);
-			mView.onUpdated();
+			mView.getActivity().finish();
 		}
 		App.showMessage(result);
 	}

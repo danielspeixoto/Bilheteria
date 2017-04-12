@@ -32,11 +32,12 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
     private static ToggleOffer.Presenter mPresenter;
     @BindView(R.id.switchActivated)
     Switch switchActivated;
+	private OptionsDialog dialog;
 
     public OfferShowHolder(View itemView, OffersShowAdapter mAdapter) {
         super(itemView, mAdapter);
         mPresenter = new ToggleOfferPresenter(this);
-        OptionsDialog dialog = new OptionsDialog(getActivity());
+        dialog = new OptionsDialog(getActivity());
         ArrayList<Link> links = new ArrayList<>();
         // EDIT OFFER
         links.add(new Link(App.getStringResource(R.string.edit), () -> {
@@ -53,11 +54,12 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
             dialog.dismiss();
         }));
         dialog.setLinks(links);
-        cardItem.setOnLongClickListener((l) -> {
-            dialog.show();
-            return true;
-        });
     }
+	
+	@OnClick(R.id.item)
+	public void onItemClicked() {
+		dialog.show();
+	}
 
     @Override
     public void onPostCreated() {
