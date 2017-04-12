@@ -16,8 +16,6 @@ public abstract class UserDataActivity extends BaseActivity {
 
     @BindView(R.id.nameEdit)
     EditText nameEdit;
-    @BindView(R.id.usernameEdit)
-    EditText usernameEit;
     @BindView(R.id.list)
     RecyclerList list;
     
@@ -37,12 +35,8 @@ public abstract class UserDataActivity extends BaseActivity {
         if (checkTextEmpty(nameEdit)) {
             nameEdit.requestFocus();
             showMessage(getString(R.string.name_must_fill));
-        } else if (checkTextEmpty(usernameEit)) {
-            usernameEit.requestFocus();
-            showMessage(getString(R.string.username_must_fill));
-        } else {
+        }  else {
             mUser.setName(getText(nameEdit));
-            mUser.setUsername(getText(usernameEit));
         }
     }
 

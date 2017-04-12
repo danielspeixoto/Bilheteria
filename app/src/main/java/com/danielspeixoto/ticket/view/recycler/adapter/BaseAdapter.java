@@ -50,8 +50,10 @@ public abstract class BaseAdapter<O, H extends BaseHolder>
     }
     
     public void setData(ArrayList<O> data) {
-        this.data = data;
-        notifyDataSetChanged();
+        this.data.clear();
+        for(O o : data) {
+            addItem(o);
+        }
     }
     
     protected final void clearData() {

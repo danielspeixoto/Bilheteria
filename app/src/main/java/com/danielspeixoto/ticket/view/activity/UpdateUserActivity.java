@@ -19,6 +19,9 @@ public class UpdateUserActivity extends UserDataActivity implements UpdateUser.V
 		super.onCreate(savedInstanceState, R.layout.activity_update_user);
 		activityInfo = App.getStringResource(R.string.info_update_user);
 		mUser = getIntent().getParcelableExtra(User.class.getSimpleName());
+		App.log(mUser.toString());
+		mAdapter.setPermissionsState(mUser.getPermissions());
+		nameEdit.setText(mUser.getName());
 	}
 	
 	@Override
@@ -30,5 +33,10 @@ public class UpdateUserActivity extends UserDataActivity implements UpdateUser.V
 	@OnClick(R.id.changePassButton)
 	public void changePass() {
 		goToActivity(ChangePassActivity.class);
+	}
+	
+	@Override
+	public void onUpdated() {
+		finish();
 	}
 }

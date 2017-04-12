@@ -16,7 +16,6 @@ public class OptionsAdapter extends BaseAdapter<Link, DrawerHolder> {
 
     public OptionsAdapter(BaseActivity activity) {
         super(activity);
-        getItems();
     }
 
     @Override

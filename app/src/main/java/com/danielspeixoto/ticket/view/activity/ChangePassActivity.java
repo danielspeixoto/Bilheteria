@@ -49,4 +49,8 @@ public class ChangePassActivity extends BaseActivity implements UpdateUser.View 
 		}
 	}
 	
+	@Override
+	public void onUpdated() {
+		finish();
+	}
 }

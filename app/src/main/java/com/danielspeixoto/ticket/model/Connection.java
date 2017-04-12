@@ -3,6 +3,7 @@ package com.danielspeixoto.ticket.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.helper.DatabaseContract;
@@ -17,7 +18,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-import lombok.Getter;
 import rx.Single;
 import rx.SingleSubscriber;
 
@@ -27,8 +27,12 @@ import rx.SingleSubscriber;
 
 public class Connection implements DatabaseContract {
 
-    @Getter
     private static User currentUser;
+    
+    public static User getCurrentUser() {
+        hasAccountSavedOnDevice();
+        return currentUser;
+    }
 
     public static void logIn(User user) {
         currentUser = Structure.User(user);
@@ -54,6 +58,7 @@ public class Connection implements DatabaseContract {
         }).run();
     }
 
+    @NonNull
     public static Single<User> findUser(String email, String password) {
         return CRUDUsers.logIn(email, password);
     }
@@ -73,6 +78,7 @@ public class Connection implements DatabaseContract {
 		                    preferences.getString(PASSWORD, ""),
 		                    preferences.getString(ADM, ""),
 		                    (HashMap<String, Boolean>) outputStream.readObject()));
+                    App.log(currentUser.getPermissions().toString());
                     CRUD.updateDatabase();
                     updateUser();
                 } catch (IOException | ClassNotFoundException e) {
@@ -82,7 +88,7 @@ public class Connection implements DatabaseContract {
         }
         return isLogged();
     }
-
+	
     public static boolean isLogged() {
         return currentUser != null;
     }
@@ -96,7 +102,7 @@ public class Connection implements DatabaseContract {
     private static void updateUser() {
         // Sync data with database
 	    currentUser = Structure.User(currentUser);
-	    CRUDUsers.update(currentUser).subscribe(new SingleSubscriber<User>() {
+	    CRUDUsers.compareWithRemote(currentUser).subscribe(new SingleSubscriber<User>() {
 		    @Override
 		    public void onSuccess(User value) {
 				Connection.logIn(value);

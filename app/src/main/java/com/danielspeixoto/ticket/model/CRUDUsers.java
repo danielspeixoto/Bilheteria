@@ -165,11 +165,12 @@ public class CRUDUsers extends CRUD {
         }));
     }
     
-    public static void delete(String uid) {
-        mDatabase.child(User.class.getSimpleName()).child(uid).removeValue();
+    public static void delete(String username) {
+        mDatabase.child(User.class.getSimpleName()).child(username).removeValue();
     }
 	
 	public static void update(User user) {
-		mDatabase.child(User.class.getSimpleName()).child(user.getUid()).setValue(user);
+        // TODO Update both locations for non-adms
+		mDatabase.child(User.class.getSimpleName()).child(user.getUsername()).setValue(user);
 	}
 }

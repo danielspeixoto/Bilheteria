@@ -20,7 +20,7 @@ public class DeleteUserPresenter implements DeleteUser.Presenter {
 	
 	@Override
 	public void delete(User user) {
-		CRUDUsers.delete(user.getUid());
+		CRUDUsers.delete(user.getUsername());
 		mView.getActivity().showMessage(App.getStringResource(R.string.user_deleted));
 		mView.onDeleted();
 	}

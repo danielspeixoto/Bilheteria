@@ -11,11 +11,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_main);
         if (Connection.hasAccountSavedOnDevice()) {
             goToActivity(HomeActivity.class);
             finish();
         }
-        super.onCreate(savedInstanceState, R.layout.activity_main);
         activityInfo = getString(R.string.info_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }

@@ -17,9 +17,25 @@
         android:id="@+id/logOutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:background="?attr/colorBackgroundFloating"
         android:text="@string/log_out"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/logOutButton"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/icon"
+        android:maxHeight="200dp"
+        android:maxWidth="200dp"
+        android:minHeight="150dp"
+        android:minWidth="150dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/ic_launcher"/>
 </RelativeLayout>

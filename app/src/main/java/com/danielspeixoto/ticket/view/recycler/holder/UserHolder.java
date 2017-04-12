@@ -1,5 +1,6 @@
 package com.danielspeixoto.ticket.view.recycler.holder;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.danielspeixoto.ticket.model.pojo.Link;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.DeleteUser;
 import com.danielspeixoto.ticket.presenter.DeleteUserPresenter;
+import com.danielspeixoto.ticket.view.activity.UpdateUserActivity;
 import com.danielspeixoto.ticket.view.dialog.AreYouSureDialog;
 import com.danielspeixoto.ticket.view.dialog.OptionsDialog;
 import com.danielspeixoto.ticket.view.recycler.adapter.UsersAdapter;
@@ -41,7 +43,9 @@ public class UserHolder extends BaseHolder<UsersAdapter, User> implements Delete
         }));
 	    // EDIT USER
 	    links.add(new Link(App.getStringResource(R.string.edit), () -> {
-		    // User edit activity
+		    Intent intent = new Intent(getActivity(), UpdateUserActivity.class);
+		    intent.putExtra(User.class.getSimpleName(), mItem);
+		    getActivity().startActivity(intent);
 	    }));
         dialog.setLinks(links);
         cardItem.setOnLongClickListener((l) -> {

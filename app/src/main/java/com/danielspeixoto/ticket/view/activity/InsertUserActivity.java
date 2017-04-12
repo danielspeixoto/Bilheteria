@@ -12,6 +12,8 @@ import butterknife.OnClick;
 
 public class InsertUserActivity extends UserDataActivity implements InsertUser.View {
 	
+	@BindView(R.id.usernameEdit)
+	EditText usernameEdit;
 	@BindView(R.id.passEdit)
 	EditText passEdit;
 	@BindView(R.id.confirmPassEdit)
@@ -34,8 +36,12 @@ public class InsertUserActivity extends UserDataActivity implements InsertUser.V
 		} else if (!getText(passEdit).equals(getText(confirmPassEdit))) {
 			confirmPassEdit.requestFocus();
 			showMessage(getString(R.string.password_must_match));
+		} else if (checkTextEmpty(usernameEdit)) {
+			usernameEdit.requestFocus();
+			showMessage(getString(R.string.username_must_fill));
 		} else {
 			mUser.setPassword(getText(passEdit));
+			mUser.setUsername(getText(usernameEdit));
 			mPresenter.createUser(mUser);
 		}
 	}

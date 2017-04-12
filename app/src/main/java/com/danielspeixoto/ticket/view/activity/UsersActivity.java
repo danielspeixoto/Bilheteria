@@ -27,7 +27,7 @@ public class UsersActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void createUser() {
-        goToActivity(UserDataActivity.class);
+        goToActivity(InsertUserActivity.class);
     }
 
 }
