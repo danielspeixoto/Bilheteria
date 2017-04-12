@@ -103,15 +103,6 @@
                 android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".view.activity.UserDataActivity"
-            android:label="@string/title_activity_user_data"
-            android:parentActivityName=".view.activity.UsersActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.danielspeixoto.ticket.view.activity.UsersActivity" />
-        </activity>
-        <activity
             android:name=".view.activity.PayTicketActivity"
             android:label="@string/title_activity_pay_ticket"
             android:parentActivityName=".view.activity.TicketDataActivity"
@@ -146,6 +137,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.danielspeixoto.ticket.view.activity.UpdateUserActivity" />
+        </activity>
+        <activity
+            android:name=".view.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".view.activity.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.danielspeixoto.ticket.view.activity.HomeActivity" />
         </activity>
     </application>
 

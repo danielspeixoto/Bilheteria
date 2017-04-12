@@ -19,13 +19,13 @@ public class UpdateUserPresenter implements UpdateUser.Presenter {
 		mView = view;
 	}
 	
-	
 	@Override
 	public void save(User user) {
 		String result = Validate.user(user);
 		if (result.equals(Validate.OK)) {
 			CRUDUsers.update(user);
 			result = App.getStringResource(R.string.user_updated);
+			mView.onUpdated();
 		}
 		App.showMessage(result);
 	}

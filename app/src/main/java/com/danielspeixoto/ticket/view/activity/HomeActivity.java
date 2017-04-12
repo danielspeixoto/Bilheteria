@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.danielspeixoto.ticket.R;
-import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.DrawerAdapter;
 
@@ -26,7 +25,7 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState, R.layout.activity_home);
         activityInfo = getString(R.string.info_home);
-        drawer.setAdapter(new DrawerAdapter(this));
+        drawer.setAdapter(new DrawerAdapter(HomeActivity.this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);
         drawerLayout.addDrawerListener(drawerToggle);
     }
@@ -34,13 +33,6 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.fab)
     public void createTicket() {
         goToActivity(TicketDataActivity.class);
-    }
-
-    @OnClick(R.id.logOutButton)
-    public void logOut() {
-        Connection.logOff();
-        goToActivity(MainActivity.class);
-        finish();
     }
 
     @Override
@@ -60,7 +52,7 @@ public class HomeActivity extends BaseActivity {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        return super.onOptionsItemSelected(item);
+	    return super.onOptionsItemSelected(item);
     }
 
 }

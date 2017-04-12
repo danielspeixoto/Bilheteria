@@ -64,7 +64,7 @@
     <string name="offers">Ofertas</string>
     <string name="total">Total</string>
     <string name="sold">Vendidos:</string>
-    <string name="no_items">Não há itens para serem mostrados</string>
+    <string name="no_items">Carregando...</string>
     <string name="title_activity_pay_ticket">Pagamento</string>
     <string name="info_pay_ticket">"Insira as formas de pagamento abaixo.\nVocê deve as preencher até que o valor à direita seja igual à 0.\nQuando o valor à direita estiver vermelho, significa que o comprador deve pagar, quando estiver verde, significa que o pagamento está completo ou que você deve dar o troco para o comprador. "</string>
     <string name="cust">Custo</string>

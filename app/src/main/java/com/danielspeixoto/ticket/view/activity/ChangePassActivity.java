@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.App;
+import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.UpdateUser;
 import com.danielspeixoto.ticket.presenter.UpdateUserPresenter;
@@ -27,9 +28,9 @@ public class ChangePassActivity extends BaseActivity implements UpdateUser.View 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState, R.layout.activity_change_pass);
 		activityInfo = App.getStringResource(R.string.info_change_pass);
-		mUser = getIntent().getParcelableExtra(User.class.getSimpleName());
+		mUser = Connection.getCurrentUser();
 	}
 	
 	@OnClick(R.id.fab)

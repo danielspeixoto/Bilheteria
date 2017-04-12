@@ -78,7 +78,6 @@ public class Connection implements DatabaseContract {
 		                    preferences.getString(PASSWORD, ""),
 		                    preferences.getString(ADM, ""),
 		                    (HashMap<String, Boolean>) outputStream.readObject()));
-                    App.log(currentUser.getPermissions().toString());
                     CRUD.updateDatabase();
                     updateUser();
                 } catch (IOException | ClassNotFoundException e) {

@@ -23,11 +23,13 @@ public class RecyclerList extends LinearLayout {
 	
 	private CustomRecycler recycler;
 	private LinearLayout emptyView;
+	private static int id = 1;
 	
 	public RecyclerList(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 		emptyView = new LinearLayout(context);
-		recycler = new CustomRecycler(context);
+		recycler = new CustomRecycler(context, attrs);
+		recycler.setId(id++);
 		recycler.setLayoutManager(new LinearLayoutManager(context));
 		LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		recycler.setLayoutParams(params);

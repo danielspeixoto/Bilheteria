@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.danielspeixoto.ticket.R;
+import com.danielspeixoto.ticket.helper.App;
 import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.pojo.Link;
 import com.danielspeixoto.ticket.model.pojo.Permission;
@@ -11,6 +12,7 @@ import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.activity.OffersActivity;
 import com.danielspeixoto.ticket.view.activity.PaymentsActivity;
 import com.danielspeixoto.ticket.view.activity.ReportActivity;
+import com.danielspeixoto.ticket.view.activity.SettingsActivity;
 import com.danielspeixoto.ticket.view.activity.UsersActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.DrawerHolder;
 
@@ -50,6 +52,7 @@ public class DrawerAdapter extends BaseAdapter<Link, DrawerHolder> {
             addItem(new Link(activity.getString(R.string.manage_users)
                     , () -> activity.goToActivity(UsersActivity.class)));
         }
+        addItem(new Link(App.getStringResource(R.string.settings), ()-> goToActivity(SettingsActivity.class)));
     }
 
     @Override

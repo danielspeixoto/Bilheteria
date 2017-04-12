@@ -35,18 +35,18 @@ public class UserHolder extends BaseHolder<UsersAdapter, User> implements Delete
         super(itemView, mAdapter);
         OptionsDialog dialog = new OptionsDialog(getActivity());
         ArrayList<Link> links = new ArrayList<>();
-        // DELETE USER
-        links.add(new Link(App.getStringResource(R.string.delete), () -> {
-            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteUserPresenter(UserHolder.this).delete(mItem));
-            areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
-            dialog.dismiss();
-        }));
 	    // EDIT USER
 	    links.add(new Link(App.getStringResource(R.string.edit), () -> {
 		    Intent intent = new Intent(getActivity(), UpdateUserActivity.class);
 		    intent.putExtra(User.class.getSimpleName(), mItem);
 		    getActivity().startActivity(intent);
 	    }));
+        // DELETE USER
+        links.add(new Link(App.getStringResource(R.string.delete), () -> {
+            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteUserPresenter(UserHolder.this).delete(mItem));
+            areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
+            dialog.dismiss();
+        }));
         dialog.setLinks(links);
         cardItem.setOnLongClickListener((l) -> {
             dialog.show();

@@ -8,8 +8,6 @@ import com.danielspeixoto.ticket.model.pojo.User;
 import com.danielspeixoto.ticket.module.UpdateUser;
 import com.danielspeixoto.ticket.presenter.UpdateUserPresenter;
 
-import butterknife.OnClick;
-
 public class UpdateUserActivity extends UserDataActivity implements UpdateUser.View {
 	
 	private UpdateUser.Presenter mPresenter = new UpdateUserPresenter(this);
@@ -19,20 +17,14 @@ public class UpdateUserActivity extends UserDataActivity implements UpdateUser.V
 		super.onCreate(savedInstanceState, R.layout.activity_update_user);
 		activityInfo = App.getStringResource(R.string.info_update_user);
 		mUser = getIntent().getParcelableExtra(User.class.getSimpleName());
-		App.log(mUser.toString());
-		mAdapter.setPermissionsState(mUser.getPermissions());
 		nameEdit.setText(mUser.getName());
+		mAdapter.setPermissionsState(mUser.getPermissions());
 	}
 	
 	@Override
 	public void save() {
 		super.save();
 		mPresenter.save(mUser);
-	}
-	
-	@OnClick(R.id.changePassButton)
-	public void changePass() {
-		goToActivity(ChangePassActivity.class);
 	}
 	
 	@Override

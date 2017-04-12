@@ -171,6 +171,6 @@ public class CRUDUsers extends CRUD {
 	
 	public static void update(User user) {
         // TODO Update both locations for non-adms
-		mDatabase.child(User.class.getSimpleName()).child(user.getUsername()).setValue(user);
+		rootDatabase.child(User.class.getSimpleName()).child(user.getUsername()).setValue(user);
 	}
 }

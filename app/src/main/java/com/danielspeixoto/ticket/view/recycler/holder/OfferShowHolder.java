@@ -38,18 +38,18 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
         mPresenter = new ToggleOfferPresenter(this);
         OptionsDialog dialog = new OptionsDialog(getActivity());
         ArrayList<Link> links = new ArrayList<>();
-        // DELETE OFFER
-        links.add(new Link(App.getStringResource(R.string.delete), () -> {
-            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteOfferPresenter(OfferShowHolder.this).delete(mItem));
-            areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
-            dialog.dismiss();
-        }));
         // EDIT OFFER
         links.add(new Link(App.getStringResource(R.string.edit), () -> {
             OfferDialog offerDialog = new OfferDialog(getActivity());
             offerDialog.setOffer(mItem);
             offerDialog.setMPresenter(new UpdateOfferPresenter(OfferShowHolder.this));
             offerDialog.show();
+            dialog.dismiss();
+        }));
+        // DELETE OFFER
+        links.add(new Link(App.getStringResource(R.string.delete), () -> {
+            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteOfferPresenter(OfferShowHolder.this).delete(mItem));
+            areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
             dialog.dismiss();
         }));
         dialog.setLinks(links);

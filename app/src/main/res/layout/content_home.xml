@@ -12,20 +12,10 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:context="com.danielspeixoto.ticket.view.activity.HomeActivity"
                 tools:showIn="@layout/activity_home">
-
-    <Button
-        android:id="@+id/logOutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/colorBackgroundFloating"
-        android:text="@string/log_out"/>
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/logOutButton"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
