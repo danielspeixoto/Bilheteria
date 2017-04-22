@@ -43,7 +43,8 @@ public class UserHolder extends BaseHolder<UsersAdapter, User> implements Delete
 	    }));
         // DELETE USER
         links.add(new Link(App.getStringResource(R.string.delete), () -> {
-            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteUserPresenter(UserHolder.this).delete(mItem));
+            AreYouSureDialog areYouSureDialog = new AreYouSureDialog();
+            areYouSureDialog.setMOnYesClicked(() -> new DeleteUserPresenter(UserHolder.this).delete(mItem));
             areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
             dialog.dismiss();
         }));

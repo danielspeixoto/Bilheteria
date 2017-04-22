@@ -41,70 +41,79 @@ public class CRUDUsers extends CRUD {
     }
 
     public static Single<User> createAdm(User user) {
-        return Single.create(singleSubscriber -> rootDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                String email = user.getUsername();
-                // Verifica se ja existe algum usuario com este username
-                if (!snapshot.hasChild(email)) {
-                    user.setPermissions(Permissions.getADMPermissions());
-                    user.setAdm(email);
-                    rootDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
-                    singleSubscriber.onSuccess(user);
-                }
-                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
-            }
+        return Single.create(singleSubscriber -> {
+            if(isConnected) {
+                rootDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        String email = user.getUsername();
+                        // Verifica se ja existe algum usuario com este username
+                        if (!snapshot.hasChild(email)) {
+                            user.setPermissions(Permissions.getADMPermissions());
+                            user.setAdm(email);
+                            rootDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
+                            singleSubscriber.onSuccess(user);
+                        }
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
+                    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+                    }
+                });
+            } else {
+                singleSubscriber.onError(new Throwable(App.getStringResource(R.string.no_connection)));
             }
-        }));
+        });
     }
 
     public static Single<User> createUser(User user) {
-        String adm = Connection.getCurrentUser().getAdm();
-        user.setAdm(adm);
-        String email = user.getUsername();
-        return Single.create(singleSubscriber -> {
-            // Users general node
-            DatabaseReference tempDatabase = mDatabase.getParent().child(User.class.getSimpleName());
-            tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    // Verifica se ja existe algum usuario com este username
-                    if (!snapshot.hasChild(email)) {
-                        mDatabase.getParent().child(User.class.getSimpleName()).child(email).setValue(user);
-                        singleSubscriber.onSuccess(user);
+        if(isConnected) {
+            String adm = Connection.getCurrentUser().getAdm();
+            user.setAdm(adm);
+            String email = user.getUsername();
+            return Single.create(singleSubscriber -> {
+                // Users general node
+                DatabaseReference tempDatabase = mDatabase.getParent().child(User.class.getSimpleName());
+                tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        // Verifica se ja existe algum usuario com este username
+                        if (!snapshot.hasChild(email)) {
+                            mDatabase.getParent().child(User.class.getSimpleName()).child(email).setValue(user);
+                            singleSubscriber.onSuccess(user);
 
+                        }
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
                     }
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
-                }
-            });
-            // Users inside an adm node
-            tempDatabase = mDatabase.child(adm).child(User.class.getSimpleName());
-            tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    // Verifica se ja existe algum usuario com este username
-                    if (!snapshot.hasChild(email)) {
-                        mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
-                        singleSubscriber.onSuccess(user);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
                     }
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
-                }
+                });
+                // Users inside an adm node
+                tempDatabase = mDatabase.child(adm).child(User.class.getSimpleName());
+                tempDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        // Verifica se ja existe algum usuario com este username
+                        if (!snapshot.hasChild(email)) {
+                            mDatabase.child(User.class.getSimpleName()).child(email).setValue(user);
+                            singleSubscriber.onSuccess(user);
+                        }
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.username_already_exists)));
+                    }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        singleSubscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
+                    }
+                });
             });
-        });
+        }
+        return Single.create(subscriber -> subscriber.onError(new Throwable(App.getStringResource(R.string.no_connection))));
     }
 
     public static Observable<User> getAll() {
@@ -169,8 +178,15 @@ public class CRUDUsers extends CRUD {
         mDatabase.child(User.class.getSimpleName()).child(username).removeValue();
     }
 	
-	public static void update(User user) {
+	public static Single<Boolean> update(User user) {
         // TODO Update both locations for non-adms
-		rootDatabase.child(User.class.getSimpleName()).child(user.getUsername()).setValue(user);
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                rootDatabase.child(User.class.getSimpleName()).child(user.getUsername()).setValue(user);
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
 	}
 }

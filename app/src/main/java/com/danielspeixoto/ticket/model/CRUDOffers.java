@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
+import rx.Single;
 
 /**
  * Created by danielspeixoto on 2/14/17.
@@ -16,18 +17,39 @@ import rx.Observable;
 
 public class CRUDOffers extends CRUD {
 
-    public static void insert(Offer offer) {
-        DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
-        offer.setUid(tempDatabase.push().getKey());
-        tempDatabase.child(offer.getUid()).setValue(offer);
+    public static Single<Boolean> insert(Offer offer) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
+                offer.setUid(tempDatabase.push().getKey());
+                tempDatabase.child(offer.getUid()).setValue(offer);
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
     }
 
-    public static void update(Offer offer) {
-        mDatabase.child(Offer.class.getSimpleName()).child(offer.getUid()).setValue(offer);
+    public static Single<Boolean> update(Offer offer) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                mDatabase.child(Offer.class.getSimpleName()).child(offer.getUid()).setValue(offer);
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
     }
 
-    public static void delete(String uid) {
-        mDatabase.child(Offer.class.getSimpleName()).child(uid).removeValue();
+    public static Single<Boolean> delete(String uid) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                mDatabase.child(Offer.class.getSimpleName()).child(uid).removeValue();
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
     }
 
     public static Observable<Offer> getAll() {

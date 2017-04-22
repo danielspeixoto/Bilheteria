@@ -7,6 +7,8 @@ import com.danielspeixoto.ticket.model.pojo.Payment;
 import com.danielspeixoto.ticket.module.InsertPayment;
 import com.danielspeixoto.ticket.util.Validate;
 
+import rx.SingleSubscriber;
+
 /**
  * Created by danielspeixoto on 2/15/17.
  */
@@ -23,10 +25,24 @@ public class InsertPaymentPresenter implements InsertPayment.Presenter {
     public void insert(Payment payment) {
         String result = Validate.payment(payment);
         if (result.equals(Validate.OK)) {
-            CRUDPayments.insert(payment);
-            result = App.getStringResource(R.string.payment_added);
-            mView.clear();
+            CRUDPayments.insert(payment).subscribe(new SingleSubscriber<Boolean>() {
+                @Override
+                public void onSuccess(Boolean aBoolean) {
+                    if(aBoolean) {
+                        App.showMessage(App.getStringResource(R.string.payment_added));
+                        mView.clear();
+                    } else {
+                        App.showMessage(App.getStringResource(R.string.no_connection));
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    App.showMessage(App.getStringResource(R.string.error_occurred));
+                }
+            });
+        } else {
+            App.showMessage(result);
         }
-        App.showMessage(result);
     }
 }

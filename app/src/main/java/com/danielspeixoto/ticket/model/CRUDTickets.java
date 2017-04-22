@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
+import rx.Single;
 
 /**
  * Created by danielspeixoto on 2/18/17.
@@ -17,10 +18,17 @@ import rx.Observable;
 
 public class CRUDTickets extends CRUD {
 
-    public static void insert(Ticket ticket) {
-        DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
-        ticket.setUid(tempDatabase.push().getKey());
-        tempDatabase.child(ticket.getUid()).setValue(ticket);
+    public static Single<Boolean> insert(Ticket ticket) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
+                ticket.setUid(tempDatabase.push().getKey());
+                tempDatabase.child(ticket.getUid()).setValue(ticket);
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
     }
 
     public static void update(Ticket ticket) {

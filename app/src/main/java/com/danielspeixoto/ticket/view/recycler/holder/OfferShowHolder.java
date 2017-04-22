@@ -49,7 +49,8 @@ public class OfferShowHolder extends OfferHolder<OffersShowAdapter> implements T
         }));
         // DELETE OFFER
         links.add(new Link(App.getStringResource(R.string.delete), () -> {
-            AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteOfferPresenter(OfferShowHolder.this).delete(mItem));
+            AreYouSureDialog areYouSureDialog = new AreYouSureDialog();
+            areYouSureDialog.setMOnYesClicked(() -> new DeleteOfferPresenter(OfferShowHolder.this).delete(mItem));
             areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
             dialog.dismiss();
         }));

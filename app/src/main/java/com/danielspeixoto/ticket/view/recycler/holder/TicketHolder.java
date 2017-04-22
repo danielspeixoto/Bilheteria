@@ -36,7 +36,8 @@ public class TicketHolder extends BaseHolder<TicketsAdapter, Ticket> implements 
 		ArrayList<Link> links = new ArrayList<>();
 		// DELETE TICKET
 		links.add(new Link(App.getStringResource(R.string.delete), () -> {
-			AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeleteTicketPresenter(TicketHolder.this).delete(mItem));
+			AreYouSureDialog areYouSureDialog = new AreYouSureDialog();
+			areYouSureDialog.setMOnYesClicked(() -> new DeleteTicketPresenter(TicketHolder.this).delete(mItem));
 			areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
 			dialog.dismiss();
 		}));

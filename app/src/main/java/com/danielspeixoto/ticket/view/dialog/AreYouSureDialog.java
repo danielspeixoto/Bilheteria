@@ -9,16 +9,18 @@ import android.support.v7.app.AlertDialog;
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.App;
 
+import lombok.Setter;
+
 /**
  * Created by danielspeixoto on 18/11/16.
  */
 public class AreYouSureDialog extends DialogFragment {
 
     public static final String TAG = "areYouSure";
+    @Setter
     private Runnable mOnYesClicked;
 
-    public AreYouSureDialog(Runnable mOnYesClicked) {
-        this.mOnYesClicked = mOnYesClicked;
+    public AreYouSureDialog() {
     }
 
     @NonNull

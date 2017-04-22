@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import rx.Observable;
+import rx.Single;
 
 /**
  * Created by danielspeixoto on 2/15/17.
@@ -46,14 +47,29 @@ public class CRUDPayments extends CRUD {
         }));
     }
 
-    public static void insert(Payment payment) {
-        DatabaseReference tempDatabase = mDatabase.child(Payment.class.getSimpleName());
-        payment.setUid(tempDatabase.push().getKey());
-        tempDatabase.child(payment.getUid()).setValue(payment);
+    public static Single<Boolean> insert(Payment payment) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                DatabaseReference tempDatabase = mDatabase.child(Payment.class.getSimpleName());
+                payment.setUid(tempDatabase.push().getKey());
+                tempDatabase.child(payment.getUid()).setValue(payment);
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
+
     }
     
-    public static void delete(String uid) {
-        mDatabase.child(Payment.class.getSimpleName()).child(uid).removeValue();
+    public static Single<Boolean> delete(String uid) {
+        return Single.create(subscriber -> {
+            if(isConnected) {
+                mDatabase.child(Payment.class.getSimpleName()).child(uid).removeValue();
+                subscriber.onSuccess(true);
+            } else {
+                subscriber.onSuccess(false);
+            }
+        });
     }
     
 }

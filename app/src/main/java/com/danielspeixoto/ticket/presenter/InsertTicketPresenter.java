@@ -9,6 +9,8 @@ import com.danielspeixoto.ticket.module.InsertTicket;
 
 import java.sql.Timestamp;
 
+import rx.SingleSubscriber;
+
 
 /**
  * Created by danielspeixoto on 2/18/17.
@@ -26,7 +28,20 @@ public class InsertTicketPresenter implements InsertTicket.Presenter {
     public void insert(Ticket ticket) {
         ticket.setTimestamp(new Timestamp(System.currentTimeMillis()).getTime());
         ticket.setSeller(Connection.getCurrentUser().getUsername());
-        CRUDTickets.insert(ticket);
-        mView.onResult(App.getStringResource(R.string.ticket_added));
+        CRUDTickets.insert(ticket).subscribe(new SingleSubscriber<Boolean>() {
+            @Override
+            public void onSuccess(Boolean aBoolean) {
+                if(aBoolean) {
+                    mView.onResult(App.getStringResource(R.string.ticket_added));
+                } else {
+                    App.showMessage(App.getStringResource(R.string.no_connection));
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                App.showMessage(App.getStringResource(R.string.error_occurred));
+            }
+        });
     }
 }

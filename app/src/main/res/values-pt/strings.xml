@@ -92,4 +92,5 @@
     <string name="payment_deleted">Forma de pagamento apagada</string>
     <string name="old_password">Antiga senha</string>
     <string name="new_password">Nova senha</string>
+    <string name="no_connection">Sem conexão</string>
 </resources>

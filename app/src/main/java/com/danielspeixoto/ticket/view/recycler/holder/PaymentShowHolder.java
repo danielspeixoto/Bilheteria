@@ -29,7 +29,8 @@ public class PaymentShowHolder extends PaymentHolder<PaymentsShowAdapter> implem
 		ArrayList<Link> links = new ArrayList<>();
 		// DELETE PAYMENT
 		links.add(new Link(App.getStringResource(R.string.delete), () -> {
-			AreYouSureDialog areYouSureDialog = new AreYouSureDialog(() -> new DeletePaymentPresenter(PaymentShowHolder.this).delete(mItem));
+			AreYouSureDialog areYouSureDialog = new AreYouSureDialog();
+			areYouSureDialog.setMOnYesClicked(() -> new DeletePaymentPresenter(PaymentShowHolder.this).delete(mItem));
 			areYouSureDialog.show(getActivity().getSupportFragmentManager(), AreYouSureDialog.TAG);
 			dialog.dismiss();
 		}));
