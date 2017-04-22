@@ -14,7 +14,7 @@ import lombok.Getter;
  * Created by danielspeixoto on 2/15/17.
  */
 
-public class PaymentHolder<T extends PaymentsAdapter> extends BaseHolder<T, Payment> {
+public abstract class PaymentHolder<T extends PaymentsAdapter> extends BaseHolder<T, Payment> {
 
     @BindView(R.id.nameText)
     @Getter

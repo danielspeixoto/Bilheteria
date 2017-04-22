@@ -6,11 +6,11 @@ package com.danielspeixoto.ticket.module;
 
 public class InsertOffer {
 
-    public interface View extends CRUDOffer.View {
+    public interface View extends CreateUpdateOffer.View {
 
     }
 
-    public interface Presenter extends CRUDOffer.Presenter {
+    public interface Presenter extends CreateUpdateOffer.Presenter {
 
     }
 }

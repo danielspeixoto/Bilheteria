@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.presenter.AllUsersPresenter;
 import com.danielspeixoto.ticket.view.custom.RecyclerList;
-import com.danielspeixoto.ticket.view.recycler.adapter.UserAdapter;
+import com.danielspeixoto.ticket.view.recycler.adapter.UsersAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -15,7 +15,7 @@ public class UsersActivity extends BaseActivity {
     @BindView(R.id.list)
     RecyclerList list;
 
-    private UserAdapter mAdapter = new UserAdapter(this);
+    private UsersAdapter mAdapter = new UsersAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class UsersActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void createUser() {
-        goToActivity(UserDataActivity.class);
+        goToActivity(InsertUserActivity.class);
     }
 
 }

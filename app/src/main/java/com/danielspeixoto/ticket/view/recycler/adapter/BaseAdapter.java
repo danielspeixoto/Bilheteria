@@ -11,19 +11,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Created by danielspeixoto on 17/11/16.
  */
-public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter, T>>
-		extends RecyclerView.Adapter<S> {
+public abstract class BaseAdapter<O, H extends BaseHolder>
+		extends RecyclerView.Adapter<H> {
 
     @Getter
     protected BaseActivity activity;
     @Getter
-    @Setter
-    private ArrayList<T> data = new ArrayList<>();
+    private ArrayList<O> data = new ArrayList<>();
     protected RecyclerView mRecyclerView;
 
     public BaseAdapter(BaseActivity activity) {
@@ -31,8 +29,8 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
     }
 
     // It's public because it is used in interfaces
-    public void addItem(T t) {
-        data.add(t);
+    public void addItem(O o) {
+        data.add(o);
         notifyDataSetChanged();
     }
 	
@@ -42,7 +40,7 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
 		mRecyclerView = recyclerView;
 	}
 	
-	protected final T getItem(int position) {
+	protected final O getItem(int position) {
         return data.get(position);
     }
     
@@ -51,27 +49,35 @@ public abstract class BaseAdapter<T, S extends BaseHolder<? extends BaseAdapter,
         notifyDataSetChanged();
     }
     
+    public void setData(ArrayList<O> data) {
+        this.data.clear();
+        for(O o : data) {
+            addItem(o);
+        }
+    }
+    
     protected final void clearData() {
         data.clear();
         notifyDataSetChanged();
     }
     
     @NonNull
-    protected final Iterator<T> getIterator() {
+    protected final Iterator<O> getIterator() {
         return data.iterator();
     }
-    
+
+    // TODO remove this method
     public abstract void getItems();
 
     @Override
-    public void onBindViewHolder(S holder, int position) {
-        holder.setMItem(data.get(position));
+    public void onBindViewHolder(H holder, int position) {
+        holder.setItem(data.get(position));
         holder.setPosition(position);
         holder.onPostCreated();
     }
 
     @Override
-    public abstract S onCreateViewHolder(ViewGroup parent, int viewType);
+    public abstract H onCreateViewHolder(ViewGroup parent, int viewType);
 
     @Override
     public int getItemCount() {

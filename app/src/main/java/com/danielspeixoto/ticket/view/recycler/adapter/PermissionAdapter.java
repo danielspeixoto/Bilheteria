@@ -9,6 +9,9 @@ import com.danielspeixoto.ticket.model.pojo.Permission;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.PermissionHolder;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 /**
  * Created by danielspeixoto on 3/13/17.
  */
@@ -30,5 +33,14 @@ public class PermissionAdapter extends BaseAdapter<Permission, PermissionHolder>
     @Override
     public PermissionHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new PermissionHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_permission, parent, false), this);
+    }
+	
+	public void setPermissionsState(HashMap<String,Boolean> permissionsState) {
+		Iterator<Permission> iterator = getIterator();
+		while(iterator.hasNext()) {
+			Permission permission = iterator.next();
+			permission.setAllowed(permissionsState.get(permission.getName()));
+		}
+		notifyDataSetChanged();
     }
 }

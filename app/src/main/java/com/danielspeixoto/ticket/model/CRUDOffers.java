@@ -16,10 +16,18 @@ import rx.Observable;
 
 public class CRUDOffers extends CRUD {
 
-    public static void insertOffer(Offer offer) {
+    public static void insert(Offer offer) {
         DatabaseReference tempDatabase = mDatabase.child(Offer.class.getSimpleName());
         offer.setUid(tempDatabase.push().getKey());
         tempDatabase.child(offer.getUid()).setValue(offer);
+    }
+
+    public static void update(Offer offer) {
+        mDatabase.child(Offer.class.getSimpleName()).child(offer.getUid()).setValue(offer);
+    }
+
+    public static void delete(String uid) {
+        mDatabase.child(Offer.class.getSimpleName()).child(uid).removeValue();
     }
 
     public static Observable<Offer> getAll() {

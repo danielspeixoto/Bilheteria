@@ -31,5 +31,8 @@ public class PermissionHolder extends BaseHolder<PermissionAdapter, Permission> 
     @Override
     public void onPostCreated() {
         nameText.setText(mItem.getLocaleName());
+        if(mItem.isAllowed()) {
+            switchActivated.toggle();
+        }
     }
 }

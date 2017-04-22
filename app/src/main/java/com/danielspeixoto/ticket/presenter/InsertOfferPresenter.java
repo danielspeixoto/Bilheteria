@@ -21,11 +21,11 @@ public class InsertOfferPresenter implements InsertOffer.Presenter {
 
     @Override
     public void save(Offer offer) {
-        String result = Validate.Offer(offer);
+        String result = Validate.offer(offer);
         if (result.equals(Validate.OK)) {
-            CRUDOffers.insertOffer(offer);
+            CRUDOffers.insert(offer);
             result = App.getStringResource(R.string.offer_added);
-            mView.getDialog().dismiss();
+            mView.onSaveSuccess();
         }
         App.showMessage(result);
     }

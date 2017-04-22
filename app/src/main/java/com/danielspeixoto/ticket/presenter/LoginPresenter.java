@@ -29,7 +29,7 @@ public class LoginPresenter implements Login.Presenter {
     public void logIn(String email, String password) {
         mActivity.showMessage(App.getStringResource(R.string.loading));
         User user = new User(email, password);
-        String result = Validate.User(user);
+        String result = Validate.user(user);
         if (result.equals(Validate.OK)) {
             Connection.findUser(email, password).subscribe(new SingleSubscriber<User>() {
                 @Override

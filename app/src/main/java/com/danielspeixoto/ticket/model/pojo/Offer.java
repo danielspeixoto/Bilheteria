@@ -10,11 +10,10 @@ import lombok.Data;
  */
 
 @Data
-public class Offer implements Parcelable {
+public class Offer extends DatabaseItem implements Parcelable {
 
     public static final String IS_ACTIVATED = "activated";
-
-    private String uid, name;
+    
     private float price;
     private int amount = 0;
     private boolean isActivated = true;

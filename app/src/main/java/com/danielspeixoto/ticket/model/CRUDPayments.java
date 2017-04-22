@@ -46,9 +46,14 @@ public class CRUDPayments extends CRUD {
         }));
     }
 
-    public static void insertPayment(Payment payment) {
+    public static void insert(Payment payment) {
         DatabaseReference tempDatabase = mDatabase.child(Payment.class.getSimpleName());
         payment.setUid(tempDatabase.push().getKey());
         tempDatabase.child(payment.getUid()).setValue(payment);
     }
+    
+    public static void delete(String uid) {
+        mDatabase.child(Payment.class.getSimpleName()).child(uid).removeValue();
+    }
+    
 }

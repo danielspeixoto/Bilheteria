@@ -17,13 +17,13 @@ import rx.Observable;
 
 public class CRUDTickets extends CRUD {
 
-    public static void insertTicket(Ticket ticket) {
+    public static void insert(Ticket ticket) {
         DatabaseReference tempDatabase = mDatabase.child(Ticket.class.getSimpleName()).child(String.valueOf(Time.getTodayInMillis()));
         ticket.setUid(tempDatabase.push().getKey());
         tempDatabase.child(ticket.getUid()).setValue(ticket);
     }
 
-    public static void updateTicket(Ticket ticket) {
+    public static void update(Ticket ticket) {
         mDatabase.child(Ticket.class.getSimpleName())
                 .child(String.valueOf(Time.getDayInMillis(ticket.getTimestamp())))
                 .child(ticket.getUid()).setValue(ticket);
@@ -113,6 +113,10 @@ public class CRUDTickets extends CRUD {
                 subscriber.onError(new Throwable(App.getStringResource(R.string.error_occurred)));
             }
         }));
+    }
+    
+    public static void delete(String uid) {
+        mDatabase.child(Ticket.class.getSimpleName()).child(uid).removeValue();
     }
 
 }
