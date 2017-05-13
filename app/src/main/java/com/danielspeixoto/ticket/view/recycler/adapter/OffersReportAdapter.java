@@ -36,6 +36,7 @@ public class OffersReportAdapter extends BaseAdapter<OfferReport, OfferReportHol
 	
 	@Override
 	public void getItems() {
+		clearData();
 		for(OfferReport container : mReport.getOffers()) {
 			addItem(container);
 		}

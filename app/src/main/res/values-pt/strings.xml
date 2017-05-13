@@ -59,7 +59,7 @@
     <string name="no_description">Desculpe, não há descrição para essa página</string>
     <string name="payment_not_completed">O pagamento não está completo</string>
     <string name="must_buy_something">Você precisa comprar algo</string>
-    <string name="history">Histórico</string>
+    <string name="history">Gerenciar Histórico</string>
     <string name="payments">Pagamentos</string>
     <string name="offers">Ofertas</string>
     <string name="total">Total</string>

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.danielspeixoto.ticket.R;
 import com.danielspeixoto.ticket.helper.SimpleCallback;
+import com.danielspeixoto.ticket.model.Connection;
+import com.danielspeixoto.ticket.model.pojo.Permission;
 
 import lombok.Getter;
 
@@ -44,7 +46,7 @@ public class PickAmount extends LinearLayout {
         minus.setBackgroundResource(R.drawable.ic_remove_black_24dp);
         minus.setLayoutParams(new LayoutParams(70, 70));
         minus.setOnClickListener(v -> {
-            if (amount > 0) {
+            if (Connection.getCurrentUser().getPermissions().get(Permission.VIEW_HISTORY) || amount > 0) {
                 textView.setText(String.valueOf(--amount));
             }
             mCallback.run();

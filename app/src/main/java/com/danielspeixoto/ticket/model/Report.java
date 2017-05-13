@@ -30,7 +30,7 @@ public class Report {
     public Report() {}
 
     public void addOffer(Offer offer) {
-        index = offer.getName();
+        index = offer.getAmount() > 0 ? offer.getName() : offer.getName() + " (Cancelado)";
         if(offers.containsKey(index)) {
             Pair<Integer, Double> pair = offers.get(index);
             offers.put(index, new Pair<>(pair.first + offer.getAmount(),
@@ -42,7 +42,7 @@ public class Report {
     }
     
     public void addPayment(Payment payment) {
-        index = payment.getName();
+        index = payment.getAmount() > 0 ? payment.getName() : payment.getName() + " (Cancelado)";
         if(payments.containsKey(index)) {
             double amount = payments.get(index);
             payments.put(index, amount + payment.getAmount());

@@ -34,6 +34,7 @@ public class PaymentsReportAdapter extends BaseAdapter<PaymentReport, PaymentRep
 	
 	@Override
 	public void getItems() {
+		clearData();
 		for(PaymentReport paymentReport : mReport.getPayments()) {
 			addItem(paymentReport);
 		}
