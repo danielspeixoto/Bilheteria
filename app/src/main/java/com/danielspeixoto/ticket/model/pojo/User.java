@@ -76,4 +76,24 @@ public class User implements Parcelable {
 		    dest.writeByte((byte)(entry.getValue() ? 1 : 0));
 	    }
     }
+
+    public boolean hasFilter() {
+        if(username.equals(adm)) {
+            return false;
+        }
+        if (this.permissions.containsKey(Permission.FILTER_ONLY)) {
+            return ((Boolean) this.permissions.get(Permission.FILTER_ONLY)).booleanValue();
+        }
+        return false;
+    }
+
+    public boolean cannotSell() {
+        if (!this.permissions.containsKey(Permission.SELL)) {
+            return false;
+        }
+        if (((Boolean) this.permissions.get(Permission.SELL)).booleanValue()) {
+            return false;
+        }
+        return true;
+    }
 }

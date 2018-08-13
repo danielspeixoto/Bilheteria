@@ -23,6 +23,8 @@ public class Permissions {
         permissions.add(Permission.VIEW_HISTORY);
         permissions.add(Permission.MANAGE_OFFERS);
         permissions.add(Permission.MANAGE_PAYMENT);
+        permissions.add(Permission.FILTER_ONLY);
+        permissions.add(Permission.SELL);
         for (String string : permissions) {
             permissionsHash.put(string, false);
         }

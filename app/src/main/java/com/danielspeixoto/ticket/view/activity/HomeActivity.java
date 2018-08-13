@@ -2,11 +2,15 @@ package com.danielspeixoto.ticket.view.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+//import android.support.design.widget.FloatingActionButton;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.danielspeixoto.ticket.R;
+import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.view.custom.RecyclerList;
 import com.danielspeixoto.ticket.view.recycler.adapter.DrawerAdapter;
 
@@ -20,10 +24,15 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState, R.layout.activity_home);
+        if (Connection.getCurrentUser().cannotSell()) {
+            this.fab.setVisibility(View.GONE);
+        }
         activityInfo = getString(R.string.info_home);
         drawer.setAdapter(new DrawerAdapter(HomeActivity.this));
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.accept, R.string.decline);

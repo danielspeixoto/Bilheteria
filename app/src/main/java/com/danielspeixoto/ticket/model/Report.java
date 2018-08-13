@@ -27,6 +27,8 @@ public class Report {
 
     private static String index;
 
+    private ArrayList<String> ids = new ArrayList<>();
+
     public Report() {}
 
     public void addOffer(Offer offer) {
@@ -52,12 +54,15 @@ public class Report {
     }
     
     public void addTicket(Ticket ticket) {
-	    for (Offer offer : ticket.getOffers()) {
-		    addOffer(offer);
-	    }
-	    for (Payment payment : ticket.getPayments()) {
-		    addPayment(payment);
-	    }
+        if(!ids.contains(ticket.getUid())) {
+            ids.add(ticket.getUid());
+            for (Offer offer : ticket.getOffers()) {
+                addOffer(offer);
+            }
+            for (Payment payment : ticket.getPayments()) {
+                addPayment(payment);
+            }
+        }
     }
     
     public ArrayList<PaymentReport> getPayments() {

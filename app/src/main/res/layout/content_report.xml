@@ -36,6 +36,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
                 android:text="@string/payments"
+                android:id="@+id/ptext"
                 android:textColor="?attr/colorPrimaryDark"
                 android:textSize="@dimen/label_text" />
 

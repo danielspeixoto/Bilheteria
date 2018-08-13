@@ -10,6 +10,8 @@ import com.danielspeixoto.ticket.model.pojo.PaymentReport;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.PaymentReportHolder;
 
+import java.util.Iterator;
+
 /**
  * Created by danielspeixoto on 4/7/17.
  */
@@ -17,37 +19,41 @@ import com.danielspeixoto.ticket.view.recycler.holder.PaymentReportHolder;
 public class PaymentsReportAdapter extends BaseAdapter<PaymentReport, PaymentReportHolder> {
 	
 	double total = 0;
-	
+	OffersReportAdapter.Filter filter;
 	private Report mReport = new Report();
-	
-	public PaymentsReportAdapter(BaseActivity activity) {
+
+	public PaymentsReportAdapter(BaseActivity activity, boolean hasFilter) {
 		super(activity);
-		addItem(new PaymentReport(App.getStringResource(R.string.total), total));
+		if (hasFilter) {
+			this.filter = new OffersReportAdapter.Filter("*");
+		}
+		addItem(new PaymentReport(App.getStringResource(R.string.total), this.total));
 	}
-	
+
 	public void setMReport(Report mReport) {
 		clearData();
-		total = 0;
+		this.total = 0.0d;
 		this.mReport = mReport;
 		getItems();
 	}
-	
-	@Override
+
 	public void getItems() {
 		clearData();
-		for(PaymentReport paymentReport : mReport.getPayments()) {
-			addItem(paymentReport);
+		Iterator it = this.mReport.getPayments().iterator();
+		while (it.hasNext()) {
+			PaymentReport paymentReport = (PaymentReport) it.next();
+			if (this.filter == null) {
+				addItem(paymentReport);
+			}
 		}
-		addItem(new PaymentReport(App.getStringResource(R.string.total), total));
+		addItem(new PaymentReport(App.getStringResource(R.string.total), this.total));
 	}
-	
-	@Override
+
 	public void addItem(PaymentReport paymentReport) {
 		super.addItem(paymentReport);
-		total += paymentReport.getAmount();
+		this.total += paymentReport.getAmount();
 	}
-	
-	@Override
+
 	public PaymentReportHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		return new PaymentReportHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_payment_report, parent, false), this);
 	}

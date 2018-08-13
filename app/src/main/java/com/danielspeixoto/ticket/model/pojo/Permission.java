@@ -17,6 +17,9 @@ public class Permission {
             VIEW_HISTORY = "VIEW_HISTORY",
             MANAGE_OFFERS = "MANAGE_OFFERS",
             MANAGE_PAYMENT = "MANAGE_PAYMENT";
+
+    public static final String FILTER_ONLY = "FILTER_ONLY";
+    public static final String SELL = "SELL";
 	
 	public static final String MANAGE_TICKET_DEPRECATED = App.getStringResource(R.string.manage_tickets),
 			MANAGE_USERS_DEPRECATED = App.getStringResource(R.string.manage_users),
@@ -50,6 +53,12 @@ public class Permission {
                 break;
             case MANAGE_PAYMENT :
                 this.localeName = App.getStringResource(R.string.manage_payment);
+                break;
+            case FILTER_ONLY:
+                this.localeName = App.getStringResource(R.string.filter_only);
+                break;
+            case SELL:
+                this.localeName = App.getStringResource(R.string.sell);
                 break;
         }
     }

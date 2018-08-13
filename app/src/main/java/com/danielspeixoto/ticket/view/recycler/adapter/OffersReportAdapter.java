@@ -10,6 +10,8 @@ import com.danielspeixoto.ticket.model.pojo.OfferReport;
 import com.danielspeixoto.ticket.view.activity.BaseActivity;
 import com.danielspeixoto.ticket.view.recycler.holder.OfferReportHolder;
 
+import java.util.Iterator;
+
 /**
  * Created by danielspeixoto on 4/8/17.
  */
@@ -18,13 +20,29 @@ public class OffersReportAdapter extends BaseAdapter<OfferReport, OfferReportHol
 	
 	private double amount = 0;
 	private int numItems = 0;
-	
+	Filter filter;
 	private Report mReport = new Report();
-	
-	public OffersReportAdapter(BaseActivity activity) {
-		super(activity);
-		addItem(new OfferReport(App.getStringResource(R.string.total), numItems,  amount));
+
+	public static class Filter {
+		private String pattern;
+
+		public Filter(String pattern) {
+			this.pattern = pattern;
+		}
+
+		public boolean accept(OfferReport offer) {
+			return offer.getName().contains(this.pattern);
+		}
 	}
+
+	public OffersReportAdapter(BaseActivity activity, boolean hasFilter) {
+		super(activity);
+		if (hasFilter) {
+			this.filter = new Filter("*");
+		}
+		addItem(new OfferReport(App.getStringResource(R.string.total), this.numItems, this.amount));
+	}
+
 	
 	public void setMReport(Report mReport) {
 		clearData();
@@ -37,10 +55,14 @@ public class OffersReportAdapter extends BaseAdapter<OfferReport, OfferReportHol
 	@Override
 	public void getItems() {
 		clearData();
-		for(OfferReport container : mReport.getOffers()) {
-			addItem(container);
+		Iterator it = this.mReport.getOffers().iterator();
+		while (it.hasNext()) {
+			OfferReport container = (OfferReport) it.next();
+			if (this.filter == null || this.filter.accept(container)) {
+				addItem(container);
+			}
 		}
-		addItem(new OfferReport(App.getStringResource(R.string.total), numItems,  amount));
+		addItem(new OfferReport(App.getStringResource(R.string.total), this.numItems, this.amount));
 	}
 	
 	@Override

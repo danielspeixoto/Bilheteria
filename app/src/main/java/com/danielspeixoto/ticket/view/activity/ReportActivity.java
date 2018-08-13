@@ -1,8 +1,11 @@
 package com.danielspeixoto.ticket.view.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.danielspeixoto.ticket.R;
+import com.danielspeixoto.ticket.model.Connection;
 import com.danielspeixoto.ticket.model.Report;
 import com.danielspeixoto.ticket.module.Reports;
 import com.danielspeixoto.ticket.presenter.ReportPresenter;
@@ -21,14 +24,20 @@ public class ReportActivity extends BaseActivity implements Reports.View {
     RecyclerList paymentsList;
     @BindView(R.id.offersList)
     RecyclerList offersList;
-    
-    private PaymentsReportAdapter paymentAdapter = new PaymentsReportAdapter(this);
-    private OffersReportAdapter offerAdapter = new OffersReportAdapter(this);
+    @BindView(R.id.ptext)
+    TextView ptext;
+
+    private PaymentsReportAdapter paymentAdapter = new PaymentsReportAdapter(this, Connection.getCurrentUser().hasFilter());
+    private OffersReportAdapter offerAdapter = new OffersReportAdapter(this, Connection.getCurrentUser().hasFilter());
     private Reports.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_report);
+        if (Connection.getCurrentUser().hasFilter()) {
+            this.ptext.setVisibility(View.GONE);
+            this.paymentsList.setVisibility(View.GONE);
+        }
         activityInfo = getString(R.string.info_report);
         mPresenter = new ReportPresenter(this);
         // Load today's report
